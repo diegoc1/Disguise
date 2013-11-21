@@ -20,12 +20,11 @@
 		17E5A66B14601A1C004B1CA6 /* libtesseract_all.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E5A65914601A1C004B1CA6 /* libtesseract_all.a */; };
 		17E5A69014601E0F004B1CA6 /* Lorem_Ipsum_Univers.png in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A68E14601E0F004B1CA6 /* Lorem_Ipsum_Univers.png */; };
 		17E5A69114601E0F004B1CA6 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A68F14601E0F004B1CA6 /* tessdata */; };
-		BE9B126E16DB0AAA00112A83 /* Image.mm in Sources */ = {isa = PBXBuildFile; fileRef = BE9B126D16DB0AAA00112A83 /* Image.mm */; };
-		BE9E37EB183DB7EA004986D8 /* OpenCV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37EA183DB7EA004986D8 /* OpenCV.framework */; };
+		BE26C631183DC31300550F59 /* OpenCV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE26C630183DC31300550F59 /* OpenCV.framework */; };
+		BE26C634183DC36000550F59 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = BE26C633183DC36000550F59 /* UIImage+OpenCV.mm */; };
 		BE9E37ED183DB8C6004986D8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37EC183DB8C6004986D8 /* AVFoundation.framework */; };
 		BE9E37EF183DB8D7004986D8 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37EE183DB8D7004986D8 /* ImageIO.framework */; };
 		BE9E37F1183DB8E8004986D8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37F0183DB8E8004986D8 /* libz.dylib */; };
-		BE9E37F4183DB9E8004986D8 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = BE9E37F3183DB9E8004986D8 /* UIImage+OpenCV.mm */; };
 		BEBF3EB116DB3A1300B82C62 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEBF3EB016DB3A1300B82C62 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -90,14 +89,12 @@
 		17E5A68814601BC7004B1CA6 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		17E5A68E14601E0F004B1CA6 /* Lorem_Ipsum_Univers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lorem_Ipsum_Univers.png; sourceTree = "<group>"; };
 		17E5A68F14601E0F004B1CA6 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
-		BE9B126C16DB0AAA00112A83 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = "../../../Diego n Will/TesseractSample/TesseractSample/Image.h"; sourceTree = "<group>"; };
-		BE9B126D16DB0AAA00112A83 /* Image.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Image.mm; path = "../../../Diego n Will/TesseractSample/TesseractSample/Image.mm"; sourceTree = "<group>"; };
-		BE9E37EA183DB7EA004986D8 /* OpenCV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenCV.framework; sourceTree = "<group>"; };
+		BE26C630183DC31300550F59 /* OpenCV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenCV.framework; sourceTree = "<group>"; };
+		BE26C632183DC36000550F59 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
+		BE26C633183DC36000550F59 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 		BE9E37EC183DB8C6004986D8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BE9E37EE183DB8D7004986D8 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		BE9E37F0183DB8E8004986D8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		BE9E37F2183DB9E8004986D8 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+OpenCV.h"; path = "../../../../Downloads/OpenCVForiPhone-master 2/OpenCVClient/UIImage+OpenCV.h"; sourceTree = "<group>"; };
-		BE9E37F3183DB9E8004986D8 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "UIImage+OpenCV.mm"; path = "../../../../Downloads/OpenCVForiPhone-master 2/OpenCVClient/UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 		BEBF3EB016DB3A1300B82C62 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -113,8 +110,8 @@
 				17E5A610146017E9004B1CA6 /* UIKit.framework in Frameworks */,
 				17E5A612146017E9004B1CA6 /* Foundation.framework in Frameworks */,
 				17E5A614146017E9004B1CA6 /* CoreGraphics.framework in Frameworks */,
+				BE26C631183DC31300550F59 /* OpenCV.framework in Frameworks */,
 				17E5A66914601A1C004B1CA6 /* liblept.a in Frameworks */,
-				BE9E37EB183DB7EA004986D8 /* OpenCV.framework in Frameworks */,
 				17E5A66B14601A1C004B1CA6 /* libtesseract_all.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,16 +153,14 @@
 		17E5A615146017E9004B1CA6 /* TesseractSample */ = {
 			isa = PBXGroup;
 			children = (
-				BE9E37EA183DB7EA004986D8 /* OpenCV.framework */,
 				17E5A61E146017E9004B1CA6 /* AppDelegate.h */,
 				17E5A61F146017E9004B1CA6 /* AppDelegate.mm */,
 				17E5A621146017E9004B1CA6 /* ViewController.h */,
 				17E5A622146017E9004B1CA6 /* ViewController.mm */,
 				17E5A624146017E9004B1CA6 /* ViewController.xib */,
-				BE9E37F2183DB9E8004986D8 /* UIImage+OpenCV.h */,
-				BE9E37F3183DB9E8004986D8 /* UIImage+OpenCV.mm */,
-				BE9B126C16DB0AAA00112A83 /* Image.h */,
-				BE9B126D16DB0AAA00112A83 /* Image.mm */,
+				BE26C632183DC36000550F59 /* UIImage+OpenCV.h */,
+				BE26C633183DC36000550F59 /* UIImage+OpenCV.mm */,
+				BE26C630183DC31300550F59 /* OpenCV.framework */,
 				17E5A63014601A1C004B1CA6 /* dependencies */,
 				17E5A62C14601860004B1CA6 /* MBProgressHUD */,
 				17E5A68F14601E0F004B1CA6 /* tessdata */,
@@ -346,8 +341,7 @@
 				17E5A620146017E9004B1CA6 /* AppDelegate.mm in Sources */,
 				17E5A623146017E9004B1CA6 /* ViewController.mm in Sources */,
 				17E5A62F14601860004B1CA6 /* MBProgressHUD.m in Sources */,
-				BE9E37F4183DB9E8004986D8 /* UIImage+OpenCV.mm in Sources */,
-				BE9B126E16DB0AAA00112A83 /* Image.mm in Sources */,
+				BE26C634183DC36000550F59 /* UIImage+OpenCV.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +420,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/Will/Dropbox/Diego\\ n\\ Will/TesseractSample/TesseractSample",
+					/Users/Will/Desktop/221proj/Disguise/TesseractSample/TesseractSample,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TesseractSample/TesseractSample-Prefix.pch";
@@ -451,6 +446,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/Will/Dropbox/Diego\\ n\\ Will/TesseractSample/TesseractSample",
+					/Users/Will/Desktop/221proj/Disguise/TesseractSample/TesseractSample,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TesseractSample/TesseractSample-Prefix.pch";

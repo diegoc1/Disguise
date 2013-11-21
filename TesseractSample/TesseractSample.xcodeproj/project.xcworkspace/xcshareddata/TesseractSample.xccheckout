@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>6B778534-1AE8-490B-9D1E-69351859B724</string>
+	<string>92DDBF45-3DC6-44C9-92F7-EF93099907BC</string>
 	<key>IDESourceControlProjectName</key>
 	<string>TesseractSample</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>361384BF-C299-49ED-B797-7B7B773FAA0E</key>
-		<string>ssh://github.com/diegoc1/Disguise.git</string>
+		<key>EADDD75C-319B-43C3-8579-E01AEF66DC10</key>
+		<string>https://github.com/diegoc1/Disguise.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>TesseractSample/TesseractSample.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>361384BF-C299-49ED-B797-7B7B773FAA0E</key>
+		<key>EADDD75C-319B-43C3-8579-E01AEF66DC10</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/diegoc1/Disguise.git</string>
+	<string>https://github.com/diegoc1/Disguise.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>361384BF-C299-49ED-B797-7B7B773FAA0E</string>
+	<string>EADDD75C-319B-43C3-8579-E01AEF66DC10</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>361384BF-C299-49ED-B797-7B7B773FAA0E</string>
+			<string>EADDD75C-319B-43C3-8579-E01AEF66DC10</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Disguise</string>
 		</dict>
