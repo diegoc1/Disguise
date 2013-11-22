@@ -1,14 +1,6 @@
-//
-//  ViewController.h
-//  TesseractSample
-//
-//  Created by Ângelo Suzuki on 11/1/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
-//
+
 
 #import <UIKit/UIKit.h>
-
-@class MBProgressHUD;
 
 
 @interface ViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>

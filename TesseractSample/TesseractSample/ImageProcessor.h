@@ -11,5 +11,6 @@
 @interface ImageProcessor : NSObject
 
 +(UIImage *)resizeImage:(UIImage *)image;
++(void) performInitialImageProcessing: (cv::Mat &) mat;
 
 @end

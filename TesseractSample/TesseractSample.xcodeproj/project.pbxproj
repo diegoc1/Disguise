@@ -15,7 +15,6 @@
 		17E5A620146017E9004B1CA6 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17E5A61F146017E9004B1CA6 /* AppDelegate.mm */; };
 		17E5A623146017E9004B1CA6 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17E5A622146017E9004B1CA6 /* ViewController.mm */; };
 		17E5A626146017E9004B1CA6 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A624146017E9004B1CA6 /* ViewController.xib */; };
-		17E5A62F14601860004B1CA6 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E5A62E14601860004B1CA6 /* MBProgressHUD.m */; };
 		17E5A66914601A1C004B1CA6 /* liblept.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E5A65714601A1C004B1CA6 /* liblept.a */; };
 		17E5A66B14601A1C004B1CA6 /* libtesseract_all.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E5A65914601A1C004B1CA6 /* libtesseract_all.a */; };
 		17E5A69014601E0F004B1CA6 /* Lorem_Ipsum_Univers.png in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A68E14601E0F004B1CA6 /* Lorem_Ipsum_Univers.png */; };
@@ -25,8 +24,9 @@
 		BE9E37EF183DB8D7004986D8 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37EE183DB8D7004986D8 /* ImageIO.framework */; };
 		BE9E37F1183DB8E8004986D8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37F0183DB8E8004986D8 /* libz.dylib */; };
 		BEBF3EB116DB3A1300B82C62 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEBF3EB016DB3A1300B82C62 /* QuartzCore.framework */; };
-		BEDE720218400E7B003CE131 /* ImageProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720118400E7A003CE131 /* ImageProcessor.m */; };
+		BEDE720218400E7B003CE131 /* ImageProcessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720118400E7A003CE131 /* ImageProcessor.mm */; };
 		BEDE720518400FA5003CE131 /* TesseractController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720418400FA5003CE131 /* TesseractController.mm */; };
+		BEDE720818401E46003CE131 /* KMeansLineClustering.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720718401E46003CE131 /* KMeansLineClustering.m */; };
 		E553FE38183DC9E800ECF736 /* OpenCV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E553FE37183DC9E800ECF736 /* OpenCV.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,8 +44,6 @@
 		17E5A621146017E9004B1CA6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		17E5A622146017E9004B1CA6 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		17E5A625146017E9004B1CA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
-		17E5A62D14601860004B1CA6 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		17E5A62E14601860004B1CA6 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		17E5A63314601A1C004B1CA6 /* allheaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = allheaders.h; sourceTree = "<group>"; };
 		17E5A63414601A1C004B1CA6 /* alltypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = alltypes.h; sourceTree = "<group>"; };
 		17E5A63514601A1C004B1CA6 /* array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array.h; sourceTree = "<group>"; };
@@ -98,9 +96,11 @@
 		BE9E37F0183DB8E8004986D8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BEBF3EB016DB3A1300B82C62 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BEDE720018400E7A003CE131 /* ImageProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcessor.h; sourceTree = "<group>"; };
-		BEDE720118400E7A003CE131 /* ImageProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageProcessor.m; sourceTree = "<group>"; };
+		BEDE720118400E7A003CE131 /* ImageProcessor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageProcessor.mm; sourceTree = "<group>"; };
 		BEDE720318400FA5003CE131 /* TesseractController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TesseractController.h; sourceTree = "<group>"; };
 		BEDE720418400FA5003CE131 /* TesseractController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TesseractController.mm; sourceTree = "<group>"; };
+		BEDE720618401E46003CE131 /* KMeansLineClustering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMeansLineClustering.h; sourceTree = "<group>"; };
+		BEDE720718401E46003CE131 /* KMeansLineClustering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMeansLineClustering.m; sourceTree = "<group>"; };
 		E553FE37183DC9E800ECF736 /* OpenCV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenCV.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,7 +162,9 @@
 				17E5A61E146017E9004B1CA6 /* AppDelegate.h */,
 				17E5A61F146017E9004B1CA6 /* AppDelegate.mm */,
 				BEDE720018400E7A003CE131 /* ImageProcessor.h */,
-				BEDE720118400E7A003CE131 /* ImageProcessor.m */,
+				BEDE720118400E7A003CE131 /* ImageProcessor.mm */,
+				BEDE720618401E46003CE131 /* KMeansLineClustering.h */,
+				BEDE720718401E46003CE131 /* KMeansLineClustering.m */,
 				BEDE720318400FA5003CE131 /* TesseractController.h */,
 				BEDE720418400FA5003CE131 /* TesseractController.mm */,
 				17E5A621146017E9004B1CA6 /* ViewController.h */,
@@ -172,7 +174,6 @@
 				17E5A624146017E9004B1CA6 /* ViewController.xib */,
 				E553FE37183DC9E800ECF736 /* OpenCV.framework */,
 				17E5A63014601A1C004B1CA6 /* dependencies */,
-				17E5A62C14601860004B1CA6 /* MBProgressHUD */,
 				17E5A68F14601E0F004B1CA6 /* tessdata */,
 				17E5A68E14601E0F004B1CA6 /* Lorem_Ipsum_Univers.png */,
 				17E5A616146017E9004B1CA6 /* Supporting Files */,
@@ -189,15 +190,6 @@
 				17E5A61D146017E9004B1CA6 /* TesseractSample-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		17E5A62C14601860004B1CA6 /* MBProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				17E5A62D14601860004B1CA6 /* MBProgressHUD.h */,
-				17E5A62E14601860004B1CA6 /* MBProgressHUD.m */,
-			);
-			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		17E5A63014601A1C004B1CA6 /* dependencies */ = {
@@ -347,13 +339,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEDE720218400E7B003CE131 /* ImageProcessor.m in Sources */,
+				BEDE720218400E7B003CE131 /* ImageProcessor.mm in Sources */,
 				BEDE720518400FA5003CE131 /* TesseractController.mm in Sources */,
 				17E5A61C146017E9004B1CA6 /* main.m in Sources */,
 				17E5A620146017E9004B1CA6 /* AppDelegate.mm in Sources */,
 				17E5A623146017E9004B1CA6 /* ViewController.mm in Sources */,
-				17E5A62F14601860004B1CA6 /* MBProgressHUD.m in Sources */,
 				BE26C634183DC36000550F59 /* UIImage+OpenCV.mm in Sources */,
+				BEDE720818401E46003CE131 /* KMeansLineClustering.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

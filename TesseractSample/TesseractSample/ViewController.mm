@@ -1,10 +1,4 @@
-//
-//  ViewController.m
-//  TesseractSample
-//
-//  Created by Ângelo Suzuki on 11/1/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
-//
+
 
 #import "ViewController.h"
 #import "UIImage+OpenCV.h"
@@ -61,7 +55,8 @@
     
     [picker dismissModalViewControllerAnimated: NO];
     UIImage *newImage = [ImageProcessor resizeImage: image];
-    cv::Mat theMat = [newImage CVGrayscaleMat];
+    cv::Mat theMat = [newImage CVMat];
+    [ImageProcessor performInitialImageProcessing: theMat];
     
     UIImage *resultingImage = [UIImage imageWithCVMat: theMat];
 //    ImageWrapper *greyScale=Image::createImage(newImage, newImage.size.width, newImage.size.height);
