@@ -26,7 +26,7 @@
 		BEBF3EB116DB3A1300B82C62 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEBF3EB016DB3A1300B82C62 /* QuartzCore.framework */; };
 		BEDE720218400E7B003CE131 /* ImageProcessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720118400E7A003CE131 /* ImageProcessor.mm */; };
 		BEDE720518400FA5003CE131 /* TesseractController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720418400FA5003CE131 /* TesseractController.mm */; };
-		BEDE720818401E46003CE131 /* KMeansLineClustering.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720718401E46003CE131 /* KMeansLineClustering.m */; };
+		BEDE720B18401F56003CE131 /* KMeansLineClustering.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720A18401F56003CE131 /* KMeansLineClustering.m */; };
 		E553FE38183DC9E800ECF736 /* OpenCV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E553FE37183DC9E800ECF736 /* OpenCV.framework */; };
 /* End PBXBuildFile section */
 
@@ -99,8 +99,8 @@
 		BEDE720118400E7A003CE131 /* ImageProcessor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageProcessor.mm; sourceTree = "<group>"; };
 		BEDE720318400FA5003CE131 /* TesseractController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TesseractController.h; sourceTree = "<group>"; };
 		BEDE720418400FA5003CE131 /* TesseractController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TesseractController.mm; sourceTree = "<group>"; };
-		BEDE720618401E46003CE131 /* KMeansLineClustering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMeansLineClustering.h; sourceTree = "<group>"; };
-		BEDE720718401E46003CE131 /* KMeansLineClustering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMeansLineClustering.m; sourceTree = "<group>"; };
+		BEDE720918401F56003CE131 /* KMeansLineClustering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KMeansLineClustering.h; path = ../KMeansLineClustering.h; sourceTree = "<group>"; };
+		BEDE720A18401F56003CE131 /* KMeansLineClustering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KMeansLineClustering.m; path = ../KMeansLineClustering.m; sourceTree = "<group>"; };
 		E553FE37183DC9E800ECF736 /* OpenCV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenCV.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,12 +159,12 @@
 		17E5A615146017E9004B1CA6 /* TesseractSample */ = {
 			isa = PBXGroup;
 			children = (
+				BEDE720918401F56003CE131 /* KMeansLineClustering.h */,
+				BEDE720A18401F56003CE131 /* KMeansLineClustering.m */,
 				17E5A61E146017E9004B1CA6 /* AppDelegate.h */,
 				17E5A61F146017E9004B1CA6 /* AppDelegate.mm */,
 				BEDE720018400E7A003CE131 /* ImageProcessor.h */,
 				BEDE720118400E7A003CE131 /* ImageProcessor.mm */,
-				BEDE720618401E46003CE131 /* KMeansLineClustering.h */,
-				BEDE720718401E46003CE131 /* KMeansLineClustering.m */,
 				BEDE720318400FA5003CE131 /* TesseractController.h */,
 				BEDE720418400FA5003CE131 /* TesseractController.mm */,
 				17E5A621146017E9004B1CA6 /* ViewController.h */,
@@ -345,7 +345,7 @@
 				17E5A620146017E9004B1CA6 /* AppDelegate.mm in Sources */,
 				17E5A623146017E9004B1CA6 /* ViewController.mm in Sources */,
 				BE26C634183DC36000550F59 /* UIImage+OpenCV.mm in Sources */,
-				BEDE720818401E46003CE131 /* KMeansLineClustering.m in Sources */,
+				BEDE720B18401F56003CE131 /* KMeansLineClustering.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
