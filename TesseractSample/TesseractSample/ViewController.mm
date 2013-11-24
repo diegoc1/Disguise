@@ -4,7 +4,7 @@
 #import "UIImage+OpenCV.h"
 #import "TesseractController.h"
 #import "ImageProcessor.h"
-
+#import "KMeansLineClustering.h"
 
 @implementation ViewController
 
@@ -24,6 +24,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSArray *d1 = @[[NSNumber numberWithDouble:96], [NSNumber numberWithDouble:4], [NSNumber numberWithDouble:7]];
+    NSArray *d2 = @[[NSNumber numberWithDouble:95], [NSNumber numberWithDouble:5.2], [NSNumber numberWithDouble:5.3]];
+    NSArray *d3 = @[[NSNumber numberWithDouble:97], [NSNumber numberWithDouble:5.1], [NSNumber numberWithDouble:5.2]];
+    
+    
+    
+    NSArray *d4 = @[[NSNumber numberWithDouble:80], [NSNumber numberWithDouble:3.4], [NSNumber numberWithDouble:7.1]];
+    NSArray *d5 = @[[NSNumber numberWithDouble:84], [NSNumber numberWithDouble:5.6], [NSNumber numberWithDouble:5.7]];
+    NSArray *d6 = @[[NSNumber numberWithDouble:82], [NSNumber numberWithDouble:4.2], [NSNumber numberWithDouble:7.7]];
+    
+    
+    
+    
+    NSArray *d7 = @[[NSNumber numberWithDouble:80], [NSNumber numberWithDouble:0.4], [NSNumber numberWithDouble:.1]];
+    NSArray *d8 = @[[NSNumber numberWithDouble:84], [NSNumber numberWithDouble:.1], [NSNumber numberWithDouble:0.6]];
+    NSArray *d9 = @[[NSNumber numberWithDouble:82], [NSNumber numberWithDouble:0.3], [NSNumber numberWithDouble:0.7]];
+    
+    
+    
+    NSMutableArray *data = [[NSMutableArray alloc] init];
+    [data addObject:d1];
+    [data addObject:d2];
+    [data addObject:d3];
+    [data addObject:d4];
+    [data addObject:d5];
+    [data addObject:d6];
+    [data addObject:d7];
+    [data addObject:d8];
+    [data addObject:d9];
+    
+    KMeansLineClustering *clustering = [[KMeansLineClustering alloc] initWithPoints:data desiredNumberOfCentroids:3];
 }
 
 - (void)viewDidUnload
