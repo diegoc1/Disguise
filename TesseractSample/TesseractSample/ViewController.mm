@@ -4,6 +4,7 @@
 #import "UIImage+OpenCV.h"
 #import "TesseractController.h"
 #import "ImageProcessor.h"
+#import "LineClassifier.h"
 #import "KMeansLineClustering.h"
 
 @implementation ViewController
@@ -55,6 +56,10 @@
     [data addObject:d9];
     
     KMeansLineClustering *clustering = [[KMeansLineClustering alloc] initWithPoints:data desiredNumberOfCentroids:3];
+    NSString *t1 =  @"Salmon $1.30";
+    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    [arr addObject:t1];
+    LineClassifier *classifier = [[LineClassifier alloc] initWithTrainingStrings:arr];
 }
 
 - (void)viewDidUnload
