@@ -17,12 +17,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 +(void) performInitialImageProcessing: (cv::Mat &) mat {
     [self setGrayscale: mat];
-    [self blur: mat];
-    [self binarizeWithCannyAndGaussianThresholding: mat];
-    [self performClose: mat withSize: 1];
+    [self gaussianThreshold: mat];
     NSMutableArray *segments = [self extractSegments: mat];
     NSMutableArray *pointsData = [self boundingPointsFromSegments: segments];
-    KMeansLineClustering *clusterController = [[KMeansLineClustering alloc] initWithPoints:pointsData desiredNumberOfCentroids: 7];
+    KMeansLineClustering *clusterController = [[KMeansLineClustering alloc] initWithPoints:pointsData desiredNumberOfCentroids: 8];
     
     /* REMOVE BELOW */
     
@@ -66,7 +64,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 }
 
 +(NSMutableArray *) boundingPointsFromSegments: (NSMutableArray *) segments {
-    NSLog(@"%@", segments);
     NSMutableArray *boundingPoints = [[NSMutableArray alloc] init];
     for (int i = 0; i < [segments count]; i++) {
         ContourWrapper *contourWrapper = segments[i];
@@ -86,7 +83,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     cv::Mat element = cv::getStructuringElement(cv::MORPH_ELLIPSE,
                                                 cv::Size(2 * erosion_size + 1, 2 * erosion_size + 1),
                                                 cv::Point(erosion_size, erosion_size) );
-    cv::dilate(mat, mat, element);
+    //cv::dilate(mat, mat, element);
     
     int thresh = 100;
     
