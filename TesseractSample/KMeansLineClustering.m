@@ -182,12 +182,11 @@
         for (int j = 0; j < [self.points count]; j++) {
             [featureVec2 addObject:self.points[j][i]];
         }
-        double meanOfPoints2 = [self meanOfPoints:featureVec2];
+        /*double meanOfPoints2 = [self meanOfPoints:featureVec2];
         double standardDev2 = [self standardDeviationOfPoints:featureVec2 withMean:meanOfPoints2];
         NSLog(@"NEW MEAN IS %f", meanOfPoints2);
-        NSLog(@"NEW STD IS %f", standardDev2);
+        NSLog(@"NEW STD IS %f", standardDev2);*/
     }
-    NSLog(@"points is %@", self.points);
 }
 
 @end
