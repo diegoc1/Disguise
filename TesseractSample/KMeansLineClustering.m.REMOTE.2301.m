@@ -10,7 +10,7 @@
 
 @interface KMeansLineClustering()
 
-@property (strong,nonatomic) NSMutableArray *points;
+@property (strong,nonatomic) NSArray *points;
 @property (nonatomic) int num_centroids;
 @property (nonatomic) int point_vec_length;
 
@@ -24,7 +24,7 @@
         if ([self vectorsSameLength:points]) {
             int vectorLength = [(NSArray *)points[0] count];
             self.point_vec_length = vectorLength;
-            self.points = [NSMutableArray arrayWithArray:points];
+            self.points = points;
             self.assignments = [[NSMutableArray alloc] init];
             self.centroids = [[NSMutableArray alloc] init];
             [self normalizePoints];
@@ -91,11 +91,12 @@
 
 
 -(void) runKMeans {
-    for (int i = 0; i < 40; i++) {
+    for (int i = 0; i < 10; i++) {
         [self assignPointsToCentroids];
         [self recalculateCentroids];
+        NSLog(@"assignments is %@", self.assignments);
     }
-    NSLog(@"final assignemtns :%@", self.assignments);
+    
 }
 
 
@@ -107,11 +108,6 @@
         if ([points[i] count] != firstLength) return false;
     }
     return true;
-    
-    
-    
-    
-    
 }
 
 

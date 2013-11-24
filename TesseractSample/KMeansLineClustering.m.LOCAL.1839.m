@@ -11,7 +11,9 @@
 @interface KMeansLineClustering()
 
 @property (strong,nonatomic) NSMutableArray *points;
+@property (strong, nonatomic) NSMutableArray *centroids;
 @property (nonatomic) int num_centroids;
+@property (strong, nonatomic) NSMutableArray *assignments;
 @property (nonatomic) int point_vec_length;
 
 @end
@@ -89,6 +91,67 @@
     return pointsForCentroid;
 }
 
+- (double) meanOfPoints: (NSMutableArray *)points {
+    double sum  = 0;
+    for (int i = 0; i < [points count]; i++) {
+        sum += [(NSNumber *)points[i] doubleValue];
+    }
+    sum /= [points count];
+    return sum;
+}
+
+- (double) standardDeviationOfPoints: (NSArray *)points withMean:(double) meanOfPoints {
+    double sum_of_diffs = 0;
+    for (int i = 0; i < [points count]; i++) {
+        sum_of_diffs += pow(([points[i] doubleValue] - meanOfPoints), 2);
+    }
+    return sqrt(sum_of_diffs / [points count]);
+}
+
+- (void) normalizePoints {
+    
+    /* Reset the array of points to an array of NSMutableArrays instead of NSArrays.  That way I can manipulate the arrays later in this function */
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    NSMutableArray *new_points = [[NSMutableArray alloc] init];
+    for (int i = 0; i < [self.points count]; i++) {
+        NSMutableArray *new_p = [[NSMutableArray alloc] initWithArray:self.points[i]];
+        new_points[i] = new_p;
+    }
+    self.points = new_points;
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
+    
+    for (int i = 0; i < self.point_vec_length; i++) {
+        NSMutableArray *featureVec = [[NSMutableArray alloc] init];
+        for (int j = 0; j < [self.points count]; j++) {
+            [featureVec addObject:self.points[j][i]];
+        }
+        double meanOfPoints = [self meanOfPoints:featureVec];
+        double standardDev = [self standardDeviationOfPoints:featureVec withMean:meanOfPoints];
+        for (int j = 0; j < [self.points count]; j++) {
+            
+            NSNumber *or = self.points[j][i];
+            NSNumber *new = [NSNumber numberWithDouble:([or doubleValue] - meanOfPoints) / standardDev];
+
+            self.points[j][i] = new;
+        }
+        
+        //GET RID OF THIS, THIS IS JUST AN UNNECESSARY CHECK TO SEE IF I CALCULATED MEAN AND STANDARD DEVIATION CORRECTLY
+        NSMutableArray *featureVec2 = [[NSMutableArray alloc] init];
+        for (int j = 0; j < [self.points count]; j++) {
+            [featureVec2 addObject:self.points[j][i]];
+        }
+        double meanOfPoints2 = [self meanOfPoints:featureVec2];
+        double standardDev2 = [self standardDeviationOfPoints:featureVec2 withMean:meanOfPoints2];
+        NSLog(@"NEW MEAN IS %f", meanOfPoints2);
+        NSLog(@"NEW STD IS %f", standardDev2);
+
+    }
+    NSLog(@"points is %@", self.points);
+}
+
+
 
 -(void) runKMeans {
     for (int i = 0; i < 40; i++) {
@@ -107,11 +170,6 @@
         if ([points[i] count] != firstLength) return false;
     }
     return true;
-    
-    
-    
-    
-    
 }
 
 
@@ -136,58 +194,6 @@
     }
     
     NSLog(@"centroids %@", self.centroids);
-}
-
-#pragma mark - Normalization
-
-- (double) meanOfPoints: (NSMutableArray *)points {
-    double sum  = 0;
-    for (int i = 0; i < [points count]; i++) {
-        sum += [(NSNumber *)points[i] doubleValue];
-    }
-    sum /= [points count];
-    return sum;
-}
-- (double) standardDeviationOfPoints: (NSArray *)points withMean:(double) meanOfPoints {
-    double sum_of_diffs = 0;
-    for (int i = 0; i < [points count]; i++) {
-        sum_of_diffs += pow(([points[i] doubleValue] - meanOfPoints), 2);
-    }
-    return sqrt(sum_of_diffs / [points count]);
-}
-- (void) normalizePoints {
-    
-    //Reset the array of points to an array of NSMutableArrays instead of NSArrays.  That way I can manipulate the arrays later in this function
-    NSMutableArray *new_points = [[NSMutableArray alloc] init];
-    for (int i = 0; i < [self.points count]; i++) {
-        NSMutableArray *new_p = [[NSMutableArray alloc] initWithArray:self.points[i]];
-        new_points[i] = new_p;
-    }
-    self.points = new_points;
-    
-    for (int i = 0; i < self.point_vec_length; i++) {
-        NSMutableArray *featureVec = [[NSMutableArray alloc] init];
-        for (int j = 0; j < [self.points count]; j++) {
-            [featureVec addObject:self.points[j][i]];
-        }
-        double meanOfPoints = [self meanOfPoints:featureVec];
-        double standardDev = [self standardDeviationOfPoints:featureVec withMean:meanOfPoints];
-        for (int j = 0; j < [self.points count]; j++) {
-            
-            NSNumber *or = self.points[j][i];
-            NSNumber *new = [NSNumber numberWithDouble:([or doubleValue] - meanOfPoints) / standardDev];
-            self.points[j][i] = new;
-        }
-        NSMutableArray *featureVec2 = [[NSMutableArray alloc] init];
-        for (int j = 0; j < [self.points count]; j++) {
-            [featureVec2 addObject:self.points[j][i]];
-        }
-        double meanOfPoints2 = [self meanOfPoints:featureVec2];
-        double standardDev2 = [self standardDeviationOfPoints:featureVec2 withMean:meanOfPoints2];
-        NSLog(@"NEW MEAN IS %f", meanOfPoints2);
-        NSLog(@"NEW STD IS %f", standardDev2);
-    }
-    NSLog(@"points is %@", self.points);
 }
 
 @end

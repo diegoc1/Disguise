@@ -27,6 +27,7 @@
 		BEDE720218400E7B003CE131 /* ImageProcessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720118400E7A003CE131 /* ImageProcessor.mm */; };
 		BEDE720518400FA5003CE131 /* TesseractController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720418400FA5003CE131 /* TesseractController.mm */; };
 		BEDE720B18401F56003CE131 /* KMeansLineClustering.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720A18401F56003CE131 /* KMeansLineClustering.m */; };
+		BEDE720E18402B9A003CE131 /* ContourWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720D18402B9A003CE131 /* ContourWrapper.mm */; };
 		E553FE38183DC9E800ECF736 /* OpenCV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E553FE37183DC9E800ECF736 /* OpenCV.framework */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +102,8 @@
 		BEDE720418400FA5003CE131 /* TesseractController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TesseractController.mm; sourceTree = "<group>"; };
 		BEDE720918401F56003CE131 /* KMeansLineClustering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KMeansLineClustering.h; path = ../KMeansLineClustering.h; sourceTree = "<group>"; };
 		BEDE720A18401F56003CE131 /* KMeansLineClustering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KMeansLineClustering.m; path = ../KMeansLineClustering.m; sourceTree = "<group>"; };
+		BEDE720C18402B9A003CE131 /* ContourWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContourWrapper.h; sourceTree = "<group>"; };
+		BEDE720D18402B9A003CE131 /* ContourWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ContourWrapper.mm; sourceTree = "<group>"; };
 		E553FE37183DC9E800ECF736 /* OpenCV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenCV.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -165,6 +168,8 @@
 				17E5A61F146017E9004B1CA6 /* AppDelegate.mm */,
 				BEDE720018400E7A003CE131 /* ImageProcessor.h */,
 				BEDE720118400E7A003CE131 /* ImageProcessor.mm */,
+				BEDE720C18402B9A003CE131 /* ContourWrapper.h */,
+				BEDE720D18402B9A003CE131 /* ContourWrapper.mm */,
 				BEDE720318400FA5003CE131 /* TesseractController.h */,
 				BEDE720418400FA5003CE131 /* TesseractController.mm */,
 				17E5A621146017E9004B1CA6 /* ViewController.h */,
@@ -345,6 +350,7 @@
 				17E5A620146017E9004B1CA6 /* AppDelegate.mm in Sources */,
 				17E5A623146017E9004B1CA6 /* ViewController.mm in Sources */,
 				BE26C634183DC36000550F59 /* UIImage+OpenCV.mm in Sources */,
+				BEDE720E18402B9A003CE131 /* ContourWrapper.mm in Sources */,
 				BEDE720B18401F56003CE131 /* KMeansLineClustering.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

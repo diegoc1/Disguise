@@ -7,6 +7,8 @@
 //
 
 #import "ImageProcessor.h"
+#import "ContourWrapper.h"
+#import "KMeansLineClustering.h"
 
 static inline double radians (double degrees) {return degrees * M_PI/180;}
 
@@ -18,6 +20,103 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [self blur: mat];
     [self binarizeWithCannyAndGaussianThresholding: mat];
     [self performClose: mat withSize: 1];
+    NSMutableArray *segments = [self extractSegments: mat];
+    NSMutableArray *pointsData = [self boundingPointsFromSegments: segments];
+    KMeansLineClustering *clusterController = [[KMeansLineClustering alloc] initWithPoints:pointsData desiredNumberOfCentroids: 7];
+    
+    /* REMOVE BELOW */
+    
+    [self setRGB: mat]; //REMOVE
+    for (int i = 0; i < [segments count]; i++) {
+        int assignement = [clusterController.assignments[i] intValue];
+        cv::Scalar color;
+        
+        if (assignement == 0) {
+            color = cv::Scalar(0, 255, 0);
+        }
+        else if (assignement == 1) {
+             color = cv::Scalar(255, 0, 0);
+        }
+        else if (assignement == 2) {
+            color = cv::Scalar(125, 125, 0);
+        }
+        else if (assignement == 3) {
+            color = cv::Scalar(0, 125, 125);
+        }
+        else if (assignement == 4) {
+            color = cv::Scalar(125, 0, 125);
+        }
+        else if (assignement == 5) {
+            color = cv::Scalar(35, 180, 18);
+        }
+        else {
+             color = cv::Scalar(0, 0, 255);
+        }
+        
+        ContourWrapper *contourWrapper = segments[i];
+        cv::rectangle(mat, contourWrapper.boundingBox, color);
+    }
+    
+    
+//    cv::Scalar color = cv::Scalar(0, 255, 0); //REMOVE
+//    cv::rectangle(mat, boundingRects[i], color); //REMOVE
+    
+    
+    /* END REMOVE */
+}
+
++(NSMutableArray *) boundingPointsFromSegments: (NSMutableArray *) segments {
+    NSLog(@"%@", segments);
+    NSMutableArray *boundingPoints = [[NSMutableArray alloc] init];
+    for (int i = 0; i < [segments count]; i++) {
+        ContourWrapper *contourWrapper = segments[i];
+        NSNumber *width_num = [NSNumber numberWithFloat: contourWrapper.boundingBox.width];
+        NSNumber *height_num = [NSNumber numberWithFloat: contourWrapper.boundingBox.height];
+        //NSNumber *x_num = [NSNumber numberWithFloat: contourWrapper.boundingBox.x];
+        NSNumber *y_num = [NSNumber numberWithFloat: contourWrapper.boundingBox.y];
+        
+        NSArray *point = @[width_num, height_num, y_num];
+        [boundingPoints addObject: point];
+    }
+    return boundingPoints;
+}
+
++(NSMutableArray *) extractSegments: (cv::Mat &) mat {
+    int erosion_size = 1;
+    cv::Mat element = cv::getStructuringElement(cv::MORPH_ELLIPSE,
+                                                cv::Size(2 * erosion_size + 1, 2 * erosion_size + 1),
+                                                cv::Point(erosion_size, erosion_size) );
+    cv::dilate(mat, mat, element);
+    
+    int thresh = 100;
+    
+    cv::Mat threshold_output;
+    cv::vector<cv::vector<cv::Point> > contours;
+    cv::vector<cv::Vec4i> hierarchy;
+    
+    /// Detect edges using Threshold
+    cv::threshold(mat, threshold_output, thresh, 255, CV_THRESH_BINARY );
+    
+    /// Find contours
+    cv::findContours( threshold_output, contours, hierarchy, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
+    
+    /// Approximate contours to polygons + get bounding rects and circles
+    cv::vector<cv::vector<cv::Point> > contours_poly( contours.size() );
+    cv::vector<cv::Rect> boundingRects(contours.size() );
+    
+    NSMutableArray *segmentsArray = [[NSMutableArray alloc] init];
+    
+    for( int i = 0; i < contours.size(); i++) {
+        approxPolyDP( cv::Mat(contours[i]), contours_poly[i], 3, true );
+        boundingRects[i] = boundingRect(cv::Mat(contours_poly[i]));
+        
+        ContourWrapper *theContour = [[ContourWrapper alloc] init];
+        theContour.boundingBox = boundingRects[i];
+        theContour.contourPoints = contours_poly[i];
+        [segmentsArray addObject: theContour];
+    }
+    
+    return segmentsArray;
 }
 
 
@@ -105,20 +204,16 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 	}
     
 	if (image.imageOrientation == UIImageOrientationLeft) {
-		NSLog(@"image orientation left");
 		CGContextRotateCTM (bitmap, radians(90));
 		CGContextTranslateCTM (bitmap, 0, -height);
         
 	} else if (image.imageOrientation == UIImageOrientationRight) {
-		NSLog(@"image orientation right");
 		CGContextRotateCTM (bitmap, radians(-90));
 		CGContextTranslateCTM (bitmap, -width, 0);
         
 	} else if (image.imageOrientation == UIImageOrientationUp) {
-		NSLog(@"image orientation up");
         
 	} else if (image.imageOrientation == UIImageOrientationDown) {
-		NSLog(@"image orientation down");
 		CGContextTranslateCTM (bitmap, width,height);
 		CGContextRotateCTM (bitmap, radians(-180.));
         
