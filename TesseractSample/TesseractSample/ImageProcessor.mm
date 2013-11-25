@@ -22,6 +22,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     NSMutableArray *segments = [self extractSegments: mat];
     NSMutableArray *pointsData = [self boundingPointsFromSegments: segments];
     KMeansLineClustering *clusterController = [[KMeansLineClustering alloc] initWithPoints:pointsData desiredNumberOfCentroids: 50];
+    [clusterController exaggerateFeature:2 exaggerationAmount:60];
+    [clusterController runKMeans];
     
     /* REMOVE BELOW */
     

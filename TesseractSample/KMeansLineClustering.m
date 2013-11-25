@@ -30,10 +30,7 @@
             self.points = [NSMutableArray arrayWithArray:points];
             self.assignments = [[NSMutableArray alloc] init];
             self.centroids = [[NSMutableArray alloc] init];
-            [self normalizePoints];
-            //[self randomlyAssignCentroids:numCentroids withLength:vectorLength];
-            [self assignCentroidsEvenlyAcrossScreen:numCentroids withLength:vectorLength];
-            [self runKMeans];
+            self.num_centroids = numCentroids;
         }
     }
     return self;
@@ -95,11 +92,15 @@
 
 
 -(void) runKMeans {
+    [self normalizePoints];
+    //[self randomlyAssignCentroids:numCentroids withLength:vectorLength];
+    [self assignCentroidsEvenlyAcrossScreen:self.num_centroids withLength:self.point_vec_length];
     for (int i = 0; i < 12; i++) {
         [self assignPointsToCentroids];
         [self recalculateCentroids];
     }
     NSLog(@"final assigments: %@", self.assignments);
+    NSLog(@"DONE CLUSTERING");
 }
 
 
@@ -130,7 +131,7 @@
 
 //Assign centroids to random indexes in points
 - (void) randomlyAssignCentroids: (int) numCentroids withLength:(int) vecLength {
-    self.num_centroids = numCentroids;
+    
     int total_num_points = [self.points count];
     for (int i = 0; i < self.num_centroids; i++) {
         NSUInteger randNum = arc4random();
@@ -139,20 +140,25 @@
     }
 }
 
+
+//WARNING: THIS FUNCTION MAKES ASSUMPTIONS ABOUT THE FEATURE VECTOR FORMAT.  This function creates a centroid that includes all the features for a random point excpet for its last feature, which it replaces with a calculated y value.
 -(void) assignCentroidsEvenlyAcrossScreen: (int) numCentroids withLength:(int) vecLength {
-    self.num_centroids = numCentroids;
     int total_num_points = [self.points count];
     for (int i = 0; i < self.num_centroids; i++) {
         NSUInteger randNum = arc4random();
         int randomIndex = randNum % total_num_points;
-        NSArray *p = [self.points objectAtIndex:randomIndex];
-        NSMutableArray *c = [[NSMutableArray alloc] init];
-        [c addObject:p[0]];
-        [c addObject:p[1]];
+        NSArray *randomPoint = [self.points objectAtIndex:randomIndex];
+        NSMutableArray *newCentroid = [[NSMutableArray alloc] init];
+        
+        //Include all but the last feature
+        for (int j = 0; j < vecLength - 1; j++) {
+            [newCentroid addObject:randomPoint[j]];
+        }
+        //Add calculated why value
         NSNumber *y = [NSNumber numberWithDouble:i * (480 / numCentroids)];
-        [c addObject:y];
-        NSLog(@"created centroid %@", c);
-        [self.centroids addObject:c];
+        [newCentroid addObject:y];
+        NSLog(@"created centroid %@", newCentroid);
+        [self.centroids addObject:newCentroid];
     }
 }
 
@@ -203,10 +209,11 @@
             NSNumber *or = self.points[j][i];
             
             NSNumber *new;
-            if (i == 2) {
-                new = [NSNumber numberWithDouble:(40 * [or doubleValue] - meanOfPoints) / standardDev];
+            if (self.exaggerate && i == self.exaggeratedFeatureIndex) {
+                    new = [NSNumber numberWithDouble:(self.exaggerationAmount * [or doubleValue] - meanOfPoints) / standardDev];
+            } else {
+                new = [NSNumber numberWithDouble:([or doubleValue] - meanOfPoints) / standardDev];
             }
-            else new = [NSNumber numberWithDouble:([or doubleValue] - meanOfPoints) / standardDev];
             self.points[j][i] = new;
         }
     }

@@ -10,4 +10,6 @@
 - (id) initWithPoints:(NSArray *)points desiredNumberOfCentroids:(int)numCentroids;
 
 - (void) exaggerateFeature: (int) indexOfFeautre exaggerationAmount:(int) amount;
+
+-(void) runKMeans;
 @end
