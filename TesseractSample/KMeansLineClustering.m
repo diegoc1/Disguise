@@ -13,6 +13,9 @@
 @property (strong,nonatomic) NSMutableArray *points;
 @property (nonatomic) int num_centroids;
 @property (nonatomic) int point_vec_length;
+@property (nonatomic) BOOL exaggerate;
+@property (nonatomic) int exaggeratedFeatureIndex;
+@property (nonatomic) int exaggerationAmount;
 
 @end
 
@@ -28,7 +31,8 @@
             self.assignments = [[NSMutableArray alloc] init];
             self.centroids = [[NSMutableArray alloc] init];
             [self normalizePoints];
-            [self randomlyAssignCentroids:numCentroids withLength:vectorLength];
+            //[self randomlyAssignCentroids:numCentroids withLength:vectorLength];
+            [self assignCentroidsEvenlyAcrossScreen:numCentroids withLength:vectorLength];
             [self runKMeans];
         }
     }
@@ -91,11 +95,11 @@
 
 
 -(void) runKMeans {
-    for (int i = 0; i < 40; i++) {
+    for (int i = 0; i < 12; i++) {
         [self assignPointsToCentroids];
         [self recalculateCentroids];
     }
-    NSLog(@"final assignemtns :%@", self.assignments);
+    NSLog(@"final assigments: %@", self.assignments);
 }
 
 
@@ -131,11 +135,25 @@
     for (int i = 0; i < self.num_centroids; i++) {
         NSUInteger randNum = arc4random();
         int randomIndex = randNum % total_num_points;
-        NSLog(@"random index is %d", randomIndex);
         [self.centroids addObject:[self.points objectAtIndex:randomIndex]];
     }
-    
-    NSLog(@"centroids %@", self.centroids);
+}
+
+-(void) assignCentroidsEvenlyAcrossScreen: (int) numCentroids withLength:(int) vecLength {
+    self.num_centroids = numCentroids;
+    int total_num_points = [self.points count];
+    for (int i = 0; i < self.num_centroids; i++) {
+        NSUInteger randNum = arc4random();
+        int randomIndex = randNum % total_num_points;
+        NSArray *p = [self.points objectAtIndex:randomIndex];
+        NSMutableArray *c = [[NSMutableArray alloc] init];
+        [c addObject:p[0]];
+        [c addObject:p[1]];
+        NSNumber *y = [NSNumber numberWithDouble:i * (480 / numCentroids)];
+        [c addObject:y];
+        NSLog(@"created centroid %@", c);
+        [self.centroids addObject:c];
+    }
 }
 
 #pragma mark - Normalization
@@ -155,6 +173,14 @@
     }
     return sqrt(sum_of_diffs / [points count]);
 }
+
+- (void) exaggerateFeature: (int) indexOfFeautre exaggerationAmount:(int) amount {
+    self.exaggeratedFeatureIndex = indexOfFeautre;
+    self.exaggerate = TRUE;
+    self.exaggerationAmount = amount;
+}
+
+
 - (void) normalizePoints {
     
     //Reset the array of points to an array of NSMutableArrays instead of NSArrays.  That way I can manipulate the arrays later in this function
@@ -175,17 +201,14 @@
         for (int j = 0; j < [self.points count]; j++) {
             
             NSNumber *or = self.points[j][i];
-            NSNumber *new = [NSNumber numberWithDouble:([or doubleValue] - meanOfPoints) / standardDev];
+            
+            NSNumber *new;
+            if (i == 2) {
+                new = [NSNumber numberWithDouble:(40 * [or doubleValue] - meanOfPoints) / standardDev];
+            }
+            else new = [NSNumber numberWithDouble:([or doubleValue] - meanOfPoints) / standardDev];
             self.points[j][i] = new;
         }
-        NSMutableArray *featureVec2 = [[NSMutableArray alloc] init];
-        for (int j = 0; j < [self.points count]; j++) {
-            [featureVec2 addObject:self.points[j][i]];
-        }
-        /*double meanOfPoints2 = [self meanOfPoints:featureVec2];
-        double standardDev2 = [self standardDeviationOfPoints:featureVec2 withMean:meanOfPoints2];
-        NSLog(@"NEW MEAN IS %f", meanOfPoints2);
-        NSLog(@"NEW STD IS %f", standardDev2);*/
     }
 }
 

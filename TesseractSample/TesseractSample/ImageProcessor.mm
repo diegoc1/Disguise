@@ -17,10 +17,11 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 +(void) performInitialImageProcessing: (cv::Mat &) mat {
     [self setGrayscale: mat];
-    [self gaussianThreshold: mat];
+    [self binarizeWithCannyAndGaussianThresholding: mat];
+    [self performClose: mat withSize: 1];
     NSMutableArray *segments = [self extractSegments: mat];
     NSMutableArray *pointsData = [self boundingPointsFromSegments: segments];
-    KMeansLineClustering *clusterController = [[KMeansLineClustering alloc] initWithPoints:pointsData desiredNumberOfCentroids: 8];
+    KMeansLineClustering *clusterController = [[KMeansLineClustering alloc] initWithPoints:pointsData desiredNumberOfCentroids: 50];
     
     /* REMOVE BELOW */
     
@@ -47,8 +48,44 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         else if (assignement == 5) {
             color = cv::Scalar(35, 180, 18);
         }
+        else if (assignement == 6) {
+            color = cv::Scalar(255, 255, 255);
+        }
+        else if (assignement == 7) {
+            color = cv::Scalar(204, 255, 153);
+        }
+        else if (assignement == 8) {
+            color = cv::Scalar(51, 153, 255);
+        }
+        else if (assignement == 9) {
+            color = cv::Scalar(204, 153, 204);
+        }
+        else if (assignement == 10) {
+            color = cv::Scalar(255, 204, 0);
+        }
+        else if (assignement == 11) {
+            color = cv::Scalar(204, 102, 51);
+        }
+        else if (assignement == 12) {
+            color = cv::Scalar(153, 153, 0);
+        }
+        else if (assignement == 13) {
+            color = cv::Scalar(255, 51, 204);
+        }
+        else if (assignement == 14) {
+            color = cv::Scalar(102, 0, 51);
+        }
+        else if (assignement == 15) {
+            color = cv::Scalar(0, 255, 102);
+        }
+        else if (assignement == 16) {
+            color = cv::Scalar(153, 153, 153);
+        }
+        else if (assignement == 17) {
+            color = cv::Scalar(255, 255, 0);
+        }
         else {
-             color = cv::Scalar(0, 0, 255);
+             color = cv::Scalar(51, 255, 255);
         }
         
         ContourWrapper *contourWrapper = segments[i];
