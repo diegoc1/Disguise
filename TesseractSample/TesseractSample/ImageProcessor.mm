@@ -24,6 +24,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     KMeansLineClustering *clusterController = [[KMeansLineClustering alloc] initWithPoints:pointsData desiredNumberOfCentroids: 50];
     [clusterController exaggerateFeature:2 exaggerationAmount:60];
     [clusterController runKMeans];
+    [clusterController removeInvalidPoints];
+    [clusterController getArrayOfClusters];
     
     /* REMOVE BELOW */
     
@@ -86,9 +88,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
         else if (assignement == 17) {
             color = cv::Scalar(255, 255, 0);
         }
-        else {
+        else if (assignement == -1){
              color = cv::Scalar(51, 255, 255);
-        }
+        } 
         
         ContourWrapper *contourWrapper = segments[i];
         cv::rectangle(mat, contourWrapper.boundingBox, color);

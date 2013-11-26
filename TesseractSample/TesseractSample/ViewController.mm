@@ -6,6 +6,7 @@
 #import "ImageProcessor.h"
 #import "LineClassifier.h"
 #import "KMeansLineClustering.h"
+#import "CropImageViewController.h"
 
 @implementation ViewController
 
@@ -88,14 +89,17 @@
 		didFinishPickingImage:(UIImage *)image
 				  editingInfo:(NSDictionary *)editingInfo
 {
+    NSLog(@"PHOTO HAS BEEN CHOSEN");
     
     [picker dismissModalViewControllerAnimated: NO];
+    
     UIImage *newImage = [ImageProcessor resizeImage: image];
     cv::Mat theMat = [newImage CVMat];
+    
     [ImageProcessor performInitialImageProcessing: theMat];
     
     UIImage *resultingImage = [UIImage imageWithCVMat: theMat];
-//    ImageWrapper *greyScale=Image::createImage(newImage, newImage.size.width, newImage.size.height);
+    //    ImageWrapper *greyScale=Image::createImage(newImage, newImage.size.width, newImage.size.height);
 //    ImageWrapper *edges=greyScale.image->autoLocalThreshold();
 //    UIImage *postProcessingImage = edges.image->toUIImage();
     

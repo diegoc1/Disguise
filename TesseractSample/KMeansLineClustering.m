@@ -162,6 +162,24 @@
     }
 }
 
+- (NSMutableArray *) getArrayOfClusters {
+    NSMutableArray *array_of_clusters = [[NSMutableArray alloc] init];
+    for (int i = 0; i < self.num_centroids;i++) {
+        NSMutableArray *list_of_point_in_centroid = [[NSMutableArray alloc] init];
+        for (int j = 0; j < [self.assignments count]; j++) {
+            if ([self.assignments[j] intValue] == i) {
+                [list_of_point_in_centroid addObject:[NSNumber numberWithInteger:j]];
+            }
+        }
+        [array_of_clusters addObject:list_of_point_in_centroid];
+    }
+    NSLog(@"array of clusters: %@", array_of_clusters);
+    return array_of_clusters;
+}
+
+
+
+
 #pragma mark - Normalization
 
 - (double) meanOfPoints: (NSMutableArray *)points {
@@ -180,6 +198,7 @@
     return sqrt(sum_of_diffs / [points count]);
 }
 
+//Public function that allows the user to exaggerate a certain feauture (the actual exaggeration occurs during feature normalization
 - (void) exaggerateFeature: (int) indexOfFeautre exaggerationAmount:(int) amount {
     self.exaggeratedFeatureIndex = indexOfFeautre;
     self.exaggerate = TRUE;
@@ -216,6 +235,27 @@
             }
             self.points[j][i] = new;
         }
+    }
+}
+
+- (void) removeInvalidPoints {
+    
+    for (int i = 0; i < 2; i++) {
+    NSArray* sortedArray= [self.points sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2)
+    {
+        return [obj1[i] doubleValue] < [obj2[i] doubleValue];
+    }];
+    NSUInteger middle = [sortedArray count] / 2;                                           // Find the index of the middle element
+    NSNumber *median = [sortedArray objectAtIndex:middle][i];
+    for (int j = 0; j < [self.points count]; j++) {
+        NSArray *curr_point = self.points[j];
+        if ([curr_point[i] doubleValue] < ([median doubleValue] - 1) || (i == 1 && [curr_point[i] doubleValue] > ([median doubleValue] + 3))) {
+            NSLog(@"REMOVING POINT");
+            self.assignments[j] = [NSNumber numberWithInteger:-1];
+        }
+    }
+    
+    NSLog(@"median of sorted array is %@", median);
     }
 }
 

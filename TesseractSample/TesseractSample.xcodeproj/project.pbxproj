@@ -30,6 +30,7 @@
 		BEDE720E18402B9A003CE131 /* ContourWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720D18402B9A003CE131 /* ContourWrapper.mm */; };
 		E553FE38183DC9E800ECF736 /* OpenCV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E553FE37183DC9E800ECF736 /* OpenCV.framework */; };
 		E57ADF371841B5DE000CE617 /* LineClassifier.m in Sources */ = {isa = PBXBuildFile; fileRef = E57ADF361841B5DE000CE617 /* LineClassifier.m */; };
+		E5B0F17B184437A7004AA7E2 /* CropImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B0F17A184437A7004AA7E2 /* CropImageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +109,8 @@
 		E553FE37183DC9E800ECF736 /* OpenCV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenCV.framework; sourceTree = "<group>"; };
 		E57ADF351841B5DE000CE617 /* LineClassifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineClassifier.h; sourceTree = "<group>"; };
 		E57ADF361841B5DE000CE617 /* LineClassifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineClassifier.m; sourceTree = "<group>"; };
+		E5B0F179184437A7004AA7E2 /* CropImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CropImageViewController.h; sourceTree = "<group>"; };
+		E5B0F17A184437A7004AA7E2 /* CropImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CropImageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +185,8 @@
 				17E5A624146017E9004B1CA6 /* ViewController.xib */,
 				E57ADF351841B5DE000CE617 /* LineClassifier.h */,
 				E57ADF361841B5DE000CE617 /* LineClassifier.m */,
+				E5B0F179184437A7004AA7E2 /* CropImageViewController.h */,
+				E5B0F17A184437A7004AA7E2 /* CropImageViewController.m */,
 				E553FE37183DC9E800ECF736 /* OpenCV.framework */,
 				17E5A63014601A1C004B1CA6 /* dependencies */,
 				17E5A68F14601E0F004B1CA6 /* tessdata */,
@@ -353,6 +358,7 @@
 				BEDE720218400E7B003CE131 /* ImageProcessor.mm in Sources */,
 				BEDE720518400FA5003CE131 /* TesseractController.mm in Sources */,
 				17E5A61C146017E9004B1CA6 /* main.m in Sources */,
+				E5B0F17B184437A7004AA7E2 /* CropImageViewController.m in Sources */,
 				17E5A620146017E9004B1CA6 /* AppDelegate.mm in Sources */,
 				17E5A623146017E9004B1CA6 /* ViewController.mm in Sources */,
 				BE26C634183DC36000550F59 /* UIImage+OpenCV.mm in Sources */,
@@ -389,12 +395,12 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -414,8 +420,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PROVISIONING_PROFILE = "";
 				ONLY_ACTIVE_ARCH = NO;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s";
 			};
@@ -427,12 +433,12 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

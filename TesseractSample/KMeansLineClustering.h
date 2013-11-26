@@ -12,4 +12,8 @@
 - (void) exaggerateFeature: (int) indexOfFeautre exaggerationAmount:(int) amount;
 
 -(void) runKMeans;
+
+-(NSMutableArray *) getArrayOfClusters;
+
+- (void) removeInvalidPoints;
 @end
