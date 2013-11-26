@@ -1,40 +1,30 @@
-//
-//  KMeansLineClustering.m
-//  TesseractSample
-//
-//  Created by Diego Canales on 11/21/13.
-//
-//
-
 #import "KMeansLineClustering.h"
 
 @interface KMeansLineClustering()
 
-@property (strong,nonatomic) NSArray *points;
+@property (strong,nonatomic) NSMutableArray *points;
 @property (nonatomic) int num_centroids;
 @property (nonatomic) int point_vec_length;
-
+@property (nonatomic) BOOL exaggerate;
+@property (nonatomic) int exaggeratedFeatureIndex;
+@property (nonatomic) int exaggerationAmount;
 @end
 
 @implementation KMeansLineClustering
-
 - (id) initWithPoints:(NSArray *)points desiredNumberOfCentroids:(int)numCentroids {
     self = [super init];
     if (self) {
         if ([self vectorsSameLength:points]) {
             int vectorLength = [(NSArray *)points[0] count];
             self.point_vec_length = vectorLength;
-            self.points = points;
+            self.points = [NSMutableArray arrayWithArray:points];
             self.assignments = [[NSMutableArray alloc] init];
             self.centroids = [[NSMutableArray alloc] init];
-            [self normalizePoints];
-            [self randomlyAssignCentroids:numCentroids withLength:vectorLength];
-            [self runKMeans];
+            self.num_centroids = numCentroids;
         }
     }
     return self;
 }
-
 //Loops through the points and assigns that point to the closest centroid
 - (void) assignPointsToCentroids {
     for (int i = 0; i < [self.points count]; i++) {
@@ -42,7 +32,6 @@
         self.assignments[i] = [NSNumber numberWithInt:closestCentroidIndex];
     }
 }
-
 //Gets the index of the centroid that is closest to the inputted point
 - (int) getClosestCentroidIndex: (NSArray *)point {
     int closestCentroid = -1;
@@ -56,15 +45,12 @@
     }
     return closestCentroid;
 }
-
-
 - (void) recalculateCentroids {
     for (int i = 0; i < [self.centroids count]; i++) {
         NSMutableArray *centroidPoints = [self getPointsForCentroid:i];
         self.centroids[i] = [self getAverageOfPoints:centroidPoints];
     }
 }
-
 //Calculates the new centroid by taking the average of the points assigned to that centroid
 - (NSMutableArray *) getAverageOfPoints:(NSMutableArray *)points {
     NSMutableArray *newCentroid = [[NSMutableArray alloc] init];
@@ -79,7 +65,6 @@
     return newCentroid;
 }
 
-
 //Gets all the points assigned to a certain centroid and puts them in an array
 - (NSMutableArray *) getPointsForCentroid: (int) centroidIndex {
     NSMutableArray *pointsForCentroid = [[NSMutableArray alloc] init];
@@ -89,16 +74,17 @@
     return pointsForCentroid;
 }
 
-
 -(void) runKMeans {
-    for (int i = 0; i < 10; i++) {
+    [self normalizePoints];
+    //[self randomlyAssignCentroids:numCentroids withLength:vectorLength];
+    [self assignCentroidsEvenlyAcrossScreen:self.num_centroids withLength:self.point_vec_length];
+    for (int i = 0; i < 12; i++) {
         [self assignPointsToCentroids];
         [self recalculateCentroids];
-        NSLog(@"assignments is %@", self.assignments);
     }
-    
+//    NSLog(@"final assigments: %@", self.assignments);
+//    NSLog(@"DONE CLUSTERING");
 }
-
 
 //Checks that all the input points are the same length
 - (BOOL) vectorsSameLength:(NSArray *)points {
@@ -108,9 +94,12 @@
         if ([points[i] count] != firstLength) return false;
     }
     return true;
+    
+    
+    
+    
+    //TEST
 }
-
-
 //Calculates euclidian distance between two vectors
 - (double) euclidianDistance: (NSArray *)vec1 secondVector:(NSArray *)vec2 {
     double sum = 0;
@@ -119,23 +108,37 @@
     }
     return sqrt(sum);
 }
-
 //Assign centroids to random indexes in points
 - (void) randomlyAssignCentroids: (int) numCentroids withLength:(int) vecLength {
-    self.num_centroids = numCentroids;
+    
     int total_num_points = [self.points count];
     for (int i = 0; i < self.num_centroids; i++) {
         NSUInteger randNum = arc4random();
         int randomIndex = randNum % total_num_points;
-        NSLog(@"random index is %d", randomIndex);
         [self.centroids addObject:[self.points objectAtIndex:randomIndex]];
     }
-    
-    NSLog(@"centroids %@", self.centroids);
 }
-
+//WARNING: THIS FUNCTION MAKES ASSUMPTIONS ABOUT THE FEATURE VECTOR FORMAT.  This function creates a centroid that includes all the features for a random point excpet for its last feature, which it replaces with a calculated y value.
+-(void) assignCentroidsEvenlyAcrossScreen: (int) numCentroids withLength:(int) vecLength {
+    int total_num_points = [self.points count];
+    for (int i = 0; i < self.num_centroids; i++) {
+        NSUInteger randNum = arc4random();
+        int randomIndex = randNum % total_num_points;
+        NSArray *randomPoint = [self.points objectAtIndex:randomIndex];
+        NSMutableArray *newCentroid = [[NSMutableArray alloc] init];
+        
+        //Include all but the last feature
+        for (int j = 0; j < vecLength - 1; j++) {
+            [newCentroid addObject:randomPoint[j]];
+        }
+        //Add calculated why value
+        NSNumber *y = [NSNumber numberWithDouble:i * (480 / numCentroids)];
+        [newCentroid addObject:y];
+        //NSLog(@"created centroid %@", newCentroid);
+        [self.centroids addObject:newCentroid];
+    }
+}
 #pragma mark - Normalization
-
 - (double) meanOfPoints: (NSMutableArray *)points {
     double sum  = 0;
     for (int i = 0; i < [points count]; i++) {
@@ -150,6 +153,12 @@
         sum_of_diffs += pow(([points[i] doubleValue] - meanOfPoints), 2);
     }
     return sqrt(sum_of_diffs / [points count]);
+}
+//Public function that allows the user to exaggerate a certain feauture (the actual exaggeration occurs during feature normalization
+- (void) exaggerateFeature: (int) indexOfFeautre exaggerationAmount:(int) amount {
+    self.exaggeratedFeatureIndex = indexOfFeautre;
+    self.exaggerate = TRUE;
+    self.exaggerationAmount = amount;
 }
 - (void) normalizePoints {
     
@@ -171,18 +180,31 @@
         for (int j = 0; j < [self.points count]; j++) {
             
             NSNumber *or = self.points[j][i];
-            NSNumber *new = [NSNumber numberWithDouble:([or doubleValue] - meanOfPoints) / standardDev];
+            
+            NSNumber *new;
+            if (self.exaggerate && i == self.exaggeratedFeatureIndex) {
+                new = [NSNumber numberWithDouble:(self.exaggerationAmount * [or doubleValue] - meanOfPoints) / standardDev];
+            } else {
+                new = [NSNumber numberWithDouble:([or doubleValue] - meanOfPoints) / standardDev];
+            }
             self.points[j][i] = new;
         }
-        NSMutableArray *featureVec2 = [[NSMutableArray alloc] init];
-        for (int j = 0; j < [self.points count]; j++) {
-            [featureVec2 addObject:self.points[j][i]];
-        }
-        /*double meanOfPoints2 = [self meanOfPoints:featureVec2];
-        double standardDev2 = [self standardDeviationOfPoints:featureVec2 withMean:meanOfPoints2];
-        NSLog(@"NEW MEAN IS %f", meanOfPoints2);
-        NSLog(@"NEW STD IS %f", standardDev2);*/
     }
+}
+
+- (NSMutableArray *) getArrayOfClusters {
+    NSMutableArray *array_of_clusters = [[NSMutableArray alloc] init];
+    for (int i = 0; i < self.num_centroids;i++) {
+        NSMutableArray *list_of_point_in_centroid = [[NSMutableArray alloc] init];
+        for (int j = 0; j < [self.assignments count]; j++) {
+            if ([self.assignments[j] intValue] == i) {
+                [list_of_point_in_centroid addObject:[NSNumber numberWithInteger:j]];
+            }
+        }
+        [array_of_clusters addObject:list_of_point_in_centroid];
+    }
+    //NSLog(@"array of clusters: %@", array_of_clusters);
+    return array_of_clusters;
 }
 
 @end

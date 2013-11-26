@@ -4,7 +4,8 @@
 #import "UIImage+OpenCV.h"
 #import "TesseractController.h"
 #import "ImageProcessor.h"
-
+#import "ClusterMatrixManager.h"
+#import "ClusterWrapper.h"
 
 @implementation ViewController
 
@@ -58,13 +59,18 @@
     cv::Mat theMat = [newImage CVMat];
     [ImageProcessor performInitialImageProcessing: theMat];
     
+    TesseractController *tc = [[TesseractController alloc] init];
+    NSMutableArray *clusterMatrices = [ClusterMatrixManager extractClusterMats: theMat];
+    for (ClusterWrapper *cluster in clusterMatrices) {
+        [tc processOcrAt: [UIImage imageWithCVMat: cluster.clusterMat]];
+    }
+    
     UIImage *resultingImage = [UIImage imageWithCVMat: theMat];
 //    ImageWrapper *greyScale=Image::createImage(newImage, newImage.size.width, newImage.size.height);
 //    ImageWrapper *edges=greyScale.image->autoLocalThreshold();
 //    UIImage *postProcessingImage = edges.image->toUIImage();
     
-    TesseractController *tc = [[TesseractController alloc] init];
-    [tc processOcrAt: resultingImage];
+   // [tc processOcrAt: resultingImage];
     
     iv.image = resultingImage;
     
