@@ -20,6 +20,8 @@
 		17E5A69014601E0F004B1CA6 /* Lorem_Ipsum_Univers.png in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A68E14601E0F004B1CA6 /* Lorem_Ipsum_Univers.png */; };
 		17E5A69114601E0F004B1CA6 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 17E5A68F14601E0F004B1CA6 /* tessdata */; };
 		BE26C634183DC36000550F59 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = BE26C633183DC36000550F59 /* UIImage+OpenCV.mm */; };
+		BE62AA531844305B003A34EE /* ClusterMatrixManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = BE62AA521844305B003A34EE /* ClusterMatrixManager.mm */; };
+		BE62AA561844658D003A34EE /* ClusterWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = BE62AA551844658D003A34EE /* ClusterWrapper.mm */; };
 		BE9E37ED183DB8C6004986D8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37EC183DB8C6004986D8 /* AVFoundation.framework */; };
 		BE9E37EF183DB8D7004986D8 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37EE183DB8D7004986D8 /* ImageIO.framework */; };
 		BE9E37F1183DB8E8004986D8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37F0183DB8E8004986D8 /* libz.dylib */; };
@@ -28,6 +30,7 @@
 		BEDE720518400FA5003CE131 /* TesseractController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720418400FA5003CE131 /* TesseractController.mm */; };
 		BEDE720B18401F56003CE131 /* KMeansLineClustering.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720A18401F56003CE131 /* KMeansLineClustering.m */; };
 		BEDE720E18402B9A003CE131 /* ContourWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720D18402B9A003CE131 /* ContourWrapper.mm */; };
+		E50E66371845A604008B4757 /* receipt_text.txt in Resources */ = {isa = PBXBuildFile; fileRef = E50E66361845A604008B4757 /* receipt_text.txt */; };
 		E553FE38183DC9E800ECF736 /* OpenCV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E553FE37183DC9E800ECF736 /* OpenCV.framework */; };
 		E57ADF371841B5DE000CE617 /* LineClassifier.m in Sources */ = {isa = PBXBuildFile; fileRef = E57ADF361841B5DE000CE617 /* LineClassifier.m */; };
 		E5B0F17B184437A7004AA7E2 /* CropImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B0F17A184437A7004AA7E2 /* CropImageViewController.m */; };
@@ -94,6 +97,10 @@
 		17E5A68F14601E0F004B1CA6 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		BE26C632183DC36000550F59 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
 		BE26C633183DC36000550F59 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
+		BE62AA511844305B003A34EE /* ClusterMatrixManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClusterMatrixManager.h; sourceTree = "<group>"; };
+		BE62AA521844305B003A34EE /* ClusterMatrixManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ClusterMatrixManager.mm; sourceTree = "<group>"; };
+		BE62AA541844658D003A34EE /* ClusterWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClusterWrapper.h; sourceTree = "<group>"; };
+		BE62AA551844658D003A34EE /* ClusterWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ClusterWrapper.mm; sourceTree = "<group>"; };
 		BE9E37EC183DB8C6004986D8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BE9E37EE183DB8D7004986D8 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		BE9E37F0183DB8E8004986D8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -106,6 +113,7 @@
 		BEDE720A18401F56003CE131 /* KMeansLineClustering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KMeansLineClustering.m; path = ../KMeansLineClustering.m; sourceTree = "<group>"; };
 		BEDE720C18402B9A003CE131 /* ContourWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContourWrapper.h; sourceTree = "<group>"; };
 		BEDE720D18402B9A003CE131 /* ContourWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ContourWrapper.mm; sourceTree = "<group>"; };
+		E50E66361845A604008B4757 /* receipt_text.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = receipt_text.txt; sourceTree = "<group>"; };
 		E553FE37183DC9E800ECF736 /* OpenCV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenCV.framework; sourceTree = "<group>"; };
 		E57ADF351841B5DE000CE617 /* LineClassifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineClassifier.h; sourceTree = "<group>"; };
 		E57ADF361841B5DE000CE617 /* LineClassifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineClassifier.m; sourceTree = "<group>"; };
@@ -174,6 +182,11 @@
 				17E5A61F146017E9004B1CA6 /* AppDelegate.mm */,
 				BEDE720018400E7A003CE131 /* ImageProcessor.h */,
 				BEDE720118400E7A003CE131 /* ImageProcessor.mm */,
+				BE62AA511844305B003A34EE /* ClusterMatrixManager.h */,
+				E50E66361845A604008B4757 /* receipt_text.txt */,
+				BE62AA521844305B003A34EE /* ClusterMatrixManager.mm */,
+				BE62AA541844658D003A34EE /* ClusterWrapper.h */,
+				BE62AA551844658D003A34EE /* ClusterWrapper.mm */,
 				BEDE720C18402B9A003CE131 /* ContourWrapper.h */,
 				BEDE720D18402B9A003CE131 /* ContourWrapper.mm */,
 				BEDE720318400FA5003CE131 /* TesseractController.h */,
@@ -343,6 +356,7 @@
 				17E5A61A146017E9004B1CA6 /* InfoPlist.strings in Resources */,
 				17E5A626146017E9004B1CA6 /* ViewController.xib in Resources */,
 				17E5A69014601E0F004B1CA6 /* Lorem_Ipsum_Univers.png in Resources */,
+				E50E66371845A604008B4757 /* receipt_text.txt in Resources */,
 				17E5A69114601E0F004B1CA6 /* tessdata in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -357,6 +371,8 @@
 				E57ADF371841B5DE000CE617 /* LineClassifier.m in Sources */,
 				BEDE720218400E7B003CE131 /* ImageProcessor.mm in Sources */,
 				BEDE720518400FA5003CE131 /* TesseractController.mm in Sources */,
+				BE62AA561844658D003A34EE /* ClusterWrapper.mm in Sources */,
+				BE62AA531844305B003A34EE /* ClusterMatrixManager.mm in Sources */,
 				17E5A61C146017E9004B1CA6 /* main.m in Sources */,
 				E5B0F17B184437A7004AA7E2 /* CropImageViewController.m in Sources */,
 				17E5A620146017E9004B1CA6 /* AppDelegate.mm in Sources */,

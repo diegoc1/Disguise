@@ -4,9 +4,9 @@
 #import "UIImage+OpenCV.h"
 #import "TesseractController.h"
 #import "ImageProcessor.h"
+#import "ClusterMatrixManager.h"
+#import "ClusterWrapper.h"
 #import "LineClassifier.h"
-#import "KMeansLineClustering.h"
-#import "CropImageViewController.h"
 
 @implementation ViewController
 
@@ -26,41 +26,84 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSArray *d1 = @[[NSNumber numberWithDouble:96], [NSNumber numberWithDouble:4], [NSNumber numberWithDouble:7]];
-    NSArray *d2 = @[[NSNumber numberWithDouble:95], [NSNumber numberWithDouble:5.2], [NSNumber numberWithDouble:5.3]];
-    NSArray *d3 = @[[NSNumber numberWithDouble:97], [NSNumber numberWithDouble:5.1], [NSNumber numberWithDouble:5.2]];
+    NSMutableArray *a = [[NSMutableArray alloc] init];
+    
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"receipt_text"
+                                                     ofType:@"txt"];
+    NSString* content = [NSString stringWithContentsOfFile:path
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:NULL];\
+    NSMutableArray *data = [[content componentsSeparatedByCharactersInSet: [NSCharacterSet newlineCharacterSet]] mutableCopy];
+    NSLog(@"data: %@", data);
+    
+    NSMutableArray *actual_classification = [[NSMutableArray alloc] init];
+    for (int i = 0; i < [data count]; i++) {
+        if (i % 2 == 0) {
+            [a addObject:data[i]];
+        } else {
+            [actual_classification addObject:data[i]];
+        }
+    }
+    
+    NSString *line = @"Bacon $1.50";
+    NSString *l1 = @"Total: $5.00";
+    NSString *l2 = @"1 Burger $4.50";
+    NSString *l3 = @"2 Burgers $10.50";
+    NSString *l4 = @"Check #: 0001 12/20/11";
+    NSString *l5 = @"Server: Josh F 4:38 PM";
+    NSString *l6 = @"Table: 7/1 Guests: 2";
+    NSString *l7 = @"2 Beef Burgr (@9.95/each)";
+    NSString *l8 = @"SIDE: Frieds";
+    NSString *l9 = @"1 Bud Light   3.79";
+    NSString *l10 = @"1 Bud 4.50";
+    NSString *l11 = @"Sub-total 28.19";
+    NSString *l12 = @"Sales Tax 2.50";
+    NSString *l13 = @"Total 30.69";
+    
+    
+ //   [a addObject:line];
+//    [a addObject:l1];
+//    [a addObject:l2];
+//    [a addObject:l3];
+//    [a addObject:l4];
+//    [a addObject:l5];
+//    [a addObject:l6];
+//    [a addObject:l7];
+//    [a addObject:l8];
+//    [a addObject:l9];
+//    [a addObject:l10];
+//    [a addObject:l11];
+//    [a addObject:l12];
+//    [a addObject:l13];
     
     
     
-    NSArray *d4 = @[[NSNumber numberWithDouble:80], [NSNumber numberWithDouble:3.4], [NSNumber numberWithDouble:7.1]];
-    NSArray *d5 = @[[NSNumber numberWithDouble:84], [NSNumber numberWithDouble:5.6], [NSNumber numberWithDouble:5.7]];
-    NSArray *d6 = @[[NSNumber numberWithDouble:82], [NSNumber numberWithDouble:4.2], [NSNumber numberWithDouble:7.7]];
+    
+    LineClassifier *c = [[LineClassifier alloc] initWithTrainingStrings:a];
     
     
-    
-    
-    NSArray *d7 = @[[NSNumber numberWithDouble:80], [NSNumber numberWithDouble:0.4], [NSNumber numberWithDouble:.1]];
-    NSArray *d8 = @[[NSNumber numberWithDouble:84], [NSNumber numberWithDouble:.1], [NSNumber numberWithDouble:0.6]];
-    NSArray *d9 = @[[NSNumber numberWithDouble:82], [NSNumber numberWithDouble:0.3], [NSNumber numberWithDouble:0.7]];
-    
-    
-    
-    NSMutableArray *data = [[NSMutableArray alloc] init];
-    [data addObject:d1];
-    [data addObject:d2];
-    [data addObject:d3];
-    [data addObject:d4];
-    [data addObject:d5];
-    [data addObject:d6];
-    [data addObject:d7];
-    [data addObject:d8];
-    [data addObject:d9];
-    
-    KMeansLineClustering *clustering = [[KMeansLineClustering alloc] initWithPoints:data desiredNumberOfCentroids:3];
-    NSString *t1 =  @"Salmon $1.30";
-    NSMutableArray *arr = [[NSMutableArray alloc] init];
-    [arr addObject:t1];
-    LineClassifier *classifier = [[LineClassifier alloc] initWithTrainingStrings:arr];
+    for (int i = 0; i < [a count]; i++) {
+        NSString *curr_line = [a objectAtIndex:i];
+        NSMutableArray *features = [c extractFeaturesFromLine:curr_line];
+        NSLog(@"classified: %@    %@", [self getType:[c classifyUsingDecisionTree:features]], curr_line);
+        NSLog(@"actual classifcation: %@", [actual_classification objectAtIndex:i]);
+        
+    }
+}
+
+- (NSString *) getType:(int) type {
+    switch (type) {
+        case 0:
+            return @"item";
+            break;
+        case 1:
+            return  @"total";
+        case 2:
+            return  @"other";
+        default:
+            break;
+    }
+    return @"";
 }
 
 - (void)viewDidUnload
@@ -89,22 +132,24 @@
 		didFinishPickingImage:(UIImage *)image
 				  editingInfo:(NSDictionary *)editingInfo
 {
-    NSLog(@"PHOTO HAS BEEN CHOSEN");
     
     [picker dismissModalViewControllerAnimated: NO];
-    
     UIImage *newImage = [ImageProcessor resizeImage: image];
     cv::Mat theMat = [newImage CVMat];
-    
     [ImageProcessor performInitialImageProcessing: theMat];
     
+    TesseractController *tc = [[TesseractController alloc] init];
+    NSMutableArray *clusterMatrices = [ClusterMatrixManager extractClusterMats: theMat];
+    for (ClusterWrapper *cluster in clusterMatrices) {
+        [tc processOcrAt: [UIImage imageWithCVMat: cluster.clusterMat]];
+    }
+    
     UIImage *resultingImage = [UIImage imageWithCVMat: theMat];
-    //    ImageWrapper *greyScale=Image::createImage(newImage, newImage.size.width, newImage.size.height);
+//    ImageWrapper *greyScale=Image::createImage(newImage, newImage.size.width, newImage.size.height);
 //    ImageWrapper *edges=greyScale.image->autoLocalThreshold();
 //    UIImage *postProcessingImage = edges.image->toUIImage();
     
-    TesseractController *tc = [[TesseractController alloc] init];
-    [tc processOcrAt: resultingImage];
+   // [tc processOcrAt: resultingImage];
     
     iv.image = resultingImage;
     

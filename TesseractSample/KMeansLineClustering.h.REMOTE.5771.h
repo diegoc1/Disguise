@@ -3,12 +3,8 @@
 @property (strong, nonatomic) NSMutableArray *assignments;
 @property (strong, nonatomic) NSMutableArray *centroids;
 - (id) initWithPoints:(NSArray *)points desiredNumberOfCentroids:(int)numCentroids;
-
 - (void) exaggerateFeature: (int) indexOfFeautre exaggerationAmount:(int) amount;
-
 -(void) runKMeans;
+- (NSMutableArray *) getArrayOfClusters;
 
--(NSMutableArray *) getArrayOfClusters;
-
-- (void) removeInvalidPoints;
 @end

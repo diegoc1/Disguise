@@ -1,0 +1,26 @@
+Bacon $1.50
+I
+Total: $5.00
+T
+1 Burger $4.50
+I
+2 Burgers $10.50
+I
+Check #: 0001 12/20/11
+O
+Server: Josh F 4:38 PM
+O
+Table: 7/1 Guests: 2
+O
+SIDE: Fries
+O
+1 Bud Light   3.79
+I
+1 Bud 4.50
+I
+Sub-total 28.19
+O
+Sales Tax 2.50
+O
+Total 30.69
+T

@@ -11,5 +11,9 @@
 @interface LineClassifier : NSObject
 
 - (id) initWithTrainingStrings:(NSMutableArray *)trainingData;
+- (NSMutableArray *) extractFeaturesFromLine:(NSString *)line;
+- (int) classifyLine:(NSMutableArray *)features;
+- (int) classifyUsingDecisionTree:(NSMutableArray *)features;
+
 
 @end
