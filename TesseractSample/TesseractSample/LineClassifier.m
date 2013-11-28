@@ -17,7 +17,7 @@
 @implementation LineClassifier
 
 
-- (id) initWithTrainingStrings:(NSMutableArray *)trainingData {
+- (id) initWithTrainingStrings:(NSMutableArray *)trainingData andActualAssignments:(NSMutableArray *)actualAssignments {
     self = [super init];
     if (self) {
      //   NSLog(@"CREATING with strings %@", trainingData);
@@ -25,11 +25,40 @@
         for (int i = 0; i < 8; i++) {
             [self.weights addObject:[NSNumber numberWithDouble:0.0]];
         }
-        
+        [self trainClassifier:trainingData withAssignments:actualAssignments];
        // NSLog(@"features: %@", [self extractFeaturesFromLine:trainingData[0]]);
     }
     return self;
 }
+
+
+- (void) trainClassifier: (NSMutableArray *) trainingData withAssignments:(NSMutableArray *) assignments{
+    NSLog(@"TRAINING");
+    for (int i = 0; i < [trainingData count]; i++) {
+        NSString *curr_line = [trainingData objectAtIndex:i];
+        NSMutableArray *features_for_line = [self extractFeaturesFromLine:curr_line];
+        int classificaiton = [self classifyLine:features_for_line];
+        int actual_classificaiton = [self getIntegerClassification:assignments[i]];
+        NSLog(@"actual: %d vs predicted: %d", actual_classificaiton, classificaiton);
+        if (actual_classificaiton != classificaiton) {
+            
+            NSLog(@"UPDATE");
+            for (int j = 0; j < [self.weights count]; j++) {
+                double update = [self.weights[j] doubleValue] + (actual_classificaiton * [features_for_line[j] doubleValue]);
+                NSLog(@"update is %f", update);
+                self.weights[j] = [NSNumber numberWithDouble:update];
+            }
+        }
+    }
+    NSLog(@"SELF WEIGHTS IS NOW %@", self.weights);
+}
+
+- (int) getIntegerClassification: (NSString *) classification {
+    if ([classification isEqualToString:@"I"]) return 1;
+    return -1;
+}
+
+
 -(int) getNumDigits: (NSString *)str {
     int count = 0;
     for (int i = 0; i < str.length; i++) {
@@ -49,8 +78,9 @@
 
 - (int) classifyLine:(NSMutableArray *)features {
     double dot_prod = [self dotProduct:features withWeightVector:self.weights];
-    if (dot_prod > 0) return 0;
-    return 1;
+    NSLog(@"dot_pod: %f", dot_prod);
+    if (dot_prod > 0) return 1;
+    return -1;
 }
 
 - (int) classifyUsingDecisionTree:(NSMutableArray *)features {
@@ -69,8 +99,9 @@
     }
     
     if ([features[1] integerValue] == 1) {
-        item_prob += 0.5;
-        total_prob += 0.5;
+        item_prob += 0.7;
+        total_prob += 0.7;
+        other_prob -= 0.7;
     } else {
         other_prob += 0.5;
     }
@@ -80,10 +111,10 @@
         item_prob -= 0.2;
         other_prob -= 0.2;
     } else {
-        total_prob -= 0.7;
+        total_prob -= 1.0;
     }
     
-    if ([features[3] integerValue] >= 3) {
+    if ([features[3] integerValue] >= 3 && [features[3] integerValue] < 5) {
         total_prob += 0.7;
         item_prob += 0.7;
         other_prob -= 0.2;
@@ -116,7 +147,7 @@
     }
     
     if ([features[7] integerValue] == 1) {
-        item_prob += 0.8;
+        item_prob += 1.2;
         other_prob -= 0.2;
         total_prob -= 0.5;
     }
@@ -140,15 +171,26 @@
     return max_val;
 }
 
+- (void)normalizedFeatures:(NSMutableArray *) features {
+    double sum = 0;
+    for (int i = 0;i < [features count];i++) {
+        sum += pow([features[i] doubleValue], 2);
+    }
+    sum = sqrt(sum);
+    for (int i = 0;i < [features count];i++) {
+        features[i] = [NSNumber numberWithDouble:[features[i] doubleValue] / sum];
+    }
+}
+
 
 - (NSMutableArray *) extractFeaturesFromLine:(NSString *)line {
  //   NSLog(@"extracting features for line %@", line);
     
     NSString *lower_case_version = [line lowercaseString];
-    
     NSMutableArray *features = [[NSMutableArray alloc] init];
     //1) Number of characters
     [features addObject:[NSNumber numberWithInteger:lower_case_version.length]];
+    //[features addObject:[NSNumber numberWithInteger:1]];
     
     //2) Contains '$'
     if ([lower_case_version rangeOfString:@"$"].location != NSNotFound) {
@@ -166,6 +208,7 @@
     
     //4 Number of digits
     [features addObject:[NSNumber numberWithInteger:[self getNumDigits:lower_case_version]]];
+  //  [features addObject:[NSNumber numberWithInteger:1]];
     
     //5 Contains .
     if ([lower_case_version rangeOfString:@"."].location != NSNotFound) {

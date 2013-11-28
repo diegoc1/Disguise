@@ -15,7 +15,7 @@ O
 SIDE: Fries
 O
 1 Bud Light   3.79
-I
+O
 1 Bud 4.50
 I
 Sub-total 28.19
@@ -24,3 +24,101 @@ Sales Tax 2.50
 O
 Total 30.69
 T
+Welcome to Marsh's Sunfresh
+O
+4001 Mill Street
+O
+Kansas City, MO. 64111
+O
+Pico de Gallo $5.99 2 F
+I
+Hummus $4.59 2 F
+I
+Old Wisconsin Turkey $3.85
+I
+Total $50.00
+T
+Hello there
+O
+52a HIGH ST.KINGSTON-UPON-THAMES
+O
+KT1 1EU
+O
+Tel: 0208 439 1002 Fax: 0208 439 1003
+O
+VAT No: 693200741
+O
+CHK # 10 TBL # 30
+O
+SUPER STEF # 103
+O
+03/03/07 12:54:21 Guests 2
+O
+1 Half Cruzcampo 1.75
+I
+1 Orange Juice 2.45
+I
+1 Menu Para Ninos 3.95
+I
+1 Pan de Ajo 2.75
+I
+1 Calamares 3.95
+I
+1 Cafe Doble 2.00
+I
+Terminal 4 T#0000025 -----------
+O
+TOTAL: 33.35
+T
+VAT 4.97
+O
+Last Serviced 03/03/07 13:56:54
+O
+A 10% Discretionary Service will
+O
+Be Added for parties of 8 or more
+O
+Gratuity at your discretion
+O
+Book now for
+O
+Mother's Day !!!
+O
+WE SELL FOR LESS
+O
+MANAGER DAVID KINMAN
+O
+(816) 224 - 4800
+O
+ST# 4068 DP # 12345678 TE# 39 TR# 03366
+O
+HAMCOMBO 007875235055K 3.17 X
+I
+SLC OF CHEES 007875235055K 0.20 X
+I
+** VOIDED ENTRY **
+O
+HAMCOMBO 007875235055K 3.17 X
+I
+MED DRINK 007875235055K 0.98 X
+I
+SUBTOTAL 3.15
+O
+TAX 1 3.000 % 0.09
+O
+TAX 3 3.475 % 0.11
+O
+TOTAL 3.35
+T
+CASH TEND 20.35
+O
+CHANGE DUE 17.00
+O
+4-21 ORDER #666
+O
+Ready For Weekend?
+O
+Check out Lawn and Garden
+O
+04/21/05 12:25:25
+O

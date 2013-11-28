@@ -7,7 +7,7 @@
 #import "ClusterMatrixManager.h"
 #import "ClusterWrapper.h"
 #import "LineClassifier.h"
-
+#import "KMeansLineClustering.h"
 @implementation ViewController
 
 @synthesize iv;
@@ -23,6 +23,11 @@
     return self;
 }
 
+- (void) goToSelectItemsVC {
+    NSLog(@"GOING");
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -32,7 +37,8 @@
                                                      ofType:@"txt"];
     NSString* content = [NSString stringWithContentsOfFile:path
                                                   encoding:NSUTF8StringEncoding
-                                                     error:NULL];\
+                                                     error:NULL];
+    NSMutableArray *f = [[NSMutableArray alloc] init];
     NSMutableArray *data = [[content componentsSeparatedByCharactersInSet: [NSCharacterSet newlineCharacterSet]] mutableCopy];
     NSLog(@"data: %@", data);
     
@@ -44,6 +50,11 @@
             [actual_classification addObject:data[i]];
         }
     }
+    UIButton *b = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 100,30)];
+    [b setBackgroundColor:[UIColor redColor]];
+    [b addTarget:self action:@selector(goToSelectItemsVC) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:b];
+    
     
     NSString *line = @"Bacon $1.50";
     NSString *l1 = @"Total: $5.00";
@@ -79,16 +90,46 @@
     
     
     
-    LineClassifier *c = [[LineClassifier alloc] initWithTrainingStrings:a];
+    LineClassifier *c = [[LineClassifier alloc] initWithTrainingStrings:a andActualAssignments:actual_classification];
+    
+    NSMutableArray *c1;
+    NSMutableArray *c2;
+    NSMutableArray *c3;
+    
+    BOOL c1_classified = FALSE;
+    BOOL c2_classified = FALSE;
+    BOOL c3_classified = FALSE;
     
     
     for (int i = 0; i < [a count]; i++) {
         NSString *curr_line = [a objectAtIndex:i];
         NSMutableArray *features = [c extractFeaturesFromLine:curr_line];
+        [f addObject:features];
         NSLog(@"classified: %@    %@", [self getType:[c classifyUsingDecisionTree:features]], curr_line);
+        NSLog(@"and classified : %d", [c classifyLine:features]);
         NSLog(@"actual classifcation: %@", [actual_classification objectAtIndex:i]);
-        
     }
+    NSArray *n = [NSArray arrayWithArray:f];
+////    KMeansLineClustering *k = [[KMeansLineClustering alloc] initWithPoints:n  desiredNumberOfCentroids:3];
+////    NSMutableArray *des_cen = [[NSMutableArray alloc] init];
+////    [des_cen addObject:c1];
+////    [des_cen addObject:c2];
+////    [des_cen addObject:c3];
+////    [k assignCentroidsToArray:des_cen];
+//    NSLog(@"-------------   // [k runKMeans];
+//    NSLog(@"assignments %@", k.assignments);
+//    for (int i = 0; i < [k.assignments count]; i++) {
+//     //   if ([[k.assignments objectAtIndex:i] integerValue] == 0) {
+//            NSLog(@"assignment for %@: %d", [a objectAtIndex:i], [[k.assignments objectAtIndex:i] integerValue]);
+//     //   }
+//    }
+//------------------------------------------------------");
+////    for (int i = 0; i < [k.assignments count]; i++) {
+////        if ([[k.assignments objectAtIndex:i] integerValue] == 1) {
+////            NSLog(@"assignment for %@: %d", [a objectAtIndex:i], [[k.assignments objectAtIndex:i] integerValue]);
+////        }
+////    }
+//    
 }
 
 - (NSString *) getType:(int) type {

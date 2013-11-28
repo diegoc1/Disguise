@@ -45,6 +45,12 @@
     }
     return closestCentroid;
 }
+
+-(void) assignCentroidsToArray:(NSMutableArray *)desiredCentroids {
+    self.centroids = desiredCentroids;
+}
+
+
 - (void) recalculateCentroids {
     for (int i = 0; i < [self.centroids count]; i++) {
         NSMutableArray *centroidPoints = [self getPointsForCentroid:i];
@@ -76,7 +82,7 @@
 
 -(void) runKMeans {
     [self normalizePoints];
-    //[self randomlyAssignCentroids:numCentroids withLength:vectorLength];
+   // [self randomlyAssignCentroids:self.num_centroids withLength:self.point_vec_length];
     [self assignCentroidsEvenlyAcrossScreen:self.num_centroids withLength:self.point_vec_length];
     for (int i = 0; i < 12; i++) {
         [self assignPointsToCentroids];

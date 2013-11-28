@@ -9,6 +9,7 @@
 -(void) runKMeans;
 
 -(NSMutableArray *) getArrayOfClusters;
+-(void) assignCentroidsToArray:(NSMutableArray *)desiredCentroids;
 
 - (void) removeInvalidPoints;
 @end
