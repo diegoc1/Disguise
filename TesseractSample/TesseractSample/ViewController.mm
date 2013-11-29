@@ -8,6 +8,9 @@
 #import "ClusterWrapper.h"
 #import "LineClassifier.h"
 #import "KMeansLineClustering.h"
+#import "SelectItemsViewController.h"
+#import "SVMClassifier.h"
+
 @implementation ViewController
 
 @synthesize iv;
@@ -24,7 +27,9 @@
 }
 
 - (void) goToSelectItemsVC {
-    NSLog(@"GOING");
+   // NSLog(@"GOING");
+    SelectItemsViewController *controller = [[SelectItemsViewController alloc] initWithNibName:@"SelectItemsViewController" bundle:nil];
+    [self.navigationController pushViewController:controller animated:YES];
     
 }
 
@@ -56,20 +61,20 @@
     [self.view addSubview:b];
     
     
-    NSString *line = @"Bacon $1.50";
-    NSString *l1 = @"Total: $5.00";
-    NSString *l2 = @"1 Burger $4.50";
-    NSString *l3 = @"2 Burgers $10.50";
-    NSString *l4 = @"Check #: 0001 12/20/11";
-    NSString *l5 = @"Server: Josh F 4:38 PM";
-    NSString *l6 = @"Table: 7/1 Guests: 2";
-    NSString *l7 = @"2 Beef Burgr (@9.95/each)";
-    NSString *l8 = @"SIDE: Frieds";
-    NSString *l9 = @"1 Bud Light   3.79";
-    NSString *l10 = @"1 Bud 4.50";
-    NSString *l11 = @"Sub-total 28.19";
-    NSString *l12 = @"Sales Tax 2.50";
-    NSString *l13 = @"Total 30.69";
+//    NSString *line = @"Bacon $1.50";
+//    NSString *l1 = @"Total: $5.00";
+//    NSString *l2 = @"1 Burger $4.50";
+//    NSString *l3 = @"2 Burgers $10.50";
+//    NSString *l4 = @"Check #: 0001 12/20/11";
+//    NSString *l5 = @"Server: Josh F 4:38 PM";
+//    NSString *l6 = @"Table: 7/1 Guests: 2";
+//    NSString *l7 = @"2 Beef Burgr (@9.95/each)";
+//    NSString *l8 = @"SIDE: Frieds";
+//    NSString *l9 = @"1 Bud Light   3.79";
+//    NSString *l10 = @"1 Bud 4.50";
+//    NSString *l11 = @"Sub-total 28.19";
+//    NSString *l12 = @"Sales Tax 2.50";
+//    NSString *l13 = @"Total 30.69";
     
     
  //   [a addObject:line];
@@ -92,24 +97,28 @@
     
     LineClassifier *c = [[LineClassifier alloc] initWithTrainingStrings:a andActualAssignments:actual_classification];
     
-    NSMutableArray *c1;
-    NSMutableArray *c2;
-    NSMutableArray *c3;
-    
-    BOOL c1_classified = FALSE;
-    BOOL c2_classified = FALSE;
-    BOOL c3_classified = FALSE;
-    
+//    NSMutableArray *c1;
+//    NSMutableArray *c2;
+//    NSMutableArray *c3;
+//    
+//    BOOL c1_classified = FALSE;
+//    BOOL c2_classified = FALSE;
+//    BOOL c3_classified = FALSE;
+    int featureLength = -1;
     
     for (int i = 0; i < [a count]; i++) {
         NSString *curr_line = [a objectAtIndex:i];
-        NSMutableArray *features = [c extractFeaturesFromLine:curr_line];
+        NSMutableArray *features = [LineClassifier extractFeaturesFromLine:curr_line];
+        if (featureLength == -1) featureLength = [features count];
         [f addObject:features];
         NSLog(@"classified: %@    %@", [self getType:[c classifyUsingDecisionTree:features]], curr_line);
         NSLog(@"and classified : %d", [c classifyLine:features]);
         NSLog(@"actual classifcation: %@", [actual_classification objectAtIndex:i]);
     }
     NSArray *n = [NSArray arrayWithArray:f];
+    
+    
+    SVMClassifier *svm = [[SVMClassifier alloc] initWithPoints:n actualClassifications:actual_classification featureLength:featureLength];
 ////    KMeansLineClustering *k = [[KMeansLineClustering alloc] initWithPoints:n  desiredNumberOfCentroids:3];
 ////    NSMutableArray *des_cen = [[NSMutableArray alloc] init];
 ////    [des_cen addObject:c1];

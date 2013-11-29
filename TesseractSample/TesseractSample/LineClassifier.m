@@ -36,7 +36,7 @@
     NSLog(@"TRAINING");
     for (int i = 0; i < [trainingData count]; i++) {
         NSString *curr_line = [trainingData objectAtIndex:i];
-        NSMutableArray *features_for_line = [self extractFeaturesFromLine:curr_line];
+        NSMutableArray *features_for_line = [LineClassifier extractFeaturesFromLine:curr_line];
         int classificaiton = [self classifyLine:features_for_line];
         int actual_classificaiton = [self getIntegerClassification:assignments[i]];
         NSLog(@"actual: %d vs predicted: %d", actual_classificaiton, classificaiton);
@@ -59,7 +59,7 @@
 }
 
 
--(int) getNumDigits: (NSString *)str {
++ (int) getNumDigits: (NSString *)str {
     int count = 0;
     for (int i = 0; i < str.length; i++) {
         if (isdigit([str characterAtIndex:i])) count++;
@@ -183,7 +183,7 @@
 }
 
 
-- (NSMutableArray *) extractFeaturesFromLine:(NSString *)line {
++ (NSMutableArray *) extractFeaturesFromLine:(NSString *)line {
  //   NSLog(@"extracting features for line %@", line);
     
     NSString *lower_case_version = [line lowercaseString];
