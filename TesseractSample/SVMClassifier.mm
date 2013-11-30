@@ -52,11 +52,12 @@ using namespace cv;
     //    float trainingData[4][3] = { {501, 10, 1}, {255, 10, 2}, {501, 255, 3}, {10, 501, 4} };
         
         Mat trainingDataMat(numPoints, length, CV_32FC1, ary);
-        std::cout << "M = "<< std::endl << " "  << labelsMat << std::endl << std::endl;
+        std::cout << "M = "<< std::endl << " "  << trainingDataMat << std::endl << std::endl;
         // Set up SVM's parameters
         CvSVMParams params;
         params.svm_type    = CvSVM::C_SVC;
-        params.kernel_type = CvSVM::SIGMOID;
+        params.kernel_type = CvSVM::POLY;
+        params.degree = 4;
         params.term_crit   = cvTermCriteria(CV_TERMCRIT_ITER, 100, 1e-6);
         
         // Train the SVM
@@ -65,7 +66,7 @@ using namespace cv;
         
         Vec3b green(0,255,0), blue (255,0,0);
         // Show the decision regions given by the SVM
-        NSArray *a = @[@"Hello there!", @"2 Eggs $5.99", @"HAMCOMBO 007875235055K 3.17 X", @"1 Calamares 3.95", @"MED DRINK 007875235055K 0.98 X"];
+        NSArray *a = @[@"Hello there!", @"2 Eggs $5.99", @"HAMCOMBO 007875235055K 3.17 X", @"1 Calamares 3.95", @"MED DRINK 007875235055K 0.98 X", @"Total $20.00"];
         for (int i = 0; i < [a count]; i++) {
             
             NSMutableArray *f = [LineClassifier extractFeaturesFromLine:[a objectAtIndex:i]];
@@ -74,7 +75,7 @@ using namespace cv;
             for (int i = 0; i < [f count]; i++) {
                 cf[i] = [[f objectAtIndex:i] intValue];
             }
-            Mat sMat(8, 1, CV_32FC1, cf);
+            Mat sMat(10 , 1, CV_32FC1, cf);
             float response = SVM.predict(sMat);
             NSLog(@"response for %@ was : %f", [a objectAtIndex:i], response);
         }

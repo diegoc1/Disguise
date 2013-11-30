@@ -10,6 +10,7 @@
 
 #import "ViewController.h"
 #import "CropImageViewController.h"
+#import "SelectItemsViewController.h"
 
 @implementation AppDelegate
 
@@ -22,6 +23,7 @@
     // Override point for customization after application launch.
    // self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+    self.viewController = (ViewController *)[[SelectItemsViewController alloc] init];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;

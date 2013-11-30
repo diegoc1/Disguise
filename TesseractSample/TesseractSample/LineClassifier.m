@@ -22,10 +22,10 @@
     if (self) {
      //   NSLog(@"CREATING with strings %@", trainingData);
         self.weights = [[NSMutableArray alloc] init];
-        for (int i = 0; i < 8; i++) {
-            [self.weights addObject:[NSNumber numberWithDouble:0.0]];
-        }
-        [self trainClassifier:trainingData withAssignments:actualAssignments];
+//        for (int i = 0; i < 8; i++) {
+//            [self.weights addObject:[NSNumber numberWithDouble:0.0]];
+//        }
+//        [self trainClassifier:trainingData withAssignments:actualAssignments];
        // NSLog(@"features: %@", [self extractFeaturesFromLine:trainingData[0]]);
     }
     return self;
@@ -152,7 +152,16 @@
         total_prob -= 0.5;
     }
     
-  //  NSLog(@"item_prob :%f   total_prob: %f    other_prob: %f", item_prob, total_prob, other_prob);
+    if ([features[9] integerValue] == 1) {
+        NSLog(@"GOT HEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEE");
+        item_prob += 5.2;
+        other_prob -= 5;
+        total_prob += 5.2;
+    } else {
+        other_prob += 0.1;
+    }
+    
+    NSLog(@"item_prob :%f   total_prob: %f    other_prob: %f", item_prob, total_prob, other_prob);
     NSArray *items = @[[NSNumber numberWithDouble:other_prob], [NSNumber numberWithDouble:item_prob], [NSNumber numberWithDouble:total_prob]];
     double max_item = [self findMax:items];
   //  NSLog(@"max is %f", max_item);
@@ -171,6 +180,17 @@
     return max_val;
 }
 
+
++ (BOOL) capitalizationExceedsThresh: (NSString *) line {
+    int totalCapitalized = 0;
+    for (int i = 0; i < line.length; i++) {
+        if ([[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:[line characterAtIndex:i]]) {
+            totalCapitalized++;
+        }
+    }
+    return  totalCapitalized > 5;
+    
+}
 - (void)normalizedFeatures:(NSMutableArray *) features {
     double sum = 0;
     for (int i = 0;i < [features count];i++) {
@@ -189,7 +209,7 @@
     NSString *lower_case_version = [line lowercaseString];
     NSMutableArray *features = [[NSMutableArray alloc] init];
     //1) Number of characters
-    [features addObject:[NSNumber numberWithInteger:lower_case_version.length]];
+    [features addObject:[NSNumber numberWithInteger:1]];
     //[features addObject:[NSNumber numberWithInteger:1]];
     
     //2) Contains '$'
@@ -238,8 +258,41 @@
         [features addObject:[NSNumber numberWithInteger:0]];
     }
     
+    //9
+    if ([LineClassifier capitalizationExceedsThresh:line]) {
+        [features addObject:[NSNumber numberWithInteger:1]];
+    } else {
+        [features addObject:[NSNumber numberWithInteger:0]];
+    }
+    
+    //10
+    NSString *someRegexp = @"(\d.\d\d)";
+    NSPredicate *myTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", someRegexp];
+    
+    if ([myTest evaluateWithObject: line]){
+        NSLog(@"MATTTTCH");
+    }
+    NSError *errRegex = NULL;
+    NSError *error = NULL;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[0-9].[0-9][0-9]"
+                                                                           options:NSRegularExpressionCaseInsensitive
+                                                                             error:&error];
+//    NSRegularExpression *regex = [NSRegularExpression
+//                                  regularExpressionWithPattern:@"(\d.\d\d)"
+//                                  options:NSRegularExpressionCaseInsensitive
+//                                  error:&errRegex];
+//    
+    NSUInteger countMatches = [regex numberOfMatchesInString:line
+                                                        options:0
+                                                          range:NSMakeRange(0, [line length])];
+ //   NSUInteger countMatches = [regex numberOfMatchesInString:line
+   //                                                  options:0 range:NSMakeRange(0, line.length)];
+   // if([line isMatchedByRegex:@"\d.\d\d"] == YES) { NSLog(@"Matched!\n"); }
+    NSLog(@"matches for %@: %d", line, countMatches);
+     [features addObject:[NSNumber numberWithInteger:countMatches]];
     return features;
     
 }
+
 
 @end

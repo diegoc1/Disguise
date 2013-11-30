@@ -112,13 +112,17 @@
         if (featureLength == -1) featureLength = [features count];
         [f addObject:features];
         NSLog(@"classified: %@    %@", [self getType:[c classifyUsingDecisionTree:features]], curr_line);
-        NSLog(@"and classified : %d", [c classifyLine:features]);
-        NSLog(@"actual classifcation: %@", [actual_classification objectAtIndex:i]);
+     //   NSLog(@"and classified : %d", [c classifyLine:features]);
+     //   NSLog(@"actual classifcation: %@", [actual_classification objectAtIndex:i]);
     }
     NSArray *n = [NSArray arrayWithArray:f];
     
+    SelectItemsViewController *vc = [[SelectItemsViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
     
-    SVMClassifier *svm = [[SVMClassifier alloc] initWithPoints:n actualClassifications:actual_classification featureLength:featureLength];
+    NSLog(@"SHOULD HAVE CHANGED VCS");
+    
+  //  SVMClassifier *svm = [[SVMClassifier alloc] initWithPoints:n actualClassifications:actual_classification featureLength:featureLength];
 ////    KMeansLineClustering *k = [[KMeansLineClustering alloc] initWithPoints:n  desiredNumberOfCentroids:3];
 ////    NSMutableArray *des_cen = [[NSMutableArray alloc] init];
 ////    [des_cen addObject:c1];
