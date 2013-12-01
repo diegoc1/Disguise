@@ -16,6 +16,9 @@
 
 @synthesize window = _window;
 @synthesize viewController = _viewController;
+@synthesize managedObjectContext;
+@synthesize managedObjectModel;
+@synthesize persistentStoreCoordinator;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -23,8 +26,21 @@
     // Override point for customization after application launch.
    // self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-    self.viewController = (ViewController *)[[SelectItemsViewController alloc] init];
-    self.window.rootViewController = self.viewController;
+    
+   // self.viewController = (ViewController *)[[SelectItemsViewController alloc] init];
+    
+    
+//    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+//    
+//    
+//    NSArray* controllers = [NSArray arrayWithObjects:self.viewController, tabBarController, nil];
+//    tabBarController.viewControllers = controllers;
+    
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
+    [navController setNavigationBarHidden:YES animated:NO];
+    self.window.rootViewController = navController;
+    //self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -66,6 +82,50 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+}
+
+- (NSManagedObjectContext *) managedObjectContext {
+    if (managedObjectContext != nil) {
+        return managedObjectContext;
+    }
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (coordinator != nil) {
+        managedObjectContext = [[NSManagedObjectContext alloc] init];
+        [managedObjectContext setPersistentStoreCoordinator: coordinator];
+    }
+    
+    return managedObjectContext;
+}
+
+- (NSManagedObjectModel *)managedObjectModel {
+    if (managedObjectModel != nil) return managedObjectModel;
+    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    return managedObjectModel;
+}
+
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+    
+        if (persistentStoreCoordinator != nil) return persistentStoreCoordinator;
+    for (int i = 0; i < 2; i++) {
+        NSURL *url_for_sqlite_storage = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory] stringByAppendingPathComponent:@"<ReceiptManager>.sqlite"]];
+        NSError *error = nil;
+        NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                                 [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+        persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+        if(![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url_for_sqlite_storage options:options error:&error]) {
+            NSLog(@"Unable to correctly add persistent store likely due to internal inconsistencies, resetting database");
+            [[NSFileManager defaultManager] removeItemAtPath:url_for_sqlite_storage.path error:&error];
+        } else {
+            break;
+        }
+    }
+    return persistentStoreCoordinator;
+        
+}
+
+- (NSString *)applicationDocumentsDirectory {
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
 
 @end

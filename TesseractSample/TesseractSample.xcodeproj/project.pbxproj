@@ -38,6 +38,9 @@
 		E5A347F11847ECCF00F7EAEE /* ItemPricePair.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A347F01847ECCF00F7EAEE /* ItemPricePair.m */; };
 		E5A347F41847ECF100F7EAEE /* AddTipUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A347F31847ECF100F7EAEE /* AddTipUIView.m */; };
 		E5A347FA1847F90400F7EAEE /* SVMClassifier.mm in Sources */ = {isa = PBXBuildFile; fileRef = E5A347F91847F90400F7EAEE /* SVMClassifier.mm */; };
+		E5A34804184A9D4300F7EAEE /* ReceiptModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E5A34802184A9D4300F7EAEE /* ReceiptModel.xcdatamodeld */; };
+		E5A34806184A9E7800F7EAEE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5A34805184A9E7800F7EAEE /* CoreData.framework */; };
+		E5A34809184AA11E00F7EAEE /* SaveReceiptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A34808184AA11E00F7EAEE /* SaveReceiptViewController.m */; };
 		E5B0F17B184437A7004AA7E2 /* CropImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B0F17A184437A7004AA7E2 /* CropImageViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +135,10 @@
 		E5A347F31847ECF100F7EAEE /* AddTipUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTipUIView.m; sourceTree = "<group>"; };
 		E5A347F81847F90400F7EAEE /* SVMClassifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVMClassifier.h; path = ../SVMClassifier.h; sourceTree = "<group>"; };
 		E5A347F91847F90400F7EAEE /* SVMClassifier.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SVMClassifier.mm; path = ../SVMClassifier.mm; sourceTree = "<group>"; };
+		E5A34803184A9D4300F7EAEE /* ReceiptModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReceiptModel.xcdatamodel; sourceTree = "<group>"; };
+		E5A34805184A9E7800F7EAEE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E5A34807184AA11E00F7EAEE /* SaveReceiptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SaveReceiptViewController.h; path = ../SaveReceiptViewController.h; sourceTree = "<group>"; };
+		E5A34808184AA11E00F7EAEE /* SaveReceiptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SaveReceiptViewController.m; path = ../SaveReceiptViewController.m; sourceTree = "<group>"; };
 		E5B0F179184437A7004AA7E2 /* CropImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CropImageViewController.h; sourceTree = "<group>"; };
 		E5B0F17A184437A7004AA7E2 /* CropImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CropImageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,6 +148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5A34806184A9E7800F7EAEE /* CoreData.framework in Frameworks */,
 				BE9E37F1183DB8E8004986D8 /* libz.dylib in Frameworks */,
 				BE9E37EF183DB8D7004986D8 /* ImageIO.framework in Frameworks */,
 				BE9E37ED183DB8C6004986D8 /* AVFoundation.framework in Frameworks */,
@@ -178,6 +186,7 @@
 		17E5A60E146017E9004B1CA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5A34805184A9E7800F7EAEE /* CoreData.framework */,
 				BE9E37F0183DB8E8004986D8 /* libz.dylib */,
 				BE9E37EE183DB8D7004986D8 /* ImageIO.framework */,
 				BE9E37EC183DB8C6004986D8 /* AVFoundation.framework */,
@@ -191,6 +200,8 @@
 		17E5A615146017E9004B1CA6 /* TesseractSample */ = {
 			isa = PBXGroup;
 			children = (
+				E5A34807184AA11E00F7EAEE /* SaveReceiptViewController.h */,
+				E5A34808184AA11E00F7EAEE /* SaveReceiptViewController.m */,
 				E5A347F81847F90400F7EAEE /* SVMClassifier.h */,
 				E5A347F91847F90400F7EAEE /* SVMClassifier.mm */,
 				E5A347E91847EC7000F7EAEE /* SelectItemsViewController.h */,
@@ -230,6 +241,7 @@
 				17E5A68F14601E0F004B1CA6 /* tessdata */,
 				17E5A68E14601E0F004B1CA6 /* Lorem_Ipsum_Univers.png */,
 				17E5A616146017E9004B1CA6 /* Supporting Files */,
+				E5A34802184A9D4300F7EAEE /* ReceiptModel.xcdatamodeld */,
 			);
 			path = TesseractSample;
 			sourceTree = "<group>";
@@ -394,6 +406,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E57ADF371841B5DE000CE617 /* LineClassifier.m in Sources */,
+				E5A34809184AA11E00F7EAEE /* SaveReceiptViewController.m in Sources */,
 				BEDE720218400E7B003CE131 /* ImageProcessor.mm in Sources */,
 				BEDE720518400FA5003CE131 /* TesseractController.mm in Sources */,
 				E5A347F11847ECCF00F7EAEE /* ItemPricePair.m in Sources */,
@@ -409,6 +422,7 @@
 				BEDE720E18402B9A003CE131 /* ContourWrapper.mm in Sources */,
 				E5A347FA1847F90400F7EAEE /* SVMClassifier.mm in Sources */,
 				E5A347EE1847EC9B00F7EAEE /* ItemTableViewCell.m in Sources */,
+				E5A34804184A9D4300F7EAEE /* ReceiptModel.xcdatamodeld in Sources */,
 				BEDE720B18401F56003CE131 /* KMeansLineClustering.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,6 +529,7 @@
 					"/Users/Will/Dropbox/Diego\\ n\\ Will/TesseractSample/TesseractSample",
 					/Users/Will/Desktop/221proj/Disguise/TesseractSample/TesseractSample,
 					/Users/diegocanales/Documents/ReceiptProject/Disguise/TesseractSample/TesseractSample,
+					/Users/diegocanales/Documents/GitProblems/Disguise/TesseractSample,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TesseractSample/TesseractSample-Prefix.pch";
@@ -542,6 +557,7 @@
 					"/Users/Will/Dropbox/Diego\\ n\\ Will/TesseractSample/TesseractSample",
 					/Users/Will/Desktop/221proj/Disguise/TesseractSample/TesseractSample,
 					/Users/diegocanales/Documents/ReceiptProject/Disguise/TesseractSample/TesseractSample,
+					/Users/diegocanales/Documents/GitProblems/Disguise/TesseractSample,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TesseractSample/TesseractSample-Prefix.pch";
@@ -582,6 +598,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E5A34802184A9D4300F7EAEE /* ReceiptModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E5A34803184A9D4300F7EAEE /* ReceiptModel.xcdatamodel */,
+			);
+			currentVersion = E5A34803184A9D4300F7EAEE /* ReceiptModel.xcdatamodel */;
+			path = ReceiptModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 17E5A602146017E9004B1CA6 /* Project object */;
 }

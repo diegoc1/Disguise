@@ -10,6 +10,8 @@
 #import "ItemTableViewCell.h"
 #import "ItemPricePair.h"
 #import "AddTipUIView.h"
+#import "SaveReceiptViewController.h"
+#import "AppDelegate.h"
 
 @interface SelectItemsViewController ()
 @property (strong, nonatomic) UITableView *availableItemsTableView;
@@ -139,6 +141,7 @@
     
     self.availableItemsLabel = [[UILabel alloc] initWithFrame:CGRectMake((width / 2) - (LABEL_WIDTH / 2), 20, LABEL_WIDTH, LABEL_HEIGHT)];
     [self.availableItemsLabel setText:@"Available Items"];
+    [self.availableItemsLabel setTextColor:[UIColor grayColor]];
     [self.availableItemsLabel setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:self.availableItemsLabel];
     
@@ -162,6 +165,7 @@
     
     self.selectedItemsLabel = [[UILabel alloc] initWithFrame:CGRectMake(width / 2 - LABEL_WIDTH / 2, self.availableItemsTableView.frame.origin.y + self.availableItemsTableView.frame.size.height + 5, LABEL_WIDTH, LABEL_HEIGHT)];
     [self.selectedItemsLabel setText:@"Items you have selected"];
+    [self.selectedItemsLabel setTextColor:[UIColor grayColor]];
     [self.selectedItemsLabel setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:self.selectedItemsLabel];
     
@@ -222,6 +226,8 @@
 
 -(void)backButtonPressed {
     NSLog(@"BACK PRESSED");
+    [self.totalPriceView setFrame:self.originalFrameForTotalPriceView];
+    [self.totalPriceView setAlpha:0.0];
     [UIView beginAnimations:@"shrink_table" context:nil];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDuration:.4];
@@ -229,10 +235,18 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [self.selectedItemsTableView setFrame:self.originalFrameForSelectedTableView];
-    [self.totalPriceView setFrame:self.originalFrameForTotalPriceView];
+    
+    [UIView commitAnimations];
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    [self.totalPriceView setAlpha:1.0];
     [UIView commitAnimations];
     [self addViewsBack];
+    
     self.allowChanges = TRUE;
+    
+    
 }
 
 -(void) makeTotalFadeIn {
@@ -277,7 +291,7 @@
     
     [UIView commitAnimations];
     
-    [self makeTotalFadeIn];
+    
     
     [self.checkoutButton removeFromSuperview];
     [self.addTip removeFromSuperview];
@@ -291,11 +305,16 @@
     self.saveReceiptButton.layer.cornerRadius = 10;
     [self.saveReceiptButton setTitle:@"Save Receipt" forState:UIControlStateNormal];
     [self.view addSubview:self.saveReceiptButton];
+    [self makeTotalFadeIn];
     
 }
 
 -(void) saveReceiptButtonPressed {
     NSLog(@"PRESSED");
+    [self.saveReceiptButton setBackgroundColor:[UIColor grayColor]];
+    SaveReceiptViewController *vc = [[SaveReceiptViewController alloc] initWithTotal:self.totalAmount];
+    [self.navigationController pushViewController:vc animated:FALSE];
+    
 }
 
 -(void) addTipButtonPressed {
@@ -468,7 +487,6 @@
 }
 
 -(void)buttonUp: (UIButton *) sender {
-    NSLog(@"RESETING");
     [sender setBackgroundColor:[UIColor grayColor]];
 }
 

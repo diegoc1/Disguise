@@ -28,8 +28,8 @@
 
 - (void) goToSelectItemsVC {
    // NSLog(@"GOING");
-    SelectItemsViewController *controller = [[SelectItemsViewController alloc] initWithNibName:@"SelectItemsViewController" bundle:nil];
-    [self.navigationController pushViewController:controller animated:YES];
+    SelectItemsViewController *controller = [[SelectItemsViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:FALSE];
     
 }
 
@@ -117,11 +117,7 @@
     }
     NSArray *n = [NSArray arrayWithArray:f];
     
-    SelectItemsViewController *vc = [[SelectItemsViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-    
-    NSLog(@"SHOULD HAVE CHANGED VCS");
-    
+        
   //  SVMClassifier *svm = [[SVMClassifier alloc] initWithPoints:n actualClassifications:actual_classification featureLength:featureLength];
 ////    KMeansLineClustering *k = [[KMeansLineClustering alloc] initWithPoints:n  desiredNumberOfCentroids:3];
 ////    NSMutableArray *des_cen = [[NSMutableArray alloc] init];
