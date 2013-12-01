@@ -23,6 +23,7 @@
 @property (strong, nonatomic) UIView *background;
 @property (strong, nonatomic) UILabel *retryLabel;
 @property (strong, nonatomic) UIButton *OKButton;
+@property (strong, nonatomic) UIImage *receiptImage;
 
 @end
 
@@ -41,11 +42,12 @@
     }
     return self;
 }
-- (id)initWithTotal:(double)total {
+- (id)initWithTotal:(double)total andImage:(UIImage *)image {
     self = [super init];
     if (self) {
         // Custom initialization
         self.total = total;
+        self.receiptImage = image;
         NSLog(@"total: %f", self.total);
         
     }
@@ -133,12 +135,18 @@
         successLabel.text = @"Save Successful!";
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSManagedObjectContext *context = appDelegate.managedObjectContext;
+        
+        
         NSManagedObject *newReceipt = [NSEntityDescription
                                            insertNewObjectForEntityForName:@"Receipt"
                                            inManagedObjectContext:context];
         [newReceipt setValue:self.titleTextField.text forKey:@"title"];
         [newReceipt setValue:self.locationTextField.text forKey:@"location"];
         [newReceipt setValue:[NSNumber numberWithDouble:self.total] forKey:@"individual_total"];
+        if (self.receiptImage != nil) {
+            NSData *data = UIImagePNGRepresentation(self.receiptImage);
+            [newReceipt setValue:data forKey:@"receipt_image"];
+        }
         
         NSError *error;
         if (![context save:&error]) {

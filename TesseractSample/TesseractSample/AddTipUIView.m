@@ -57,8 +57,8 @@
         self.picker.delegate = self;
         self.picker.dataSource = self;
         [self.picker setBackgroundColor:UIColorFromRGB(0xCCCCCC)];
-        self.picker.layer.borderWidth = 3.0f;
-        self.picker.layer.borderColor = [UIColor whiteColor].CGColor;
+    //    self.picker.layer.borderWidth = 3.0f;
+     //   self.picker.layer.borderColor = [UIColor whiteColor].CGColor;
         self.picker.layer.cornerRadius = 10;
         
         [self addSubview:self.picker];

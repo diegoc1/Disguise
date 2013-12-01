@@ -10,4 +10,6 @@
 
 @interface SelectItemsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
+- (id) initWithImage:(UIImage *)image;
+
 @end

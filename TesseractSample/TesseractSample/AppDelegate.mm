@@ -11,6 +11,7 @@
 #import "ViewController.h"
 #import "CropImageViewController.h"
 #import "SelectItemsViewController.h"
+#import "HistoryViewController.h"
 
 @implementation AppDelegate
 
@@ -26,21 +27,31 @@
     // Override point for customization after application launch.
    // self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-    
+    HistoryViewController *hc = [[HistoryViewController alloc] init];
    // self.viewController = (ViewController *)[[SelectItemsViewController alloc] init];
+    hc.tabBarItem.title = @"History";
     
-    
-//    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+   
 //    
 //    
-//    NSArray* controllers = [NSArray arrayWithObjects:self.viewController, tabBarController, nil];
-//    tabBarController.viewControllers = controllers;
+   
     
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
     [navController setNavigationBarHidden:YES animated:NO];
-    self.window.rootViewController = navController;
+    navController.tabBarItem.title = @"Main";
+    
+    UINavigationController *hcNav = [[UINavigationController alloc] initWithRootViewController:hc];
+    [hcNav setNavigationBarHidden:YES animated:NO];
+    
+     NSArray* controllers = [NSArray arrayWithObjects:navController, hcNav, nil];
+    tabBarController.viewControllers = controllers;
+
+   // self.window.rootViewController = navController;
     //self.window.rootViewController = self.viewController;
+   // [self.window addSubview:tabBarController.view];
+    self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
 }

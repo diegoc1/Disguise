@@ -34,6 +34,7 @@
 @property (strong, nonatomic) UIButton *backButton;
 @property (nonatomic) BOOL allowChanges;
 @property (strong, nonatomic) UIButton *saveReceiptButton;
+@property (strong, nonatomic) UIImage *receiptImage;
 
 //@property (strong, nonatomic) UILabel *tipLabel;
 @end
@@ -46,11 +47,17 @@
 #define ITEMS_X_OFFSET 5
 #define ITEMS_Y_OFFSET 20
 
-#define TOTAL_PRICE_WIDTH 200
+#define TOTAL_PRICE_WIDTH 130
 #define TOTAL_PRICE_HEIGHT 40
 
 #define BUTTON_WIDTH 100
 #define BUTTON_HEIGHT 40
+
+#define CHECKOUT_BUTTON_WIDTH 80
+#define CHECKOUT_BUTTON_HEIGHT 40
+
+#define ADD_TIP_BUTTON_WIDTH 80
+#define ADD_TIP_BUTTON_HEIGHT 40
 
 #define LABEL_WIDTH 200
 #define LABEL_HEIGHT 20
@@ -61,6 +68,14 @@
 #define SPACE_BETWEEN_TOTAL_AND_ITEMS 5
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+- (id) initWithImage:(UIImage *)image {
+    self = [super init];
+    if (self) {
+        self.receiptImage = image;
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -105,29 +120,35 @@
     self.allowChanges = TRUE;
     
     
-    self.totalPriceView = [[UILabel alloc] initWithFrame:CGRectMake(width - TOTAL_PRICE_WIDTH - ITEMS_X_OFFSET, height - TOTAL_PRICE_HEIGHT - SPACE_BETWEEN_TOTAL_AND_ITEMS, TOTAL_PRICE_WIDTH, TOTAL_PRICE_HEIGHT)];
-    [self.totalPriceView setBackgroundColor:[UIColor grayColor]];
-    [self.totalPriceView setText:@"0"];
+    
+
+    
+    self.addTip = [[UIButton alloc] initWithFrame:CGRectMake(ITEMS_X_OFFSET, height - (2* ADD_TIP_BUTTON_HEIGHT +2*SPACE_BETWEEN_TOTAL_AND_ITEMS), ADD_TIP_BUTTON_WIDTH, ADD_TIP_BUTTON_HEIGHT)];
+    [self.addTip setBackgroundColor:[UIColor grayColor]];
+    self.addTip.layer.cornerRadius = 10;
+    [self.addTip setTitle:@"Set Tip" forState:UIControlStateNormal];
+    self.addTip.titleLabel.font = [UIFont systemFontOfSize:14];
+    [self.addTip addTarget:self action:@selector(addTipButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.addTip addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
+    [self.addTip addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
+    [self.view addSubview:self.addTip];
+    
+    self.totalPriceView = [[UILabel alloc] initWithFrame:CGRectMake(width / 2- TOTAL_PRICE_WIDTH / 2, self.addTip.frame.origin.y, TOTAL_PRICE_WIDTH, TOTAL_PRICE_HEIGHT)];
+    [self.totalPriceView setBackgroundColor:UIColorFromRGB(0xBBBBBB)];
+    [self.totalPriceView setText:@"Total: $0"];
     [self.totalPriceView setTextColor:[UIColor whiteColor]];
     [self.totalPriceView setTextAlignment:NSTextAlignmentCenter];
     self.totalPriceView.layer.cornerRadius = 10;
     [self.view addSubview:self.totalPriceView];
     
-    self.checkoutButton = [[UIButton alloc] initWithFrame:CGRectMake(ITEMS_X_OFFSET, height - BUTTON_HEIGHT - SPACE_BETWEEN_TOTAL_AND_ITEMS, BUTTON_WIDTH, BUTTON_HEIGHT)];
+    self.checkoutButton = [[UIButton alloc] initWithFrame:CGRectMake(width - CHECKOUT_BUTTON_WIDTH - 10, self.totalPriceView.frame.origin.y, CHECKOUT_BUTTON_WIDTH, CHECKOUT_BUTTON_HEIGHT)];
     [self.checkoutButton setBackgroundColor:[UIColor grayColor]];
     self.checkoutButton.layer.cornerRadius = 10;
     [self.checkoutButton setTitle:@"Checkout" forState:UIControlStateNormal];
+    self.checkoutButton.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.checkoutButton addTarget:self action:@selector(checkoutButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.checkoutButton];
-    
-    self.addTip = [[UIButton alloc] initWithFrame:CGRectMake(ITEMS_X_OFFSET, height - (2* BUTTON_HEIGHT +2*SPACE_BETWEEN_TOTAL_AND_ITEMS), BUTTON_WIDTH, BUTTON_HEIGHT)];
-    [self.addTip setBackgroundColor:[UIColor grayColor]];
-    self.addTip.layer.cornerRadius = 10;
-    [self.addTip setTitle:@"Set Tip" forState:UIControlStateNormal];
-    [self.addTip addTarget:self action:@selector(addTipButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.addTip addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
-    [self.addTip addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
-    [self.view addSubview:self.addTip];
+
     
     //    self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(width - BUTTON_WIDTH, height - (2* BUTTON_HEIGHT +2*SPACE_BETWEEN_TOTAL_AND_ITEMS), BUTTON_WIDTH, BUTTON_HEIGHT)];
     //    [self.tipLabel setBackgroundColor:[UIColor grayColor]];
@@ -139,7 +160,7 @@
     
     self.selectedItems = [[NSMutableArray alloc] init];
     
-    self.availableItemsLabel = [[UILabel alloc] initWithFrame:CGRectMake((width / 2) - (LABEL_WIDTH / 2), 20, LABEL_WIDTH, LABEL_HEIGHT)];
+    self.availableItemsLabel = [[UILabel alloc] initWithFrame:CGRectMake((width / 2) - (LABEL_WIDTH / 2), 10, LABEL_WIDTH, LABEL_HEIGHT)];
     [self.availableItemsLabel setText:@"Available Items"];
     [self.availableItemsLabel setTextColor:[UIColor grayColor]];
     [self.availableItemsLabel setTextAlignment:NSTextAlignmentCenter];
@@ -264,6 +285,16 @@
 
 -(void) checkoutButtonPressed {
     NSLog(@"Checkout button pressed!");
+    
+    
+    self.saveReceiptButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - (75), self.totalPriceView.frame.origin.y + self.totalPriceView.frame.size.height - 30, 150, 30)];
+    [self.saveReceiptButton setBackgroundColor:[UIColor grayColor]];
+    [self.saveReceiptButton addTarget:self action:@selector(saveReceiptButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.saveReceiptButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
+    [self.saveReceiptButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
+    self.saveReceiptButton.layer.cornerRadius = 10;
+    [self.saveReceiptButton setTitle:@"Save Receipt" forState:UIControlStateNormal];
+    
     self.allowChanges = FALSE;
     [self.availableItemsLabel removeFromSuperview];
     [self.availableItemsTableView removeFromSuperview];
@@ -278,7 +309,7 @@
     [self.backButton setTitle:@"Back" forState:UIControlStateNormal];
     [self.view addSubview:self.backButton];
     
-    [self.totalPriceView setFrame:CGRectMake(self.view.frame.size.width / 2 - self.totalPriceView.frame.size.width / 2, self.selectedItemsTableView.frame.origin.y + self.selectedItemsTableView.frame.size.height + 10, self.totalPriceView.frame.size.width, self.totalPriceView.frame.size.height)];
+    [self.totalPriceView setFrame:CGRectMake(self.view.frame.size.width / 2 - self.totalPriceView.frame.size.width / 2, self.saveReceiptButton.frame.origin.y - self.saveReceiptButton.frame.size.height - 15, self.totalPriceView.frame.size.width, self.totalPriceView.frame.size.height)];
     
     [UIView beginAnimations:@"expand_table" context:nil];
     [UIView setAnimationDelegate:self];
@@ -286,7 +317,7 @@
     
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    [self.selectedItemsTableView setFrame:CGRectMake(ITEMS_X_OFFSET, self.backButton.frame.origin.y + self.backButton.frame.size.height + 10, self.selectedItemsTableView.frame.size.width, self.addTip.frame.origin.y - (self.backButton.frame.origin.y + self.backButton.frame.size.height + 20))];
+    [self.selectedItemsTableView setFrame:CGRectMake(ITEMS_X_OFFSET, self.backButton.frame.origin.y + self.backButton.frame.size.height + 10, self.selectedItemsTableView.frame.size.width, self.totalPriceView.frame.origin.y - (self.backButton.frame.origin.y + self.backButton.frame.size.height + 20))];
     
     
     [UIView commitAnimations];
@@ -296,14 +327,7 @@
     [self.checkoutButton removeFromSuperview];
     [self.addTip removeFromSuperview];
     
-    
-    self.saveReceiptButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - (75), self.totalPriceView.frame.origin.y + self.totalPriceView.frame.size.height + 10, 150, 30)];
-    [self.saveReceiptButton setBackgroundColor:[UIColor grayColor]];
-    [self.saveReceiptButton addTarget:self action:@selector(saveReceiptButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.saveReceiptButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
-    [self.saveReceiptButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
-    self.saveReceiptButton.layer.cornerRadius = 10;
-    [self.saveReceiptButton setTitle:@"Save Receipt" forState:UIControlStateNormal];
+
     [self.view addSubview:self.saveReceiptButton];
     [self makeTotalFadeIn];
     
@@ -312,7 +336,7 @@
 -(void) saveReceiptButtonPressed {
     NSLog(@"PRESSED");
     [self.saveReceiptButton setBackgroundColor:[UIColor grayColor]];
-    SaveReceiptViewController *vc = [[SaveReceiptViewController alloc] initWithTotal:self.totalAmount];
+    SaveReceiptViewController *vc = [[SaveReceiptViewController alloc] initWithTotal:self.totalAmount andImage:self.receiptImage];
     [self.navigationController pushViewController:vc animated:FALSE];
     
 }
@@ -321,7 +345,7 @@
     NSLog(@"PRESSED");
     [self.addTip setBackgroundColor:[UIColor grayColor]];
     self.darkener = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    [self.darkener setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.7]];
+    [self.darkener setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8]];
     [self.view addSubview:self.darkener];
     CGRect mainScreenBounds = [[UIScreen mainScreen] bounds];
     CGFloat height = mainScreenBounds.size.height;

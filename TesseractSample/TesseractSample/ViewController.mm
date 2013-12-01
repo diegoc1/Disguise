@@ -11,6 +11,13 @@
 #import "SelectItemsViewController.h"
 #import "SVMClassifier.h"
 
+@interface ViewController()
+
+@property (strong, nonatomic) UIImage *receiptImage;
+
+//@property (strong, nonatomic) UILabel *tipLabel;
+@end
+
 @implementation ViewController
 
 @synthesize iv;
@@ -28,7 +35,7 @@
 
 - (void) goToSelectItemsVC {
    // NSLog(@"GOING");
-    SelectItemsViewController *controller = [[SelectItemsViewController alloc] init];
+    SelectItemsViewController *controller = [[SelectItemsViewController alloc] initWithImage:self.receiptImage];
     [self.navigationController pushViewController:controller animated:FALSE];
     
 }
@@ -195,6 +202,7 @@
     }
     
     UIImage *resultingImage = [UIImage imageWithCVMat: theMat];
+    self.receiptImage = resultingImage;
 //    ImageWrapper *greyScale=Image::createImage(newImage, newImage.size.width, newImage.size.height);
 //    ImageWrapper *edges=greyScale.image->autoLocalThreshold();
 //    UIImage *postProcessingImage = edges.image->toUIImage();
