@@ -19,22 +19,24 @@
     NSMutableArray *clusterMatricesReturnArray = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < [clustersArray count]; i++) {
-        cv::Mat clusterMat = cv::Mat::zeros(mat.size(), CV_8UC1);
-        
-        
-        for (int j = 0; j < [clustersArray[i] count]; j++) {
-            int index = [clustersArray[i][j] intValue];
+        if ([clustersArray[i] count] > 0) {
+            cv::Mat clusterMat = cv::Mat::zeros(mat.size(), CV_8UC1);
             
-            ContourWrapper *contourWrapper = segments[index];
-            cv::Rect boundRect = contourWrapper.boundingBox;
             
-            cv::drawContours(clusterMat, contours, index, cv::Scalar(200), CV_FILLED);
-            clusterMat(boundRect) = clusterMat(boundRect) & mat(boundRect);
+            for (int j = 0; j < [clustersArray[i] count]; j++) {
+                int index = [clustersArray[i][j] intValue];
+                
+                ContourWrapper *contourWrapper = segments[index];
+                cv::Rect boundRect = contourWrapper.boundingBox;
+                
+                cv::drawContours(clusterMat, contours, index, cv::Scalar(200), CV_FILLED);
+                clusterMat(boundRect) = clusterMat(boundRect) & mat(boundRect);
+            }
+            ClusterWrapper *clusterWrapper = [[ClusterWrapper alloc] init];
+            clusterWrapper.contours = clustersArray[i];
+            clusterWrapper.clusterMat = clusterMat.clone();
+            [clusterMatricesReturnArray addObject: clusterWrapper];
         }
-        ClusterWrapper *clusterWrapper = [[ClusterWrapper alloc] init];
-        clusterWrapper.contours = clustersArray[i];
-        clusterWrapper.clusterMat = clusterMat.clone();
-        [clusterMatricesReturnArray addObject: clusterWrapper];
 
     }
     return clusterMatricesReturnArray;
