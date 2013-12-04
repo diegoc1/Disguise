@@ -17,7 +17,7 @@
 @property (strong, nonatomic) UnigramModel *uniModel;
 @property (strong, nonatomic) NSArray *alphabet;
 
-- (NSString *) spellCheckWord:(NSString *) word;
+- (NSString *) spellCheckWord:(NSString *) string;
 -(NSString *) getSpellChecked: (NSString *) string;
 
 

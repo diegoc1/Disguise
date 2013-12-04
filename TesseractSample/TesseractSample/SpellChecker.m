@@ -21,9 +21,10 @@
     return self;
 }
 
-- (NSString *) spellCheckWord:(NSString *) word {
-    if ([self.wordDictionary.dict containsObject:word]) {
-        return word;
+- (NSString *) spellCheckWord:(NSString *) string {
+    NSString *word = [string lowercaseString];
+    if ([self.wordDictionary.dict containsObject:word] || [self.uniModel.dict objectForKey:word]) {
+        return string;
     }
     NSMutableArray *possibleCorrections = [self generatePossibleCorrectWordsForString:word];
     NSMutableArray *secondLevelOfPossibleCorrections = [[NSMutableArray alloc] init];
@@ -212,6 +213,8 @@
         
         if (![SpellChecker isNumericString: word]) {
             NSString *spellCheckedWord = [self spellCheckWord: word];
+            if ([spellCheckedWord length] == 0) continue;
+            
             if (i == 0) { //capitalize first character
                 spellCheckedWord = [[[spellCheckedWord substringToIndex: 1] uppercaseString] stringByAppendingString: [spellCheckedWord substringFromIndex: 1]];
             }

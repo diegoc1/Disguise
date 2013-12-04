@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SVMClassifier : NSObject
+@interface SVMClassifier : NSObject {
+    cv::SVM SVM;
+}
 - (id) initWithPoints:(NSArray *)points actualClassifications:(NSArray *)classifications featureLength:(int)length;
 
-- (int) classifyFeaturesForLine:(NSArray *)features;
-@property (nonatomic, assign) CvSVM SVM;
+- (float) classifyFeaturesForLine:(NSArray *)features;
 
 @end
