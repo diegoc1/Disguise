@@ -15,8 +15,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 +(void) performInitialImageProcessing: (cv::Mat &) mat {
     [self setGrayscale: mat];
-    [self binarizeWithCannyAndGaussianThresholding: mat];
-    [self performClose: mat withSize: 1];
+    [self gaussianThreshold: mat];
+    //[self binarizeWithCannyAndGaussianThresholding: mat];
+    //[self performClose: mat withSize: 1];
 }
 
 

@@ -22,6 +22,8 @@
 		BE26C634183DC36000550F59 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = BE26C633183DC36000550F59 /* UIImage+OpenCV.mm */; };
 		BE62AA531844305B003A34EE /* ClusterMatrixManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = BE62AA521844305B003A34EE /* ClusterMatrixManager.mm */; };
 		BE62AA561844658D003A34EE /* ClusterWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = BE62AA551844658D003A34EE /* ClusterWrapper.mm */; };
+		BE62AA5F184EA4BB003A34EE /* ReceiptModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE62AA5E184EA4BB003A34EE /* ReceiptModel.m */; };
+		BE62AA62184EA57A003A34EE /* ClusterDecisionTreeClassifier.mm in Sources */ = {isa = PBXBuildFile; fileRef = BE62AA61184EA57A003A34EE /* ClusterDecisionTreeClassifier.mm */; };
 		BE9E37ED183DB8C6004986D8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37EC183DB8C6004986D8 /* AVFoundation.framework */; };
 		BE9E37EF183DB8D7004986D8 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37EE183DB8D7004986D8 /* ImageIO.framework */; };
 		BE9E37F1183DB8E8004986D8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37F0183DB8E8004986D8 /* libz.dylib */; };
@@ -111,6 +113,10 @@
 		BE62AA521844305B003A34EE /* ClusterMatrixManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ClusterMatrixManager.mm; sourceTree = "<group>"; };
 		BE62AA541844658D003A34EE /* ClusterWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClusterWrapper.h; sourceTree = "<group>"; };
 		BE62AA551844658D003A34EE /* ClusterWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ClusterWrapper.mm; sourceTree = "<group>"; };
+		BE62AA5D184EA4BB003A34EE /* ReceiptModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptModel.h; sourceTree = "<group>"; };
+		BE62AA5E184EA4BB003A34EE /* ReceiptModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptModel.m; sourceTree = "<group>"; };
+		BE62AA60184EA57A003A34EE /* ClusterDecisionTreeClassifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClusterDecisionTreeClassifier.h; sourceTree = "<group>"; };
+		BE62AA61184EA57A003A34EE /* ClusterDecisionTreeClassifier.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ClusterDecisionTreeClassifier.mm; sourceTree = "<group>"; };
 		BE9E37EC183DB8C6004986D8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BE9E37EE183DB8D7004986D8 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		BE9E37F0183DB8E8004986D8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -218,9 +224,9 @@
 				E5A347EA1847EC7000F7EAEE /* SelectItemsViewController.m */,
 				E5A347EC1847EC9B00F7EAEE /* ItemTableViewCell.h */,
 				E5A347ED1847EC9B00F7EAEE /* ItemTableViewCell.m */,
-				E5A347EF1847ECCF00F7EAEE /* ItemPricePair.h */,
 				E5A347F21847ECF100F7EAEE /* AddTipUIView.h */,
 				E5A347F31847ECF100F7EAEE /* AddTipUIView.m */,
+				E5A347EF1847ECCF00F7EAEE /* ItemPricePair.h */,
 				E5A347F01847ECCF00F7EAEE /* ItemPricePair.m */,
 				BEDE720918401F56003CE131 /* KMeansLineClustering.h */,
 				BEDE720A18401F56003CE131 /* KMeansLineClustering.m */,
@@ -229,7 +235,6 @@
 				BEDE720018400E7A003CE131 /* ImageProcessor.h */,
 				BEDE720118400E7A003CE131 /* ImageProcessor.mm */,
 				BE62AA511844305B003A34EE /* ClusterMatrixManager.h */,
-				E50E66361845A604008B4757 /* receipt_text.txt */,
 				BE62AA521844305B003A34EE /* ClusterMatrixManager.mm */,
 				BE62AA541844658D003A34EE /* ClusterWrapper.h */,
 				BE62AA551844658D003A34EE /* ClusterWrapper.mm */,
@@ -239,6 +244,10 @@
 				BEDE720418400FA5003CE131 /* TesseractController.mm */,
 				17E5A621146017E9004B1CA6 /* ViewController.h */,
 				17E5A622146017E9004B1CA6 /* ViewController.mm */,
+				BE62AA60184EA57A003A34EE /* ClusterDecisionTreeClassifier.h */,
+				BE62AA61184EA57A003A34EE /* ClusterDecisionTreeClassifier.mm */,
+				BE62AA5D184EA4BB003A34EE /* ReceiptModel.h */,
+				BE62AA5E184EA4BB003A34EE /* ReceiptModel.m */,
 				BE26C632183DC36000550F59 /* UIImage+OpenCV.h */,
 				BE26C633183DC36000550F59 /* UIImage+OpenCV.mm */,
 				17E5A624146017E9004B1CA6 /* ViewController.xib */,
@@ -246,6 +255,7 @@
 				E57ADF361841B5DE000CE617 /* LineClassifier.m */,
 				E5B0F179184437A7004AA7E2 /* CropImageViewController.h */,
 				E5B0F17A184437A7004AA7E2 /* CropImageViewController.m */,
+				E50E66361845A604008B4757 /* receipt_text.txt */,
 				E553FE37183DC9E800ECF736 /* OpenCV.framework */,
 				17E5A63014601A1C004B1CA6 /* dependencies */,
 				17E5A68F14601E0F004B1CA6 /* tessdata */,
@@ -420,6 +430,7 @@
 				E5A34809184AA11E00F7EAEE /* SaveReceiptViewController.m in Sources */,
 				BEDE720218400E7B003CE131 /* ImageProcessor.mm in Sources */,
 				E5A3480C184AD7B100F7EAEE /* HistoryViewController.m in Sources */,
+				BE62AA62184EA57A003A34EE /* ClusterDecisionTreeClassifier.mm in Sources */,
 				BEDE720518400FA5003CE131 /* TesseractController.mm in Sources */,
 				E5A347F11847ECCF00F7EAEE /* ItemPricePair.m in Sources */,
 				BE62AA561844658D003A34EE /* ClusterWrapper.mm in Sources */,
@@ -435,6 +446,7 @@
 				E5A347FA1847F90400F7EAEE /* SVMClassifier.mm in Sources */,
 				E5A347EE1847EC9B00F7EAEE /* ItemTableViewCell.m in Sources */,
 				E5A34804184A9D4300F7EAEE /* ReceiptModel.xcdatamodeld in Sources */,
+				BE62AA5F184EA4BB003A34EE /* ReceiptModel.m in Sources */,
 				BEDE720B18401F56003CE131 /* KMeansLineClustering.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

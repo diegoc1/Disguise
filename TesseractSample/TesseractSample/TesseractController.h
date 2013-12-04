@@ -16,6 +16,6 @@ namespace tesseract {
     tesseract::TessBaseAPI *tesseract;
     uint32_t *pixels;    
 }
-- (void)processOcrAt:(UIImage *)image;
+-(NSString *) processOcrAt:(UIImage *)image;
 
 @end

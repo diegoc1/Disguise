@@ -10,6 +10,6 @@
 
 @implementation ClusterWrapper 
 
-@synthesize clusterMat, contours;
+@synthesize clusterMat, contours, recognizedText, clusterType, minYVal;
 
 @end

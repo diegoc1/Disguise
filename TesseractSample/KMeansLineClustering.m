@@ -11,6 +11,29 @@
 @end
 
 @implementation KMeansLineClustering
+
+- (void) removeInvalidPoints {
+    
+    for (int i = 0; i < 2; i++) {
+        NSArray* sortedArray= [self.points sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2)
+                               {
+                                   return [obj1[i] doubleValue] < [obj2[i] doubleValue];
+                               }];
+        NSUInteger middle = [sortedArray count] / 2;                                           // Find the index of the middle element
+        NSNumber *median = [sortedArray objectAtIndex:middle][i];
+        for (int j = 0; j < [self.points count]; j++) {
+            NSArray *curr_point = self.points[j];
+            if ([curr_point[i] doubleValue] < ([median doubleValue] - 1) || (i == 1 && [curr_point[i] doubleValue] > ([median doubleValue] + 3))) {
+                NSLog(@"REMOVING POINT");
+                self.assignments[j] = [NSNumber numberWithInteger:-1];
+            }
+        }
+        
+        NSLog(@"median of sorted array is %@", median);
+    }
+}
+
+
 - (id) initWithPoints:(NSArray *)points desiredNumberOfCentroids:(int)numCentroids {
     self = [super init];
     if (self) {

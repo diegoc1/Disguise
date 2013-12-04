@@ -21,7 +21,8 @@
     for (int i = 0; i < [clustersArray count]; i++) {
         if ([clustersArray[i] count] > 0) {
             cv::Mat clusterMat = cv::Mat::zeros(mat.size(), CV_8UC1);
-            
+            ClusterWrapper *clusterWrapper = [[ClusterWrapper alloc] init];
+            clusterWrapper.minYVal = mat.size().height;
             
             for (int j = 0; j < [clustersArray[i] count]; j++) {
                 int index = [clustersArray[i][j] intValue];
@@ -31,8 +32,11 @@
                 
                 cv::drawContours(clusterMat, contours, index, cv::Scalar(200), CV_FILLED);
                 clusterMat(boundRect) = clusterMat(boundRect) & mat(boundRect);
+                
+                //Update min y val for sorting later
+                clusterWrapper.minYVal = MIN(clusterWrapper.minYVal, boundRect.y);
+                
             }
-            ClusterWrapper *clusterWrapper = [[ClusterWrapper alloc] init];
             clusterWrapper.contours = clustersArray[i];
             clusterWrapper.clusterMat = clusterMat.clone();
             [clusterMatricesReturnArray addObject: clusterWrapper];
@@ -97,10 +101,11 @@
     /* Draw cluster matrices using KMEANS */
     
     NSMutableArray *pointsData = [self boundingPointsFromSegments: segments];
-    KMeansLineClustering *clusterController = [[KMeansLineClustering alloc] initWithPoints:pointsData desiredNumberOfCentroids: 50];
+    KMeansLineClustering *clusterController = [[KMeansLineClustering alloc] initWithPoints:pointsData desiredNumberOfCentroids: 30];
     [clusterController exaggerateFeature:2 exaggerationAmount:60];
     [clusterController runKMeans];
-    
+    //[clusterController removeInvalidPoints];
+
     return [self drawClusters: mat withClusters: clusterController andSegements: segments andContours: contours];
     
     

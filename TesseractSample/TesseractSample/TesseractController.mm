@@ -54,18 +54,16 @@
     tesseract = nil;
 }
 
-- (void)processOcrAt:(UIImage *)image
+- (NSString *)processOcrAt:(UIImage *)image
 {
     [self setTesseractImage:image];
-    
     tesseract->Recognize(NULL);
     char* utf8Text = tesseract->GetUTF8Text();
+    return [NSString stringWithUTF8String: utf8Text];
     
-    NSLog(@"%@", [NSString stringWithUTF8String: utf8Text]);
-    
-//    [self performSelectorOnMainThread:@selector(ocrProcessingFinished:)
-//                           withObject:[NSString stringWithUTF8String:utf8Text]
-//                        waitUntilDone:NO];
+    //    [self performSelectorOnMainThread:@selector(ocrProcessingFinished:)
+    //                           withObject:[NSString stringWithUTF8String:utf8Text]
+    //                        waitUntilDone:NO];
 }
 
 
@@ -108,13 +106,13 @@
     CGContextRelease(context);
     CGColorSpaceRelease(colorSpace);
     
-//    tesseract->SetVariable("tessedit_char_whitelist", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz$./-:#1234567890");
-//    tesseract->SetVariable("language_model_penalty_non_freq_dict_word", "0");
-//    tesseract->SetVariable("language_model_penalty_non_dict_word ", "0");
-//    //tesseract->SetVariable("classify_bln_numeric_mode", "1");
-//    //tesseract->SetVariable("tessedit_resegment_from_boxes", "T");
-//    //tesseract->SetVariable("tessedit_train_from_boxes", "T");
-//    //tesseract->SetVariable("edges_children_fix", "F");
+    //    tesseract->SetVariable("tessedit_char_whitelist", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz$./-:#1234567890");
+    //    tesseract->SetVariable("language_model_penalty_non_freq_dict_word", "0");
+    //    tesseract->SetVariable("language_model_penalty_non_dict_word ", "0");
+    //    //tesseract->SetVariable("classify_bln_numeric_mode", "1");
+    //    //tesseract->SetVariable("tessedit_resegment_from_boxes", "T");
+    //    //tesseract->SetVariable("tessedit_train_from_boxes", "T");
+    //    //tesseract->SetVariable("edges_children_fix", "F");
     
     tesseract->SetImage((const unsigned char *) pixels, width, height, sizeof(uint32_t), width * sizeof(uint32_t));
 }
