@@ -53,7 +53,7 @@
         NSNumber *width_num = [NSNumber numberWithFloat: contourWrapper.boundingBox.width];
         NSNumber *height_num = [NSNumber numberWithFloat: contourWrapper.boundingBox.height];
         //NSNumber *x_num = [NSNumber numberWithFloat: contourWrapper.boundingBox.x];
-        NSNumber *y_num = [NSNumber numberWithFloat: contourWrapper.boundingBox.y];
+        NSNumber *y_num = [NSNumber numberWithFloat: contourWrapper.boundingBox.y + contourWrapper.boundingBox.height/2];
         
         NSArray *point = @[width_num, height_num, y_num];
         [boundingPoints addObject: point];

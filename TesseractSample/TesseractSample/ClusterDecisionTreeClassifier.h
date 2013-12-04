@@ -4,8 +4,10 @@
 
 
 @class ReceiptModel;
+@class SpellChecker;
+
 @interface ClusterDecisionTreeClassifier : NSObject
 
-+(ReceiptModel *) processReceiptFromClusters: (NSMutableArray *) clusters;
++(ReceiptModel *) processReceiptFromClusters: (NSMutableArray *) clusters withSpellChecker: (SpellChecker *) spellChecker;
 
 @end

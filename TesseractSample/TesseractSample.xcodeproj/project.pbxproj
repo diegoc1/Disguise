@@ -24,6 +24,11 @@
 		BE62AA561844658D003A34EE /* ClusterWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = BE62AA551844658D003A34EE /* ClusterWrapper.mm */; };
 		BE62AA5F184EA4BB003A34EE /* ReceiptModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE62AA5E184EA4BB003A34EE /* ReceiptModel.m */; };
 		BE62AA62184EA57A003A34EE /* ClusterDecisionTreeClassifier.mm in Sources */ = {isa = PBXBuildFile; fileRef = BE62AA61184EA57A003A34EE /* ClusterDecisionTreeClassifier.mm */; };
+		BE62AA65184F0A7A003A34EE /* SpellChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = BE62AA64184F0A7A003A34EE /* SpellChecker.m */; };
+		BE62AA68184F17DD003A34EE /* WordDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = BE62AA67184F17DD003A34EE /* WordDictionary.m */; };
+		BE62AA6B184F185A003A34EE /* UnigramModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE62AA6A184F185A003A34EE /* UnigramModel.m */; };
+		BE62AA6E184F196F003A34EE /* NewCorpus.txt in Resources */ = {isa = PBXBuildFile; fileRef = BE62AA6C184F196F003A34EE /* NewCorpus.txt */; };
+		BE62AA6F184F196F003A34EE /* lexicon.txt in Resources */ = {isa = PBXBuildFile; fileRef = BE62AA6D184F196F003A34EE /* lexicon.txt */; };
 		BE9E37ED183DB8C6004986D8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37EC183DB8C6004986D8 /* AVFoundation.framework */; };
 		BE9E37EF183DB8D7004986D8 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37EE183DB8D7004986D8 /* ImageIO.framework */; };
 		BE9E37F1183DB8E8004986D8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37F0183DB8E8004986D8 /* libz.dylib */; };
@@ -117,6 +122,14 @@
 		BE62AA5E184EA4BB003A34EE /* ReceiptModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptModel.m; sourceTree = "<group>"; };
 		BE62AA60184EA57A003A34EE /* ClusterDecisionTreeClassifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClusterDecisionTreeClassifier.h; sourceTree = "<group>"; };
 		BE62AA61184EA57A003A34EE /* ClusterDecisionTreeClassifier.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ClusterDecisionTreeClassifier.mm; sourceTree = "<group>"; };
+		BE62AA63184F0A7A003A34EE /* SpellChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellChecker.h; sourceTree = "<group>"; };
+		BE62AA64184F0A7A003A34EE /* SpellChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpellChecker.m; sourceTree = "<group>"; };
+		BE62AA66184F17DD003A34EE /* WordDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordDictionary.h; sourceTree = "<group>"; };
+		BE62AA67184F17DD003A34EE /* WordDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordDictionary.m; sourceTree = "<group>"; };
+		BE62AA69184F185A003A34EE /* UnigramModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnigramModel.h; sourceTree = "<group>"; };
+		BE62AA6A184F185A003A34EE /* UnigramModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnigramModel.m; sourceTree = "<group>"; };
+		BE62AA6C184F196F003A34EE /* NewCorpus.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NewCorpus.txt; sourceTree = "<group>"; };
+		BE62AA6D184F196F003A34EE /* lexicon.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lexicon.txt; sourceTree = "<group>"; };
 		BE9E37EC183DB8C6004986D8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BE9E37EE183DB8D7004986D8 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		BE9E37F0183DB8E8004986D8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -212,6 +225,8 @@
 		17E5A615146017E9004B1CA6 /* TesseractSample */ = {
 			isa = PBXGroup;
 			children = (
+				BE62AA6C184F196F003A34EE /* NewCorpus.txt */,
+				BE62AA6D184F196F003A34EE /* lexicon.txt */,
 				E5A3480D184AE73400F7EAEE /* DisplayReceiptContentsViewController.h */,
 				E5A3480E184AE73400F7EAEE /* DisplayReceiptContentsViewController.m */,
 				E5A3480A184AD7B100F7EAEE /* HistoryViewController.h */,
@@ -246,6 +261,12 @@
 				17E5A622146017E9004B1CA6 /* ViewController.mm */,
 				BE62AA60184EA57A003A34EE /* ClusterDecisionTreeClassifier.h */,
 				BE62AA61184EA57A003A34EE /* ClusterDecisionTreeClassifier.mm */,
+				BE62AA63184F0A7A003A34EE /* SpellChecker.h */,
+				BE62AA64184F0A7A003A34EE /* SpellChecker.m */,
+				BE62AA66184F17DD003A34EE /* WordDictionary.h */,
+				BE62AA67184F17DD003A34EE /* WordDictionary.m */,
+				BE62AA69184F185A003A34EE /* UnigramModel.h */,
+				BE62AA6A184F185A003A34EE /* UnigramModel.m */,
 				BE62AA5D184EA4BB003A34EE /* ReceiptModel.h */,
 				BE62AA5E184EA4BB003A34EE /* ReceiptModel.m */,
 				BE26C632183DC36000550F59 /* UIImage+OpenCV.h */,
@@ -411,8 +432,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				17E5A61A146017E9004B1CA6 /* InfoPlist.strings in Resources */,
+				BE62AA6E184F196F003A34EE /* NewCorpus.txt in Resources */,
 				17E5A626146017E9004B1CA6 /* ViewController.xib in Resources */,
 				17E5A69014601E0F004B1CA6 /* Lorem_Ipsum_Univers.png in Resources */,
+				BE62AA6F184F196F003A34EE /* lexicon.txt in Resources */,
 				E50E66371845A604008B4757 /* receipt_text.txt in Resources */,
 				17E5A69114601E0F004B1CA6 /* tessdata in Resources */,
 			);
@@ -439,6 +462,7 @@
 				17E5A61C146017E9004B1CA6 /* main.m in Sources */,
 				E5A347F41847ECF100F7EAEE /* AddTipUIView.m in Sources */,
 				E5B0F17B184437A7004AA7E2 /* CropImageViewController.m in Sources */,
+				BE62AA65184F0A7A003A34EE /* SpellChecker.m in Sources */,
 				17E5A620146017E9004B1CA6 /* AppDelegate.mm in Sources */,
 				17E5A623146017E9004B1CA6 /* ViewController.mm in Sources */,
 				BE26C634183DC36000550F59 /* UIImage+OpenCV.mm in Sources */,
@@ -447,6 +471,8 @@
 				E5A347EE1847EC9B00F7EAEE /* ItemTableViewCell.m in Sources */,
 				E5A34804184A9D4300F7EAEE /* ReceiptModel.xcdatamodeld in Sources */,
 				BE62AA5F184EA4BB003A34EE /* ReceiptModel.m in Sources */,
+				BE62AA6B184F185A003A34EE /* UnigramModel.m in Sources */,
+				BE62AA68184F17DD003A34EE /* WordDictionary.m in Sources */,
 				BEDE720B18401F56003CE131 /* KMeansLineClustering.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -3,6 +3,7 @@
 #import "ClusterDecisionTreeClassifier.h"
 #import "ReceiptModel.h"
 #import "ClusterWrapper.h"
+#import "SpellChecker.h"
 
 @interface ClusterDecisionTreeClassifier()
 @property (nonatomic, strong) NSMutableArray *clusters;
@@ -10,7 +11,7 @@
 
 @implementation ClusterDecisionTreeClassifier
 
-+(ReceiptModel *) processReceiptFromClusters: (NSMutableArray *) clusters {
++(ReceiptModel *) processReceiptFromClusters: (NSMutableArray *) clusters withSpellChecker: (SpellChecker *) spellChecker {
     ReceiptModel *receipt = [[ReceiptModel alloc] init];
     receipt.itemsPurchased = [[NSMutableArray alloc] init];
     
@@ -26,7 +27,7 @@
             receipt.title = cluster.recognizedText;
         }
         else if (cluster.clusterType == ReceiptClusterTypeItem) {
-            NSString *itemText = cluster.recognizedText;
+            NSString *itemText = [spellChecker getSpellChecked: cluster.recognizedText];
             [receipt.itemsPurchased addObject: itemText];
         }
         else if (cluster.clusterType == ReceiptClusterTypeTotal) {
@@ -52,6 +53,31 @@
 }
 
 +(void) cleanUpRecognizedText: (NSMutableArray *) orderedClusters {
+    
+    //Try to match to tip and total
+    for (int i = 0; i < [orderedClusters count]; i++) {
+        ClusterWrapper *cluster = orderedClusters[i];
+        cluster.recognizedText = [cluster.recognizedText stringByReplacingOccurrencesOfString: @"\n" withString: @""];
+        
+    }
+    
+    for (int i = 2; i < [orderedClusters count]; i++) {
+        
+        //First remove extraneous noise char if exists
+        ClusterWrapper *cluster = orderedClusters[i];
+        cluster.recognizedText = [SpellChecker getRemovedEndingNoise: cluster.recognizedText];
+        
+        //Push numbers togethor and clean up
+        cluster.recognizedText = [SpellChecker getCleanedUpNumericalEnding: cluster.recognizedText];
+                
+    }
+    
+    //Try to match to tip and total
+    for (int i = 2; i < [orderedClusters count]; i++) {
+        ClusterWrapper *cluster = orderedClusters[i];
+        cluster.recognizedText = [SpellChecker getPossibleMatchForTaxAndTip: cluster.recognizedText];
+    }
+    
     
 }
 

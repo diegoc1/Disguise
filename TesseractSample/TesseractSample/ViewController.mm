@@ -12,6 +12,7 @@
 #import "SVMClassifier.h"
 #import "ReceiptModel.h"
 #import "ClusterDecisionTreeClassifier.h"
+#import "SpellChecker.h"
 
 @interface ViewController()
 
@@ -197,8 +198,8 @@
         NSLog(@"%@", cluster.recognizedText);
     }
     
-    
-    ReceiptModel *receipt = [ClusterDecisionTreeClassifier processReceiptFromClusters: clusterMatrices];
+    SpellChecker *spellChecker = [[SpellChecker alloc] init];
+    ReceiptModel *receipt = [ClusterDecisionTreeClassifier processReceiptFromClusters: clusterMatrices withSpellChecker: spellChecker];
     NSLog(@"TITLE %@", receipt.title);
     NSLog(@"TOTAL AMOUNT: %f", receipt.totalAmount);
     NSLog(@"TAX AMOUNT: %f", receipt.taxAmount);
