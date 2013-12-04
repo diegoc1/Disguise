@@ -139,16 +139,20 @@
         }
         
         //Find first letter
-        int j = 0;
-        for (j = [clusterText length] - 2; j >= 0; j--) {
+        if ([clusterText length] < 3) return clusterText;
+        
+        int j = [clusterText length] - 2;
+        while (j >= 0) {
             unichar prevChar = [clusterText characterAtIndex: j];
             
             if ([[NSCharacterSet letterCharacterSet] characterIsMember: prevChar]) {
                 j++;
                 break;
             }
+            
+            j--;
         }
-        
+        j = MAX(j, 0);
         
         NSString *nonNumericalString = [clusterText substringToIndex: j];
         NSString *numericString = [clusterText substringFromIndex: j];
@@ -245,11 +249,13 @@
 
 +(NSString *) getPossibleMatchForTaxAndTip: (NSString *) string {
     int i = 0;
-    for (i = 0; i < [string length]; i++) {
+    while (i < [string length]) {
         if ([string characterAtIndex: i] == ' ') {
             break;
         }
+        i++;
     }
+    
     if (i > 0) {
         NSString *firstWord = [string substringToIndex: i];
         int distanceToTotal = [self getDistanceFromWord: firstWord toWord: @"total"];

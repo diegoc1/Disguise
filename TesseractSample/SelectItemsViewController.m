@@ -12,6 +12,9 @@
 #import "AddTipUIView.h"
 #import "SaveReceiptViewController.h"
 #import "AppDelegate.h"
+#import "ReceiptModel.h"
+#import "SpellChecker.h"
+#import "ClusterDecisionTreeClassifier.h"
 
 @interface SelectItemsViewController ()
 @property (strong, nonatomic) UITableView *availableItemsTableView;
@@ -35,6 +38,7 @@
 @property (nonatomic) BOOL allowChanges;
 @property (strong, nonatomic) UIButton *saveReceiptButton;
 @property (strong, nonatomic) UIImage *receiptImage;
+@property (strong, nonatomic) UILabel *titleLabel;
 
 //@property (strong, nonatomic) UILabel *tipLabel;
 @end
@@ -77,11 +81,41 @@
     return self;
 }
 
+
+-(id) initWithReceiptModel: (ReceiptModel *) receiptModel andImage: (UIImage *) image {
+    self = [super init];
+    if (self) {
+        self.receiptImage = image;
+        self.items = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [receiptModel.itemsPurchased count]; i++) {
+            NSLog(@"working on %d", i);
+            
+            NSString *itemString = receiptModel.itemsPurchased[i];
+            float itemValue = [ClusterDecisionTreeClassifier getAmountFromString:itemString];
+            
+            NSString *itemValueString = [ClusterDecisionTreeClassifier getAmountStringFromString: itemString];
+            
+            itemString = [itemString stringByReplacingOccurrencesOfString: itemValueString withString: @""];
+            [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice: itemString withPrice: itemValue]];
+            
+        }
+        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 2) - LABEL_WIDTH / 2, 10, LABEL_WIDTH, LABEL_HEIGHT)];
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+        self.titleLabel.text = receiptModel.title;
+        self.titleLabel.textColor = [UIColor whiteColor];
+        [self.view addSubview: self.titleLabel];
+        
+        //self.totalAmount = [SpellChecker]
+
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.items  = [[NSMutableArray alloc] init];
+   // self.items  = [[NSMutableArray alloc] init];
     
     //    [self.items addObject:@"Hello"];
     //    [self.items addObject:@"There"];
@@ -95,24 +129,24 @@
     
     
     self.tipPercentage = 0.0;
-    ItemPricePair *p1 = [[ItemPricePair alloc] initWithTitleAndPrice:@"JASDF" withPrice:10];
-    
-    [self.items addObject:p1];
-    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"WORKING" withPrice:10.40]];
-    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"Hello" withPrice:11.10]];
-    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"there" withPrice:12]];
-    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"sir" withPrice:13]];
-    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"how" withPrice:14]];
-    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"goes" withPrice:15]];
-    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"it" withPrice:16]];
-    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"WORKING" withPrice:10.40]];
-    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"Hello" withPrice:11.10]];
-    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"there" withPrice:12]];
-    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"sir" withPrice:13]];
-    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"how" withPrice:14]];
-    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"goes" withPrice:15]];
-    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"it" withPrice:16]];
-    
+//    ItemPricePair *p1 = [[ItemPricePair alloc] initWithTitleAndPrice:@"JASDF" withPrice:10];
+//    
+//    [self.items addObject:p1];
+//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"WORKING" withPrice:10.40]];
+//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"Hello" withPrice:11.10]];
+//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"there" withPrice:12]];
+//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"sir" withPrice:13]];
+//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"how" withPrice:14]];
+//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"goes" withPrice:15]];
+//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"it" withPrice:16]];
+//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"WORKING" withPrice:10.40]];
+//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"Hello" withPrice:11.10]];
+//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"there" withPrice:12]];
+//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"sir" withPrice:13]];
+//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"how" withPrice:14]];
+//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"goes" withPrice:15]];
+//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"it" withPrice:16]];
+//    
     
     CGRect mainScreenBounds = [[UIScreen mainScreen] bounds];
     CGFloat width = mainScreenBounds.size.width;
@@ -131,7 +165,7 @@
     [self.addTip addTarget:self action:@selector(addTipButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.addTip addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
     [self.addTip addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
-    [self.view addSubview:self.addTip];
+    [self.view addSubview: self.addTip];
     
     self.totalPriceView = [[UILabel alloc] initWithFrame:CGRectMake(width / 2- TOTAL_PRICE_WIDTH / 2, self.addTip.frame.origin.y, TOTAL_PRICE_WIDTH, TOTAL_PRICE_HEIGHT)];
     [self.totalPriceView setBackgroundColor:UIColorFromRGB(0xBBBBBB)];
@@ -139,7 +173,7 @@
     [self.totalPriceView setTextColor:[UIColor whiteColor]];
     [self.totalPriceView setTextAlignment:NSTextAlignmentCenter];
     self.totalPriceView.layer.cornerRadius = 10;
-    [self.view addSubview:self.totalPriceView];
+    [self.view addSubview: self.totalPriceView];
     
     self.checkoutButton = [[UIButton alloc] initWithFrame:CGRectMake(width - CHECKOUT_BUTTON_WIDTH - 10, self.totalPriceView.frame.origin.y, CHECKOUT_BUTTON_WIDTH, CHECKOUT_BUTTON_HEIGHT)];
     [self.checkoutButton setBackgroundColor:[UIColor grayColor]];
@@ -147,7 +181,7 @@
     [self.checkoutButton setTitle:@"Checkout" forState:UIControlStateNormal];
     self.checkoutButton.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.checkoutButton addTarget:self action:@selector(checkoutButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.checkoutButton];
+    [self.view addSubview: self.checkoutButton];
 
     
     //    self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(width - BUTTON_WIDTH, height - (2* BUTTON_HEIGHT +2*SPACE_BETWEEN_TOTAL_AND_ITEMS), BUTTON_WIDTH, BUTTON_HEIGHT)];
@@ -160,13 +194,13 @@
     
     self.selectedItems = [[NSMutableArray alloc] init];
     
-    self.availableItemsLabel = [[UILabel alloc] initWithFrame:CGRectMake((width / 2) - (LABEL_WIDTH / 2), 10, LABEL_WIDTH, LABEL_HEIGHT)];
+    self.availableItemsLabel = [[UILabel alloc] initWithFrame:CGRectMake((width / 2) - (LABEL_WIDTH / 2), self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + 35, LABEL_WIDTH, LABEL_HEIGHT)];
     [self.availableItemsLabel setText:@"Available Items"];
     [self.availableItemsLabel setTextColor:[UIColor grayColor]];
     [self.availableItemsLabel setTextAlignment:NSTextAlignmentCenter];
-    [self.view addSubview:self.availableItemsLabel];
+    [self.view addSubview :self.availableItemsLabel];
     
-    self.availableItemsTableView = [[UITableView alloc] initWithFrame:CGRectMake(ITEMS_X_OFFSET, self.availableItemsLabel.frame.origin.y + self.availableItemsLabel.frame.size.height + 5, (width) - (ITEMS_X_OFFSET * 2), (height / 2) - (ITEMS_Y_OFFSET) - TOTAL_PRICE_HEIGHT - SPACE_BETWEEN_TOTAL_AND_ITEMS)];
+    self.availableItemsTableView = [[UITableView alloc] initWithFrame:CGRectMake(ITEMS_X_OFFSET, self.availableItemsLabel.frame.origin.y + self.availableItemsLabel.frame.size.height + 5, (width) - (ITEMS_X_OFFSET * 2), (height / 2.5) - (ITEMS_Y_OFFSET) - TOTAL_PRICE_HEIGHT - SPACE_BETWEEN_TOTAL_AND_ITEMS)];
     
     self.availableItemsTableView.dataSource = self;
     self.availableItemsTableView.delegate = self;
@@ -180,7 +214,7 @@
     //  self.tableView.layer.borderColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.4].CGColor;
     self.availableItemsTableView.layer.borderColor = [UIColor blackColor].CGColor;
     
-    [self.view addSubview:self.availableItemsTableView];
+    [self.view addSubview: self.availableItemsTableView];
     
     
     
@@ -188,7 +222,7 @@
     [self.selectedItemsLabel setText:@"Items you have selected"];
     [self.selectedItemsLabel setTextColor:[UIColor grayColor]];
     [self.selectedItemsLabel setTextAlignment:NSTextAlignmentCenter];
-    [self.view addSubview:self.selectedItemsLabel];
+    [self.view addSubview: self.selectedItemsLabel];
     
     
     
@@ -202,7 +236,7 @@
     self.selectedItemsTableView.layer.borderWidth = 2.0f;
     self.selectedItemsTableView.layer.borderColor = [UIColor blackColor].CGColor;
     
-    [self.view addSubview:self.selectedItemsTableView];
+    [self.view addSubview: self.selectedItemsTableView];
     
     
     

@@ -10,7 +10,7 @@
 
 @implementation ItemTableViewCell
 
-#define WIDTH_OF_TITLE 100
+#define WIDTH_OF_TITLE 200
 #define HEIGHT_OF_TITLE 20
 #define WIDTH_OF_PRICE 100
 #define HEIGHT_OF_PRICE 20

@@ -94,20 +94,23 @@
     return (countMatches > 0);
 }
 
-+(float) getAmountFromString: (NSString *) string {
-    NSString *regexString = @"(\\d)\\.(\\d)(\\d)";
++(NSString *) getAmountStringFromString: (NSString *) string {
+    NSString *regexString = @"(\\d)+\\.(\\d)(\\d)";
     NSError *error = NULL;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern: regexString options:NSRegularExpressionCaseInsensitive error:&error];
     NSArray *matches = [regex matchesInString: string options: NSMatchingProgress range:NSMakeRange(0, [string length])];
     
     NSLog(@"MATCHES %@", matches);
     
-    if ([matches count] == 0) return -1;
-   
+    if ([matches count] == 0) return @"-1";
+    
     NSString *createdString = @"";
     createdString = [createdString stringByAppendingString: [string substringWithRange:[matches[0] range]]];
-    NSLog(@"CREATED STRING : %@", createdString);
-    
+    return createdString;
+}
+
++(float) getAmountFromString: (NSString *) string {
+    NSString *createdString = [self getAmountStringFromString: string];
     return [createdString floatValue];
 }
 

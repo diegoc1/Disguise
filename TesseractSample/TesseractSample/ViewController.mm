@@ -205,8 +205,12 @@
     NSLog(@"TAX AMOUNT: %f", receipt.taxAmount);
     NSLog(@"ITEMS: %@", receipt.itemsPurchased);
     
+    
     UIImage *resultingImage = [UIImage imageWithCVMat: theMat];
-    iv.image = resultingImage;
+    //iv.image = resultingImage;
+    
+    SelectItemsViewController *sv = [[SelectItemsViewController alloc] initWithReceiptModel: receipt andImage: resultingImage];
+    [self.navigationController pushViewController: sv animated: FALSE];
 }
 
 

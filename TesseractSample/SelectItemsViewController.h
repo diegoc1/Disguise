@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class ReceiptModel;
+
 @interface SelectItemsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
+-(id) initWithReceiptModel: (ReceiptModel *) receiptModel andImage: (UIImage *) image;
 - (id) initWithImage:(UIImage *)image;
 
 @end
