@@ -24,7 +24,7 @@
 @property (strong, nonatomic) UILabel *retryLabel;
 @property (strong, nonatomic) UIButton *OKButton;
 @property (strong, nonatomic) UIImage *receiptImage;
-
+@property (strong, nonatomic) NSString *titleStr;
 @end
 
 @implementation SaveReceiptViewController
@@ -42,13 +42,14 @@
     }
     return self;
 }
-- (id)initWithTotal:(double)total andImage:(UIImage *)image {
+- (id)initWithTotal:(double)total andImage:(UIImage *)image andTitle:(NSString *)title {
     self = [super init];
     if (self) {
         // Custom initialization
         self.total = total;
         self.receiptImage = image;
         NSLog(@"total: %f", self.total);
+        self.titleStr = title;
         
     }
     return self;
@@ -66,8 +67,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
    // [self.view setBackgroundColor:[UIColor whiteColor]];
-     self.backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 30, 70, 40)];
+     self.backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 30, 70, 30)];
     [self.backButton setBackgroundColor:[UIColor grayColor]];
     [self.backButton setTitle:@"Back" forState:UIControlStateNormal];
     self.backButton.layer.cornerRadius = 10;
@@ -78,17 +80,18 @@
     
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.backButton.frame.origin.y + self.backButton.frame.size.height + 10, 70, 30)];
     self.titleLabel.text = @"Title: ";
-    self.titleLabel.textColor = [UIColor whiteColor];
+    self.titleLabel.textColor = [UIColor blackColor];
     [self.view addSubview:self.titleLabel];
     
     self.titleTextField = [[UITextField alloc] initWithFrame:CGRectMake(self.titleLabel.frame.origin.x + self.titleLabel.frame.size.width + 10, self.titleLabel.frame.origin.y - 5, TV_WIDTH, TV_HEIGHT)];
     [self.titleTextField setBackgroundColor:[UIColor grayColor]];
     self.titleTextField.layer.cornerRadius = 10;
+    self.titleTextField.text = self.titleStr;
     [self.view addSubview:self.titleTextField];
     
     self.locationLabel =[[UILabel alloc] initWithFrame:CGRectMake(self.titleLabel.frame.origin.x, self.titleTextField.frame.origin.y + self.titleTextField.frame.size.height + 10 , 100, 30)];
     self.locationLabel.text = @"Location: ";
-    self.locationLabel.textColor = [UIColor whiteColor];
+    self.locationLabel.textColor = [UIColor blackColor];
     [self.view addSubview:self.locationLabel];
     
     self.locationTextField = [[UITextField alloc] initWithFrame:CGRectMake(self.titleLabel.frame.origin.x + self.titleLabel.frame.size.width + 10, self.locationLabel.frame.origin.y - 5, TV_WIDTH, TV_HEIGHT)];
@@ -99,7 +102,7 @@
     self.totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 100 /2 , self.locationTextField.frame.origin.y + self.locationTextField.frame.size.height + 20, 100, 30)];
     self.totalLabel.text = [NSString stringWithFormat:@"Total: $%.2f", self.total];
     self.totalLabel.layer.cornerRadius = 10;
-    self.totalLabel.textColor = [UIColor whiteColor];
+    self.totalLabel.textColor = [UIColor blackColor];
     [self.view addSubview:self.totalLabel];
     
     

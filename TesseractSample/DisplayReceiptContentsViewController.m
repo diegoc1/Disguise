@@ -10,9 +10,9 @@
 
 @interface DisplayReceiptContentsViewController ()
 @property (strong, nonatomic) UIButton *backButton;
-@property (strong, nonatomic) UITextView *titleTextField;
+@property (strong, nonatomic) UILabel *titleTextField;
 @property (strong, nonatomic) UILabel *titleLabel;
-@property (strong, nonatomic) UITextView *locationTextField;
+@property (strong, nonatomic) UILabel *locationTextField;
 @property (strong, nonatomic) UILabel *locationLabel;
 @property (strong, nonatomic) UILabel *totalLabel;
 @property (strong, nonatomic) UIButton *saveButton;
@@ -21,6 +21,7 @@
 @property (strong, nonatomic) UIView *background;
 @property (strong, nonatomic) UILabel *retryLabel;
 @property (strong, nonatomic) UIButton *viewReceiptButton;
+@property (strong, nonatomic) UIButton *sendReceiptButton;
 @property (strong, nonatomic) UIImage *receiptImage;
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *location;
@@ -49,9 +50,9 @@
     self = [super init];
     if (self) {
         [self.view setBackgroundColor:[UIColor whiteColor]];
-//        UIImageView *i = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 300, 300)];
-//        i.image = image;
-//        [self.view addSubview:i];
+        //        UIImageView *i = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 300, 300)];
+        //        i.image = image;
+        //        [self.view addSubview:i];
         NSLog(@"location: %@", location);
         self.location = location;
         self.image = image;
@@ -65,13 +66,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-   
+    
     
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 30, 70, 40)];
+    self.backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 30, 70, 30)];
     [self.backButton setBackgroundColor:[UIColor grayColor]];
     [self.backButton setTitle:@"Back" forState:UIControlStateNormal];
     self.backButton.layer.cornerRadius = 10;
@@ -80,15 +81,18 @@
     [self.backButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
     [self.view addSubview:self.backButton];
     
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.backButton.frame.origin.y + self.backButton.frame.size.height + 10, 70, 30)];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.backButton.frame.origin.y + self.backButton.frame.size.height + 30, 70, 30)];
     self.titleLabel.text = @"Title: ";
     self.titleLabel.textColor = [UIColor blackColor];
     [self.view addSubview:self.titleLabel];
     
-    self.titleTextField = [[UITextView alloc] initWithFrame:CGRectMake(self.titleLabel.frame.origin.x + self.titleLabel.frame.size.width + 10, self.titleLabel.frame.origin.y - 5, TV_WIDTH, TV_HEIGHT)];
-    [self.titleTextField setBackgroundColor:[UIColor grayColor]];
+    self.titleTextField = [[UILabel alloc] initWithFrame:CGRectMake(self.titleLabel.frame.origin.x + self.titleLabel.frame.size.width + 10, self.titleLabel.frame.origin.y - 5, TV_WIDTH, TV_HEIGHT)];
+    //  [self.titleTextField setBackgroundColor:[UIColor grayColor]];
+    self.titleTextField.layer.borderWidth = 2;
+    self.titleTextField.layer.borderColor = [UIColor grayColor].CGColor;
     self.titleTextField.layer.cornerRadius = 10;
     self.titleTextField.text = self.title;
+    self.titleTextField.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.titleTextField];
     
     self.locationLabel =[[UILabel alloc] initWithFrame:CGRectMake(self.titleLabel.frame.origin.x, self.titleTextField.frame.origin.y + self.titleTextField.frame.size.height + 10 , 100, 30)];
@@ -96,11 +100,13 @@
     self.locationLabel.textColor = [UIColor blackColor];
     [self.view addSubview:self.locationLabel];
     
-    self.locationTextField = [[UITextView alloc] initWithFrame:CGRectMake(self.titleLabel.frame.origin.x + self.titleLabel.frame.size.width + 10, self.locationLabel.frame.origin.y - 5, TV_WIDTH, TV_HEIGHT)];
-    [self.locationTextField setBackgroundColor:[UIColor grayColor]];
+    self.locationTextField = [[UILabel alloc] initWithFrame:CGRectMake(self.titleLabel.frame.origin.x + self.titleLabel.frame.size.width + 10, self.locationLabel.frame.origin.y - 5, TV_WIDTH, TV_HEIGHT)];
+    //   [self.locationTextField setBackgroundColor:[UIColor grayColor]];
+    self.locationTextField.layer.borderWidth = 2;
+    self.locationTextField.layer.borderColor = [UIColor grayColor].CGColor;
     self.locationTextField.layer.cornerRadius = 10;
     self.locationTextField.text = self.location;
-    NSLog(@"self.location: %@", self.location);
+    self.locationTextField.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.locationTextField];
     
     self.totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 100 /2 , self.locationTextField.frame.origin.y + self.locationTextField.frame.size.height + 20, 100, 30)];
@@ -119,6 +125,44 @@
     [self.viewReceiptButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
     [self.view addSubview:self.viewReceiptButton];
     
+    self.sendReceiptButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.viewReceiptButton.frame.origin.y + self.viewReceiptButton.frame.size.height + 10, 200, 30)];
+    [self.sendReceiptButton setTitle:@"Email Receipt" forState:UIControlStateNormal];
+    [self.sendReceiptButton setBackgroundColor:[UIColor grayColor]];
+    self.sendReceiptButton.layer.cornerRadius = 10;
+    [self.sendReceiptButton addTarget:self action:@selector(sendReceiptButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.sendReceiptButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
+    [self.sendReceiptButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
+    [self.view addSubview:self.sendReceiptButton];
+    
+}
+
+- (void) sendReceiptButtonPressed {
+    [self.sendReceiptButton setBackgroundColor:[UIColor grayColor]];
+    NSString *subject = [NSString stringWithFormat:@"Receipt: %@", self.title ];
+    NSString *email_text = [NSString stringWithFormat:@"Here is the receipt from %@", self.location ];
+    NSArray *recipients = [NSArray arrayWithObject:@"diegoc1@stanford.edu"];
+    
+    NSData *data = UIImagePNGRepresentation(self.image);
+    MFMailComposeViewController *mailComposeVC = [[MFMailComposeViewController alloc] init];
+    NSString *mimeType = @"application/png";
+    NSString *fileName = @"receipt.png";
+    mailComposeVC.mailComposeDelegate = self;
+    [mailComposeVC setSubject:subject];
+    [mailComposeVC setMessageBody:email_text isHTML:NO];
+    [mailComposeVC setToRecipients:recipients];
+    [mailComposeVC addAttachmentData:data mimeType:mimeType fileName:fileName];
+    
+    [self presentViewController:mailComposeVC animated:YES completion:NULL];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error;
+{
+    if (result == MFMailComposeResultSent) {
+        NSLog(@"Mail Sent!");
+    } else {
+        NSLog(@"NOT SENT");
+    }
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 -(void) viewReceiptButtonPressed {
@@ -126,13 +170,16 @@
     self.darkenerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [self.darkenerView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8]];
     [self.view addSubview:self.darkenerView];
-
     self.imView = [[UIImageView alloc] initWithFrame:CGRectMake(30, 30, self.view.frame.size.width  - 60, self.view.frame.size.height - 100)];
+    
     self.imView.layer.cornerRadius = 10;
     self.imView.image = self.image;
+    [self.imView setAlpha:0.0];
     [self.view addSubview:self.imView];
     
     self.exitButton = [[UIButton alloc] initWithFrame:CGRectMake(self.imView.frame.origin.x + self.imView.frame.size.width - 15, self.imView.frame.origin.y - 15, 30, 30)];
+    self.exitButton.titleLabel.font = [UIFont systemFontOfSize:13];
+
     [self.exitButton setTitle:@"X" forState:UIControlStateNormal];
     [self.exitButton setBackgroundColor:[UIColor whiteColor]];
     [self.exitButton setTitleColor:[UIColor blackColor]  forState:UIControlStateNormal];
@@ -140,7 +187,19 @@
     [self.exitButton addTarget:self action:@selector(exitButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.exitButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
     [self.exitButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
+    [self.exitButton setAlpha:0.0];
     [self.view addSubview:self.exitButton];
+    
+    [self.viewReceiptButton setBackgroundColor:[UIColor grayColor]];
+    
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.4];
+    [self.exitButton setAlpha:1.0];
+    [self.imView setAlpha:1.0];
+    [UIView commitAnimations];
+    
+    
 }
 
 -(void) exitButtonPressed {
@@ -168,3 +227,5 @@
 }
 
 @end
+
+

@@ -51,6 +51,9 @@
 		E5A3480C184AD7B100F7EAEE /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A3480B184AD7B100F7EAEE /* HistoryViewController.m */; };
 		E5A3480F184AE73400F7EAEE /* DisplayReceiptContentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A3480E184AE73400F7EAEE /* DisplayReceiptContentsViewController.m */; };
 		E5B0F17B184437A7004AA7E2 /* CropImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B0F17A184437A7004AA7E2 /* CropImageViewController.m */; };
+		E5ECAC49185458F000F0CBD4 /* EditTableViewCellUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5ECAC48185458F000F0CBD4 /* EditTableViewCellUIView.m */; };
+		E5ECAC4B18546AE000F0CBD4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5ECAC4A18546AE000F0CBD4 /* MessageUI.framework */; };
+		E5ECAC4D18546EA000F0CBD4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5ECAC4C18546EA000F0CBD4 /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -166,6 +169,10 @@
 		E5A3480E184AE73400F7EAEE /* DisplayReceiptContentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DisplayReceiptContentsViewController.m; path = ../DisplayReceiptContentsViewController.m; sourceTree = "<group>"; };
 		E5B0F179184437A7004AA7E2 /* CropImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CropImageViewController.h; sourceTree = "<group>"; };
 		E5B0F17A184437A7004AA7E2 /* CropImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CropImageViewController.m; sourceTree = "<group>"; };
+		E5ECAC47185458F000F0CBD4 /* EditTableViewCellUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTableViewCellUIView.h; sourceTree = "<group>"; };
+		E5ECAC48185458F000F0CBD4 /* EditTableViewCellUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTableViewCellUIView.m; sourceTree = "<group>"; };
+		E5ECAC4A18546AE000F0CBD4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		E5ECAC4C18546EA000F0CBD4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +180,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5ECAC4D18546EA000F0CBD4 /* AudioToolbox.framework in Frameworks */,
+				E5ECAC4B18546AE000F0CBD4 /* MessageUI.framework in Frameworks */,
 				E5A34806184A9E7800F7EAEE /* CoreData.framework in Frameworks */,
 				BE9E37F1183DB8E8004986D8 /* libz.dylib in Frameworks */,
 				BE9E37EF183DB8D7004986D8 /* ImageIO.framework in Frameworks */,
@@ -211,6 +220,8 @@
 		17E5A60E146017E9004B1CA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5ECAC4C18546EA000F0CBD4 /* AudioToolbox.framework */,
+				E5ECAC4A18546AE000F0CBD4 /* MessageUI.framework */,
 				E5A34805184A9E7800F7EAEE /* CoreData.framework */,
 				BE9E37F0183DB8E8004986D8 /* libz.dylib */,
 				BE9E37EE183DB8D7004986D8 /* ImageIO.framework */,
@@ -393,6 +404,8 @@
 				E5A347F01847ECCF00F7EAEE /* ItemPricePair.m */,
 				E5B0F179184437A7004AA7E2 /* CropImageViewController.h */,
 				E5B0F17A184437A7004AA7E2 /* CropImageViewController.m */,
+				E5ECAC47185458F000F0CBD4 /* EditTableViewCellUIView.h */,
+				E5ECAC48185458F000F0CBD4 /* EditTableViewCellUIView.m */,
 			);
 			name = "ios-code[NOT-FOR-GRADING]";
 			sourceTree = "<group>";
@@ -481,6 +494,7 @@
 				BE62AA65184F0A7A003A34EE /* SpellChecker.m in Sources */,
 				17E5A620146017E9004B1CA6 /* AppDelegate.mm in Sources */,
 				17E5A623146017E9004B1CA6 /* ViewController.mm in Sources */,
+				E5ECAC49185458F000F0CBD4 /* EditTableViewCellUIView.m in Sources */,
 				BE26C634183DC36000550F59 /* UIImage+OpenCV.mm in Sources */,
 				BEDE720E18402B9A003CE131 /* ContourWrapper.mm in Sources */,
 				E5A347FA1847F90400F7EAEE /* SVMClassifier.mm in Sources */,

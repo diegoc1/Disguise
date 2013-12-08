@@ -90,7 +90,6 @@
 }
 
 -(void)buttonUp: (UIButton *) sender {
-    NSLog(@"RESETING");
     [sender setBackgroundColor:UIColorFromRGB(0xCCCCCC)];
 }
 
@@ -111,8 +110,9 @@
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row
       inComponent:(NSInteger)component
 {
-    NSLog(@"Suggestion %f", self.tipAmount);
+    
     self.tipAmount = [[self.tip_suggestions_values objectAtIndex:row] doubleValue];
+    NSLog(@"Suggestion %f", self.tipAmount);
 }
 
 /*

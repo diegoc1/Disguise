@@ -44,6 +44,7 @@
     
     UINavigationController *hcNav = [[UINavigationController alloc] initWithRootViewController:hc];
     [hcNav setNavigationBarHidden:YES animated:NO];
+    hcNav.tabBarItem.title = @"History";
     
      NSArray* controllers = [NSArray arrayWithObjects:navController, hcNav, nil];
     tabBarController.viewControllers = controllers;
@@ -94,6 +95,12 @@
      See also applicationDidEnterBackground:.
      */
 }
+
+////////////////////////////////////////////////////////////////////////////////////////
+//// MUCH OF THIS CODE WAS DERIVED FROM RAY WENDERLICH'S CORE DATA TUTORIAL AT http://www.raywenderlich.com/934/core-data-tutorial-for-ios-getting-started /////
+////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 - (NSManagedObjectContext *) managedObjectContext {
     if (managedObjectContext != nil) {

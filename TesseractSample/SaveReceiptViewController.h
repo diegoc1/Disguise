@@ -10,5 +10,5 @@
 
 @interface SaveReceiptViewController : UIViewController
 
-- (id)initWithTotal:(double)total andImage:(UIImage *)image;
+- (id)initWithTotal:(double)total andImage:(UIImage *)image andTitle:(NSString *)title;
 @end
