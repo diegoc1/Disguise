@@ -32,7 +32,7 @@
 
 #define TV_HEIGHT 40
 #define TV_WIDTH 200
-
+//This macro function came from :http://stackoverflow.com/questions/19405228/how-to-i-properly-set-uicolor-from-int
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -121,9 +121,6 @@
 #define SAVE_BACKGROUND_HEIGHT 200
 
 -(void) saveButtonPressed {
-    NSLog(@"SAVE");
-    NSLog(@"%@",self.titleTextField.text);
-    NSLog(@"%@",self.locationTextField.text);
     self.background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [self.background setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.7]];
     [self.view addSubview:self.background];
@@ -167,13 +164,7 @@
         NSEntityDescription *entity = [NSEntityDescription
                                        entityForName:@"Receipt" inManagedObjectContext:context];
         [fetchRequest setEntity:entity];
-        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-        for (NSManagedObject *info in fetchedObjects) {
-            NSLog(@"Title: %@", [info valueForKey:@"title"]);
-            NSLog(@"Total: %@", [info valueForKey:@"individual_total"]);
-            NSLog(@"Latitude: %@", [info valueForKey: @"latitude"]);
-            NSLog(@"Longitude %@", [info valueForKey: @"longitude"]);
-        }
+      //  NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
      //   for (id basket in fetchedObjects) [context deleteObject:basket];
 
         [self.view addSubview:successLabel];
@@ -189,7 +180,6 @@
 }
 
 - (void) createRetryView {
-    NSLog(@"RETRY");
     self.retryLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 75 / 2, 200, 75)];
     self.retryLabel.text = @"Please fill out the title and location fields!";
     self.retryLabel.numberOfLines = 2;

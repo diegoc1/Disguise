@@ -153,7 +153,6 @@
     }
     
     if ([features[9] integerValue] == 1) {
-        NSLog(@"GOT HEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEEHEREEEE");
         item_prob += 5.2;
         other_prob -= 5;
         total_prob += 5.2;
@@ -266,13 +265,13 @@
     }
     
     //10
-    NSString *someRegexp = @"(\d.\d\d)";
+    NSString *someRegexp = @"(\\d.\\d\\d)";
     NSPredicate *myTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", someRegexp];
     
     if ([myTest evaluateWithObject: line]){
-        NSLog(@"MATTTTCH");
+      //  NSLog(@"MATTTTCH");
     }
-    NSError *errRegex = NULL;
+ //   NSError *errRegex = NULL;
     NSError *error = NULL;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[0-9].[0-9][0-9]"
                                                                            options:NSRegularExpressionCaseInsensitive

@@ -56,11 +56,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TesseractSample/ItemTableViewCell.m"
-            timestampString = "408184904.035196"
+            timestampString = "408267140.057563"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "-deleteButtonPressed"
             landmarkType = "5">
          </BreakpointContent>

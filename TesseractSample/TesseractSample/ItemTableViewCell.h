@@ -16,6 +16,5 @@
 -(void) showDeleteButton;
 -(void) hideDeleteButton;
 
-- (id) initWithStyleAndTableView:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier tableView:(UITableView *) tableView;
 - (id) initWithStyleAndListAndTableView:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier list:(NSMutableArray *) list  tableView:(UITableView *) tableView;
 @end

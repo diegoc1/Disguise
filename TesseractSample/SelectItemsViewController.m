@@ -77,7 +77,7 @@
 #define TIP_LABEL_HEIGHT 30
 
 #define SPACE_BETWEEN_TOTAL_AND_ITEMS 5
-
+//This macro function came from :http://stackoverflow.com/questions/19405228/how-to-i-properly-set-uicolor-from-int
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 - (id) initWithImage:(UIImage *)image {
@@ -114,10 +114,6 @@
         self.titleLabel.text = receiptModel.title;
         self.titleLabel.textColor = [UIColor blackColor];
         [self.view addSubview: self.titleLabel];
-        
-        
-        
-        //self.totalAmount = [SpellChecker]
 
     }
     return self;
@@ -127,31 +123,9 @@
 {
     [super viewDidLoad];
     
-// self.items  = [[NSMutableArray alloc] init];
-
-//    [self.items addObject:@"Hello"];
-//    [self.items addObject:@"There"];
-//    [self.items addObject:@"Sir"];
-//    [self.items addObject:@"How"];
-//    [self.items addObject:@"Are"];
-//    [self.items addObject:@"You"];
-//    [self.items addObject:@"Doing"];
-//    [self.items addObject:@"Today?"];
-    
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     self.tipPercentage = 0.0;
-//    ItemPricePair *p1 = [[ItemPricePair alloc] initWithTitleAndPrice:@"JASDF" withPrice:10];
-//    
-//    [self.items addObject:p1];
-//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"WORKING" withPrice:10.40]];
-//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"Hello" withPrice:11.10]];
-//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"there" withPrice:12]];
-//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"sir" withPrice:13]];
-//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"how" withPrice:14]];
-//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"goes" withPrice:15]];
-//    [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"it" withPrice:16]];
-    
     
     CGRect mainScreenBounds = [[UIScreen mainScreen] bounds];
     CGFloat width = mainScreenBounds.size.width;
@@ -227,12 +201,8 @@
     
     
     
-    //  [self.tableView setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.4]];
-    //  [self.availableItemsTableView setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.4]];
     [self.availableItemsTableView setBackgroundColor:UIColorFromRGB(0xFFFFCCC)];
-    //  self.view.layer.backgroundColor = [UIColor orangeColor].CGColor;
     self.availableItemsTableView.layer.borderWidth = 2.0f;
-    //  self.tableView.layer.borderColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.4].CGColor;
     self.availableItemsTableView.layer.borderColor = [UIColor blackColor].CGColor;
     
     [self.view addSubview: self.availableItemsTableView];
@@ -281,7 +251,6 @@
         if (!swipedCell.title || !swipedCell.price) return;
     
         [swipedCell showDeleteButton];
-        NSLog(@"LEFT swiped cell: %@", swipedCell.title);
 }
 
 -(void) availableTableCellSwipedRight:(UISwipeGestureRecognizer *)gesture {
@@ -294,7 +263,6 @@
     if (swipedCell.deleteButtonShowing) {
         [swipedCell hideDeleteButton];
     } else {
-        NSLog(@"AAAA");
         CGRect mainScreenBounds = [[UIScreen mainScreen] bounds];
         CGFloat height = mainScreenBounds.size.height;
         self.darkener = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
@@ -311,7 +279,6 @@
         [UIView commitAnimations];
 
     }
-    NSLog(@"RIGHT swiped cell: %@", swipedCell.title);
 }
 
 -(void) selectedTableCellSwipedLeft:(UISwipeGestureRecognizer *)gesture {
@@ -322,7 +289,6 @@
         if (!swipedCell.title || !swipedCell.price) return;
     
         [swipedCell showDeleteButton];
-        NSLog(@"LEFT swiped cell: %@", swipedCell.title);
 }
 
 -(void) selectedTableCellSwipedRight:(UISwipeGestureRecognizer *)gesture {
@@ -335,7 +301,6 @@
     if (swipedCell.deleteButtonShowing) {
         [swipedCell hideDeleteButton];
     } else {
-        NSLog(@"AAAA");
         CGRect mainScreenBounds = [[UIScreen mainScreen] bounds];
         CGFloat height = mainScreenBounds.size.height;
         self.darkener = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
@@ -351,7 +316,6 @@
         [self.darkener setAlpha:1.0];
         [UIView commitAnimations];
     }
-    NSLog(@"RIGHT swiped cell: %@", swipedCell.title);
 }
 
 - (void) doneEditingSelected {
@@ -370,9 +334,6 @@
 
 //When the user presses back, remove necessary buttons
 -(void)removeButtonsAfterFade {
-    NSLog(@"removing");
-    //    [self.backButton setAlpha:1.0];
-    //    [self.saveReceiptButton setAlpha:1.0];
     [self.backButton removeFromSuperview];
     [self.saveReceiptButton removeFromSuperview];
 }
@@ -380,7 +341,6 @@
 
 //Fades in the buttons on the main page and calls removeButtonsAfterFade to remove the save button adn back button
 -(void) addViewsBack {
-    NSLog(@"addviews back");
     [self.view addSubview:self.checkoutButton];
     [self.view addSubview:self.addTipButton];
     [self.view addSubview:self.tipLabel];
@@ -448,9 +408,6 @@
 
 //Initalizes animations to display only selected items
 -(void) checkoutButtonPressed {
-    NSLog(@"Checkout button pressed!");
-    
-    
     
     self.saveReceiptButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - (75), self.totalPriceView.frame.origin.y + self.totalPriceView.frame.size.height - 30, 150, 30)];
     [self.saveReceiptButton setBackgroundColor:[UIColor grayColor]];
@@ -663,7 +620,6 @@
 
 
 - (void) updateTotalPrice {
-    NSLog(@"updating total price");
     double total = 0;
     for (int i = 0; i < [self.selectedItems count];i++) {
         ItemPricePair *pair = [self.selectedItems objectAtIndex:i];

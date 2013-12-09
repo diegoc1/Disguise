@@ -50,12 +50,6 @@
     [fetchRequest setEntity:entity];
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     self.items = fetchedObjects;
-    for (NSManagedObject *info in fetchedObjects) {
-        NSLog(@"Title: %@", [info valueForKey:@"title"]);
-        NSLog(@"Latitude: %@", [info valueForKey:@"latitude"]);
-        NSLog(@"Longitude: %@", [info valueForKey:@"longitude"]);
-        NSLog(@"Total is: %@", [info valueForKey:@"individual_total"]);
-    }
     [self.tableView reloadData];
     
     

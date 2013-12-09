@@ -22,53 +22,6 @@
 #define HEIGHT_OF_PRICE 20
 
 
-//- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-//{
-//    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-//    CGRect b = [self.contentView bounds];
-//    CGFloat width = b.size.width;
-//    CGFloat height = b.size.height;
-//    self.deleteButtonShowing = FALSE;
-//    if (self) {
-//        // Initialization code
-//        self.title = [[UILabel alloc] initWithFrame:CGRectMake(5, (height / 2) - (HEIGHT_OF_TITLE / 2), WIDTH_OF_TITLE, HEIGHT_OF_TITLE)];
-//        [self.contentView addSubview:self.title];
-//        
-//        self.price = [[UILabel alloc] initWithFrame:CGRectMake(width - (WIDTH_OF_PRICE / 2) - 25, (height / 2) - (HEIGHT_OF_PRICE / 2), WIDTH_OF_PRICE, HEIGHT_OF_PRICE)];
-//                [self.contentView addSubview:self.price];
-//        self.deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(b.origin.x + b.size.width, b.origin.y, b.size.height, b.size.height)];
-//        [self.deleteButton setTitle:@"HELLO" forState:UIControlStateNormal];
-//        [self.deleteButton addTarget:self action:@selector(deleteButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-//        [self.deleteButton setBackgroundColor:[UIColor redColor]];
-//        [self.contentView addSubview:self.deleteButton];
-//
-//    }
-//    return self;
-//}
-//
-//- (id) initWithStyleAndTableView:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier tableView:(UITableView *) tableView {
-//    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-//    CGRect b = [self.contentView bounds];
-//    CGFloat width = b.size.width;
-//    self.tableView = tableView;
-//    CGFloat height = b.size.height;
-//    self.deleteButtonShowing = FALSE;
-//    if (self) {
-//        // Initialization code
-//        self.title = [[UILabel alloc] initWithFrame:CGRectMake(5, (height / 2) - (HEIGHT_OF_TITLE / 2), WIDTH_OF_TITLE, HEIGHT_OF_TITLE)];
-//        [self.contentView addSubview:self.title];
-//        
-//        self.price = [[UILabel alloc] initWithFrame:CGRectMake(width - (WIDTH_OF_PRICE / 2) - 25, (height / 2) - (HEIGHT_OF_PRICE / 2), WIDTH_OF_PRICE, HEIGHT_OF_PRICE)];
-//        [self.contentView addSubview:self.price];
-//        self.deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(b.origin.x + b.size.width, b.origin.y, b.size.height, b.size.height)];
-//        [self.deleteButton setTitle:@"HELLO" forState:UIControlStateNormal];
-//        [self.deleteButton addTarget:self action:@selector(deleteButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-//        [self.deleteButton setBackgroundColor:[UIColor redColor]];
-//        [self.contentView addSubview:self.deleteButton];
-//        
-//    }
-//    return self;
-//}
 - (id) initWithStyleAndListAndTableView:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier list:(NSMutableArray *) list  tableView:(UITableView *) tableView {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     CGRect b = [self.contentView bounds];
@@ -85,7 +38,6 @@
         self.price = [[UILabel alloc] initWithFrame:CGRectMake(width - (WIDTH_OF_PRICE / 2) - 25, (height / 2) - (HEIGHT_OF_PRICE / 2), WIDTH_OF_PRICE, HEIGHT_OF_PRICE)];
         [self.contentView addSubview:self.price];
         self.deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(b.origin.x + b.size.width, b.origin.y, b.size.height, b.size.height)];
-        NSLog(@"CREATING BUTTON");
         [self.deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
         [self.deleteButton addTarget:self action:@selector(deleteButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         [self.deleteButton setBackgroundColor:[UIColor redColor]];
@@ -100,7 +52,6 @@
 - (void) deleteButtonPressed {
   //  self.tableView = (UITableView *)self.superview;
     NSIndexPath *indexPath = [(UITableView *)self.tableView indexPathForCell: self];
-    NSLog(@"indexpath: %d ", indexPath.row);
     NSArray *indeces = [[NSArray alloc] initWithObjects:indexPath, nil];
     [self.listOfTableViewCellObjects removeObjectAtIndex:indexPath.row];
     [self.tableView deleteRowsAtIndexPaths:indeces withRowAnimation:UITableViewRowAnimationFade];
@@ -116,8 +67,6 @@
         CGRect b = [self.contentView bounds];
         CGRect frameForButton = CGRectMake(b.origin.x + b.size.width - b.size.height, b.origin.y, b.size.height, b.size.height);
         self.deleteButtonShowing = TRUE;
-        NSLog(@"Showing dlete");
-        NSLog(@"self.title is %@",self.title);
         [UIView beginAnimations:@"shrink_table" context:nil];
         [UIView setAnimationDelegate:self];
         [UIView setAnimationDuration:.20];

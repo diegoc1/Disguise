@@ -38,7 +38,7 @@
 #define CLICK_LABEL_WIDTH 250
 #define CLICK_LABEL_HEIGHT 30
 
-
+//This macro function came from :http://stackoverflow.com/questions/19405228/how-to-i-properly-set-uicolor-from-int
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 - (id)initWithFrameAndSelector:(CGRect)frame withOnFinishedSelector:(SEL)selector withItemViewPair:(ItemPricePair *)pair

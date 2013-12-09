@@ -38,6 +38,8 @@
 #define TV_HEIGHT 40
 #define TV_WIDTH 200
 
+
+//This macro function came from :http://stackoverflow.com/questions/19405228/how-to-i-properly-set-uicolor-from-int
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @implementation DisplayReceiptContentsViewController
 
@@ -54,10 +56,6 @@
     self = [super init];
     if (self) {
         [self.view setBackgroundColor:[UIColor whiteColor]];
-        //        UIImageView *i = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 300, 300)];
-        //        i.image = image;
-        //        [self.view addSubview:i];
-        NSLog(@"location: %@", location);
         self.location = location;
         self.image = image;
         self.title = title;
@@ -167,7 +165,7 @@
     
     
 }
-
+//This code was derived from a tutorial at :http://blog.mugunthkumar.com/coding/iphone-tutorial-how-to-send-in-app-sms/
 - (void) sendTextButtonPressed {
     MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
     if([MFMessageComposeViewController canSendText])
@@ -217,14 +215,12 @@
 /* End of Will code */
 /*********/
 
-
+//This code was derived from a tutorial at: http://stackoverflow.com/questions/310946/how-can-i-send-mail-from-an-iphone-application
 - (void) sendReceiptButtonPressed {
     
     [self.sendReceiptButton setBackgroundColor:[UIColor grayColor]];
     NSString *subject = [NSString stringWithFormat:@"Receipt: %@", self.title ];
     NSString *email_text = [NSString stringWithFormat:@"Here is the receipt from %@", self.location ];
- //   NSArray *recipients = [NSArray arrayWithObject:@"diegoc1@stanford.edu"];
-    
     NSData *data = UIImagePNGRepresentation(self.image);
     MFMailComposeViewController *mailComposeVC = [[MFMailComposeViewController alloc] init];
     NSString *mimeType = @"application/png";
@@ -232,7 +228,6 @@
     mailComposeVC.mailComposeDelegate = self;
     [mailComposeVC setSubject:subject];
     [mailComposeVC setMessageBody:email_text isHTML:NO];
-  //  [mailComposeVC setToRecipients:recipients];
     [mailComposeVC addAttachmentData: data mimeType: mimeType fileName: fileName];
     
     if ([MFMailComposeViewController canSendMail])
@@ -252,7 +247,6 @@
 
 
 -(void) viewReceiptButtonPressed {
-    NSLog(@"viewing receipt!");
     self.darkenerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [self.darkenerView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8]];
     [self.view addSubview:self.darkenerView];

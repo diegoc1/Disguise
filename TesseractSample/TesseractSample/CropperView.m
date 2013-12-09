@@ -30,7 +30,7 @@ typedef void (^CompletionBlock)(UIImage *);
 
 #define CROP_BUT_WIDTH 80
 #define CROP_BUT_HEIGHT 40
-
+//This macro function came from :http://stackoverflow.com/questions/19405228/how-to-i-properly-set-uicolor-from-int
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @implementation CropperView
@@ -138,17 +138,7 @@ typedef void (^CompletionBlock)(UIImage *);
     
     self.img =[UIImage imageWithCGImage:imageRef scale:self.img.scale orientation:self.img.imageOrientation];
     
-
-    
-    // or use the UIImage wherever you like
-  //  self.img =[UIImage imageWithCGImage:imageRef];
- //   self.img.imageOrientation = 3;
-    NSLog(@"orientation is now :%d", self.img.imageOrientation);
     [self.imview setImage:self.img];
-    //[self removeFromSuperview];
-  //  [self performSelector:self.completionSelector withObject:nil afterDelay:0];
-    // self.imview.transform = CGAffineTransformMakeRotation(M_PI/2);
-  //  [self.imview setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height)];
     
     
     self.handler(self.img);
