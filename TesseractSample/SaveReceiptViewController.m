@@ -8,6 +8,7 @@
 
 #import "SaveReceiptViewController.h"
 #import "AppDelegate.h"
+#import "LocationRetriever.h"
 
 @interface SaveReceiptViewController ()
 @property (strong, nonatomic) UIButton *backButton;
@@ -141,7 +142,13 @@
                                            insertNewObjectForEntityForName:@"Receipt"
                                            inManagedObjectContext:context];
         [newReceipt setValue:self.titleTextField.text forKey:@"title"];
-        [newReceipt setValue:self.locationTextField.text forKey:@"location"];
+
+        //Retrieve location
+        CGPoint latAndLong = [LocationRetriever getLatitudeAndLongitude];
+        
+        [newReceipt setValue: [NSNumber numberWithFloat: latAndLong.x] forKey: @"latitude"];
+        [newReceipt setValue: [NSNumber numberWithFloat: latAndLong.y] forKey: @"longitude"];
+        
         [newReceipt setValue:[NSNumber numberWithDouble:self.total] forKey:@"individual_total"];
         if (self.receiptImage != nil) {
             NSData *data = UIImagePNGRepresentation(self.receiptImage);
@@ -160,8 +167,9 @@
         NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
         for (NSManagedObject *info in fetchedObjects) {
             NSLog(@"Title: %@", [info valueForKey:@"title"]);
-            NSLog(@"Location: %@", [info valueForKey:@"location"]);
             NSLog(@"Total: %@", [info valueForKey:@"individual_total"]);
+            NSLog(@"Latitude: %@", [info valueForKey: @"latitude"]);
+            NSLog(@"Longitude %@", [info valueForKey: @"longitude"]);
         }
      //   for (id basket in fetchedObjects) [context deleteObject:basket];
 

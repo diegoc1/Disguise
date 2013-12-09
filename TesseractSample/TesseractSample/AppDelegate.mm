@@ -1,22 +1,16 @@
-//
-//  AppDelegate.m
-//  TesseractSample
-//
-//  Created by Ângelo Suzuki on 11/1/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
-//
 
 #import "AppDelegate.h"
 
-#import "ViewController.h"
-#import "CropImageViewController.h"
+#import "CroppingImageCaptureViewController.h"
 #import "SelectItemsViewController.h"
 #import "HistoryViewController.h"
+#import "SingletonManager.h"
+
+#import "ReceiptMapViewController.h" //delete
 
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize viewController = _viewController;
 @synthesize managedObjectContext;
 @synthesize managedObjectModel;
 @synthesize persistentStoreCoordinator;
@@ -24,33 +18,31 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-   // self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-    HistoryViewController *hc = [[HistoryViewController alloc] init];
-   // self.viewController = (ViewController *)[[SelectItemsViewController alloc] init];
-    hc.tabBarItem.title = @"History";
+    
+    CroppingImageCaptureViewController *imageVC = [[CroppingImageCaptureViewController alloc] init];
+    
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-   
-//    
-//    
-   
-    
-    
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController: imageVC];
     [navController setNavigationBarHidden:YES animated:NO];
-    navController.tabBarItem.title = @"Main";
+    navController.tabBarItem.title = @"Capture";
+    
+    HistoryViewController *hc = [[HistoryViewController alloc] init];
+    ReceiptMapViewController *mapVC = [[ReceiptMapViewController alloc] init];
     
     UINavigationController *hcNav = [[UINavigationController alloc] initWithRootViewController:hc];
     [hcNav setNavigationBarHidden:YES animated:NO];
+    hcNav.tabBarItem.title = @"History";
     
-     NSArray* controllers = [NSArray arrayWithObjects:navController, hcNav, nil];
+    UINavigationController *mapNav = [[UINavigationController alloc] initWithRootViewController: mapVC];
+    [mapNav setNavigationBarHidden:YES animated:NO];
+    mapNav.tabBarItem.title = @"Map";
+    
+     NSArray* controllers = [NSArray arrayWithObjects:navController, hcNav, mapNav, nil];
     tabBarController.viewControllers = controllers;
 
-   // self.window.rootViewController = navController;
-    //self.window.rootViewController = self.viewController;
-   // [self.window addSubview:tabBarController.view];
+    ((SingletonManager *)[SingletonManager sharedSingletonManager]).isTrackingLocation = TRUE;
+    
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
@@ -95,6 +87,9 @@
      */
 }
 
+
+/* Core Data work below is Diego's */
+
 - (NSManagedObjectContext *) managedObjectContext {
     if (managedObjectContext != nil) {
         return managedObjectContext;
@@ -138,5 +133,7 @@
 - (NSString *)applicationDocumentsDirectory {
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
+
+
 
 @end

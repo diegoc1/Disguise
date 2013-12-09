@@ -32,6 +32,20 @@
 		BE9E37ED183DB8C6004986D8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37EC183DB8C6004986D8 /* AVFoundation.framework */; };
 		BE9E37EF183DB8D7004986D8 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37EE183DB8D7004986D8 /* ImageIO.framework */; };
 		BE9E37F1183DB8E8004986D8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37F0183DB8E8004986D8 /* libz.dylib */; };
+		BEA3EBB4185442B7007B4D8F /* CroppingImageCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA3EBB3185442B7007B4D8F /* CroppingImageCaptureViewController.m */; };
+		BEA3EBB618544398007B4D8F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA3EBB518544398007B4D8F /* SystemConfiguration.framework */; };
+		BEA3EBB8185444C9007B4D8F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA3EBB7185444C9007B4D8F /* CoreMedia.framework */; };
+		BEA3EBC0185449C9007B4D8F /* Default-586h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEA3EBBF185449C9007B4D8F /* Default-586h@2x.png */; };
+		BEA3EBC2185449E4007B4D8F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEA3EBC1185449E4007B4D8F /* Images.xcassets */; };
+		BEA3EBC51854557B007B4D8F /* ReceiptGenerator.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEA3EBC41854557B007B4D8F /* ReceiptGenerator.mm */; };
+		BEA3EBC8185459AA007B4D8F /* ProgressPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA3EBC7185459AA007B4D8F /* ProgressPopupView.m */; };
+		BEA3EBCD18546748007B4D8F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA3EBCC18546748007B4D8F /* MapKit.framework */; };
+		BEA3EBD11854678B007B4D8F /* ReceiptMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA3EBD01854678B007B4D8F /* ReceiptMapViewController.m */; };
+		BEA3EBD318546A6C007B4D8F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA3EBD218546A6C007B4D8F /* CoreLocation.framework */; };
+		BEA3EBD818547138007B4D8F /* LocationRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA3EBD718547138007B4D8F /* LocationRetriever.m */; };
+		BEA3EBDB18547334007B4D8F /* SingletonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA3EBDA18547334007B4D8F /* SingletonManager.m */; };
+		BEA3EBDE185479A2007B4D8F /* ReceiptLocationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA3EBDD185479A2007B4D8F /* ReceiptLocationAnnotation.m */; };
+		BEA3EBE118557358007B4D8F /* PinAnnotationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA3EBE018557358007B4D8F /* PinAnnotationButton.m */; };
 		BEBF3EB116DB3A1300B82C62 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEBF3EB016DB3A1300B82C62 /* QuartzCore.framework */; };
 		BEDE720218400E7B003CE131 /* ImageProcessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720118400E7A003CE131 /* ImageProcessor.mm */; };
 		BEDE720518400FA5003CE131 /* TesseractController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720418400FA5003CE131 /* TesseractController.mm */; };
@@ -50,7 +64,6 @@
 		E5A34809184AA11E00F7EAEE /* SaveReceiptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A34808184AA11E00F7EAEE /* SaveReceiptViewController.m */; };
 		E5A3480C184AD7B100F7EAEE /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A3480B184AD7B100F7EAEE /* HistoryViewController.m */; };
 		E5A3480F184AE73400F7EAEE /* DisplayReceiptContentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A3480E184AE73400F7EAEE /* DisplayReceiptContentsViewController.m */; };
-		E5B0F17B184437A7004AA7E2 /* CropImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B0F17A184437A7004AA7E2 /* CropImageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -133,6 +146,28 @@
 		BE9E37EC183DB8C6004986D8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BE9E37EE183DB8D7004986D8 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		BE9E37F0183DB8E8004986D8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		BEA3EBB2185442B7007B4D8F /* CroppingImageCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CroppingImageCaptureViewController.h; sourceTree = "<group>"; };
+		BEA3EBB3185442B7007B4D8F /* CroppingImageCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CroppingImageCaptureViewController.m; sourceTree = "<group>"; };
+		BEA3EBB518544398007B4D8F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		BEA3EBB7185444C9007B4D8F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		BEA3EBBF185449C9007B4D8F /* Default-586h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-586h@2x.png"; sourceTree = "<group>"; };
+		BEA3EBC1185449E4007B4D8F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BEA3EBC31854557B007B4D8F /* ReceiptGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptGenerator.h; sourceTree = "<group>"; };
+		BEA3EBC41854557B007B4D8F /* ReceiptGenerator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ReceiptGenerator.mm; sourceTree = "<group>"; };
+		BEA3EBC6185459AA007B4D8F /* ProgressPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressPopupView.h; sourceTree = "<group>"; };
+		BEA3EBC7185459AA007B4D8F /* ProgressPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressPopupView.m; sourceTree = "<group>"; };
+		BEA3EBCC18546748007B4D8F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		BEA3EBCF1854678B007B4D8F /* ReceiptMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReceiptMapViewController.h; path = ../ReceiptMapViewController.h; sourceTree = "<group>"; };
+		BEA3EBD01854678B007B4D8F /* ReceiptMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReceiptMapViewController.m; path = ../ReceiptMapViewController.m; sourceTree = "<group>"; };
+		BEA3EBD218546A6C007B4D8F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		BEA3EBD618547138007B4D8F /* LocationRetriever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationRetriever.h; sourceTree = "<group>"; };
+		BEA3EBD718547138007B4D8F /* LocationRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationRetriever.m; sourceTree = "<group>"; };
+		BEA3EBD918547334007B4D8F /* SingletonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonManager.h; sourceTree = "<group>"; };
+		BEA3EBDA18547334007B4D8F /* SingletonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonManager.m; sourceTree = "<group>"; };
+		BEA3EBDC185479A2007B4D8F /* ReceiptLocationAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptLocationAnnotation.h; sourceTree = "<group>"; };
+		BEA3EBDD185479A2007B4D8F /* ReceiptLocationAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptLocationAnnotation.m; sourceTree = "<group>"; };
+		BEA3EBDF18557358007B4D8F /* PinAnnotationButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinAnnotationButton.h; sourceTree = "<group>"; };
+		BEA3EBE018557358007B4D8F /* PinAnnotationButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinAnnotationButton.m; sourceTree = "<group>"; };
 		BEBF3EB016DB3A1300B82C62 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BEDE720018400E7A003CE131 /* ImageProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcessor.h; sourceTree = "<group>"; };
 		BEDE720118400E7A003CE131 /* ImageProcessor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageProcessor.mm; sourceTree = "<group>"; };
@@ -164,8 +199,6 @@
 		E5A3480B184AD7B100F7EAEE /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HistoryViewController.m; path = ../HistoryViewController.m; sourceTree = "<group>"; };
 		E5A3480D184AE73400F7EAEE /* DisplayReceiptContentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DisplayReceiptContentsViewController.h; path = ../DisplayReceiptContentsViewController.h; sourceTree = "<group>"; };
 		E5A3480E184AE73400F7EAEE /* DisplayReceiptContentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DisplayReceiptContentsViewController.m; path = ../DisplayReceiptContentsViewController.m; sourceTree = "<group>"; };
-		E5B0F179184437A7004AA7E2 /* CropImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CropImageViewController.h; sourceTree = "<group>"; };
-		E5B0F17A184437A7004AA7E2 /* CropImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CropImageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +206,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEA3EBD318546A6C007B4D8F /* CoreLocation.framework in Frameworks */,
+				BEA3EBCD18546748007B4D8F /* MapKit.framework in Frameworks */,
+				BEA3EBB8185444C9007B4D8F /* CoreMedia.framework in Frameworks */,
+				BEA3EBB618544398007B4D8F /* SystemConfiguration.framework in Frameworks */,
 				E5A34806184A9E7800F7EAEE /* CoreData.framework in Frameworks */,
 				BE9E37F1183DB8E8004986D8 /* libz.dylib in Frameworks */,
 				BE9E37EF183DB8D7004986D8 /* ImageIO.framework in Frameworks */,
@@ -211,6 +248,10 @@
 		17E5A60E146017E9004B1CA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BEA3EBD218546A6C007B4D8F /* CoreLocation.framework */,
+				BEA3EBCC18546748007B4D8F /* MapKit.framework */,
+				BEA3EBB7185444C9007B4D8F /* CoreMedia.framework */,
+				BEA3EBB518544398007B4D8F /* SystemConfiguration.framework */,
 				E5A34805184A9E7800F7EAEE /* CoreData.framework */,
 				BE9E37F0183DB8E8004986D8 /* libz.dylib */,
 				BE9E37EE183DB8D7004986D8 /* ImageIO.framework */,
@@ -225,16 +266,16 @@
 		17E5A615146017E9004B1CA6 /* TesseractSample */ = {
 			isa = PBXGroup;
 			children = (
-				17E5A61E146017E9004B1CA6 /* AppDelegate.h */,
-				17E5A61F146017E9004B1CA6 /* AppDelegate.mm */,
-				BE62AA71184F1B45003A34EE /* ios-code[NOT-FOR-GRADING] */,
+				BE62AA71184F1B45003A34EE /* ios-code [GRADED PORTION] */,
 				BE62AA70184F1B30003A34EE /* 221code */,
 				E553FE37183DC9E800ECF736 /* OpenCV.framework */,
 				17E5A63014601A1C004B1CA6 /* dependencies */,
+				BEA3EBBF185449C9007B4D8F /* Default-586h@2x.png */,
 				17E5A68F14601E0F004B1CA6 /* tessdata */,
 				17E5A68E14601E0F004B1CA6 /* Lorem_Ipsum_Univers.png */,
 				17E5A616146017E9004B1CA6 /* Supporting Files */,
 				E5A34802184A9D4300F7EAEE /* ReceiptModel.xcdatamodeld */,
+				BEA3EBC1185449E4007B4D8F /* Images.xcassets */,
 			);
 			path = TesseractSample;
 			sourceTree = "<group>";
@@ -336,8 +377,6 @@
 		BE62AA70184F1B30003A34EE /* 221code */ = {
 			isa = PBXGroup;
 			children = (
-				BE62AA72184F1C14003A34EE /* NewCorpus.txt */,
-				BE62AA6D184F196F003A34EE /* lexicon.txt */,
 				E5A347F81847F90400F7EAEE /* SVMClassifier.h */,
 				E5A347F91847F90400F7EAEE /* SVMClassifier.mm */,
 				BEDE720918401F56003CE131 /* KMeansLineClustering.h */,
@@ -366,17 +405,65 @@
 				BE62AA5E184EA4BB003A34EE /* ReceiptModel.m */,
 				BE26C632183DC36000550F59 /* UIImage+OpenCV.h */,
 				BE26C633183DC36000550F59 /* UIImage+OpenCV.mm */,
-				17E5A624146017E9004B1CA6 /* ViewController.xib */,
 				E57ADF351841B5DE000CE617 /* LineClassifier.h */,
 				E57ADF361841B5DE000CE617 /* LineClassifier.m */,
+				17E5A624146017E9004B1CA6 /* ViewController.xib */,
+				BE62AA72184F1C14003A34EE /* NewCorpus.txt */,
+				BE62AA6D184F196F003A34EE /* lexicon.txt */,
 				E50E66361845A604008B4757 /* receipt_text.txt */,
 			);
 			name = 221code;
 			sourceTree = "<group>";
 		};
-		BE62AA71184F1B45003A34EE /* ios-code[NOT-FOR-GRADING] */ = {
+		BE62AA71184F1B45003A34EE /* ios-code [GRADED PORTION] */ = {
 			isa = PBXGroup;
 			children = (
+				BEA3EBD418546E77007B4D8F /* Both */,
+				BEA3EBD518546E97007B4D8F /* Diego */,
+				BEA3EBCE18546765007B4D8F /* Will */,
+			);
+			name = "ios-code [GRADED PORTION]";
+			sourceTree = "<group>";
+		};
+		BEA3EBCE18546765007B4D8F /* Will */ = {
+			isa = PBXGroup;
+			children = (
+				BEA3EBD618547138007B4D8F /* LocationRetriever.h */,
+				BEA3EBD718547138007B4D8F /* LocationRetriever.m */,
+				BEA3EBD918547334007B4D8F /* SingletonManager.h */,
+				BEA3EBDA18547334007B4D8F /* SingletonManager.m */,
+				BEA3EBCF1854678B007B4D8F /* ReceiptMapViewController.h */,
+				BEA3EBD01854678B007B4D8F /* ReceiptMapViewController.m */,
+				BEA3EBDF18557358007B4D8F /* PinAnnotationButton.h */,
+				BEA3EBE018557358007B4D8F /* PinAnnotationButton.m */,
+				BEA3EBDC185479A2007B4D8F /* ReceiptLocationAnnotation.h */,
+				BEA3EBDD185479A2007B4D8F /* ReceiptLocationAnnotation.m */,
+				BEA3EBC31854557B007B4D8F /* ReceiptGenerator.h */,
+				BEA3EBC41854557B007B4D8F /* ReceiptGenerator.mm */,
+				BEA3EBB2185442B7007B4D8F /* CroppingImageCaptureViewController.h */,
+				BEA3EBB3185442B7007B4D8F /* CroppingImageCaptureViewController.m */,
+				BEA3EBC6185459AA007B4D8F /* ProgressPopupView.h */,
+				BEA3EBC7185459AA007B4D8F /* ProgressPopupView.m */,
+			);
+			name = Will;
+			sourceTree = "<group>";
+		};
+		BEA3EBD418546E77007B4D8F /* Both */ = {
+			isa = PBXGroup;
+			children = (
+				17E5A61E146017E9004B1CA6 /* AppDelegate.h */,
+				17E5A61F146017E9004B1CA6 /* AppDelegate.mm */,
+				E5A347EF1847ECCF00F7EAEE /* ItemPricePair.h */,
+				E5A347F01847ECCF00F7EAEE /* ItemPricePair.m */,
+			);
+			name = Both;
+			sourceTree = "<group>";
+		};
+		BEA3EBD518546E97007B4D8F /* Diego */ = {
+			isa = PBXGroup;
+			children = (
+				E5A347EC1847EC9B00F7EAEE /* ItemTableViewCell.h */,
+				E5A347ED1847EC9B00F7EAEE /* ItemTableViewCell.m */,
 				E5A3480D184AE73400F7EAEE /* DisplayReceiptContentsViewController.h */,
 				E5A3480E184AE73400F7EAEE /* DisplayReceiptContentsViewController.m */,
 				E5A3480A184AD7B100F7EAEE /* HistoryViewController.h */,
@@ -385,16 +472,10 @@
 				E5A34808184AA11E00F7EAEE /* SaveReceiptViewController.m */,
 				E5A347E91847EC7000F7EAEE /* SelectItemsViewController.h */,
 				E5A347EA1847EC7000F7EAEE /* SelectItemsViewController.m */,
-				E5A347EC1847EC9B00F7EAEE /* ItemTableViewCell.h */,
-				E5A347ED1847EC9B00F7EAEE /* ItemTableViewCell.m */,
 				E5A347F21847ECF100F7EAEE /* AddTipUIView.h */,
 				E5A347F31847ECF100F7EAEE /* AddTipUIView.m */,
-				E5A347EF1847ECCF00F7EAEE /* ItemPricePair.h */,
-				E5A347F01847ECCF00F7EAEE /* ItemPricePair.m */,
-				E5B0F179184437A7004AA7E2 /* CropImageViewController.h */,
-				E5B0F17A184437A7004AA7E2 /* CropImageViewController.m */,
 			);
-			name = "ios-code[NOT-FOR-GRADING]";
+			name = Diego;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -447,11 +528,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEA3EBC2185449E4007B4D8F /* Images.xcassets in Resources */,
 				17E5A61A146017E9004B1CA6 /* InfoPlist.strings in Resources */,
 				17E5A626146017E9004B1CA6 /* ViewController.xib in Resources */,
 				17E5A69014601E0F004B1CA6 /* Lorem_Ipsum_Univers.png in Resources */,
 				BE62AA73184F1C14003A34EE /* NewCorpus.txt in Resources */,
 				BE62AA6F184F196F003A34EE /* lexicon.txt in Resources */,
+				BEA3EBC0185449C9007B4D8F /* Default-586h@2x.png in Resources */,
 				E50E66371845A604008B4757 /* receipt_text.txt in Resources */,
 				17E5A69114601E0F004B1CA6 /* tessdata in Resources */,
 			);
@@ -470,20 +553,27 @@
 				BEDE720218400E7B003CE131 /* ImageProcessor.mm in Sources */,
 				E5A3480C184AD7B100F7EAEE /* HistoryViewController.m in Sources */,
 				BE62AA62184EA57A003A34EE /* ClusterDecisionTreeClassifier.mm in Sources */,
+				BEA3EBB4185442B7007B4D8F /* CroppingImageCaptureViewController.m in Sources */,
+				BEA3EBC51854557B007B4D8F /* ReceiptGenerator.mm in Sources */,
 				BEDE720518400FA5003CE131 /* TesseractController.mm in Sources */,
 				E5A347F11847ECCF00F7EAEE /* ItemPricePair.m in Sources */,
 				BE62AA561844658D003A34EE /* ClusterWrapper.mm in Sources */,
+				BEA3EBD11854678B007B4D8F /* ReceiptMapViewController.m in Sources */,
+				BEA3EBDB18547334007B4D8F /* SingletonManager.m in Sources */,
 				E5A347EB1847EC7000F7EAEE /* SelectItemsViewController.m in Sources */,
 				BE62AA531844305B003A34EE /* ClusterMatrixManager.mm in Sources */,
 				17E5A61C146017E9004B1CA6 /* main.m in Sources */,
 				E5A347F41847ECF100F7EAEE /* AddTipUIView.m in Sources */,
-				E5B0F17B184437A7004AA7E2 /* CropImageViewController.m in Sources */,
 				BE62AA65184F0A7A003A34EE /* SpellChecker.m in Sources */,
 				17E5A620146017E9004B1CA6 /* AppDelegate.mm in Sources */,
 				17E5A623146017E9004B1CA6 /* ViewController.mm in Sources */,
+				BEA3EBC8185459AA007B4D8F /* ProgressPopupView.m in Sources */,
 				BE26C634183DC36000550F59 /* UIImage+OpenCV.mm in Sources */,
+				BEA3EBDE185479A2007B4D8F /* ReceiptLocationAnnotation.m in Sources */,
 				BEDE720E18402B9A003CE131 /* ContourWrapper.mm in Sources */,
 				E5A347FA1847F90400F7EAEE /* SVMClassifier.mm in Sources */,
+				BEA3EBE118557358007B4D8F /* PinAnnotationButton.m in Sources */,
+				BEA3EBD818547138007B4D8F /* LocationRetriever.m in Sources */,
 				E5A347EE1847EC9B00F7EAEE /* ItemTableViewCell.m in Sources */,
 				E5A34804184A9D4300F7EAEE /* ReceiptModel.xcdatamodeld in Sources */,
 				BE62AA5F184EA4BB003A34EE /* ReceiptModel.m in Sources */,
@@ -589,6 +679,8 @@
 		17E5A62A146017EA004B1CA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -600,7 +692,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TesseractSample/TesseractSample-Prefix.pch";
 				INFOPLIST_FILE = "TesseractSample/TesseractSample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TesseractSample/build_dependencies/dependencies/lib\"",
@@ -617,6 +709,8 @@
 		17E5A62B146017EA004B1CA6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -628,7 +722,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TesseractSample/TesseractSample-Prefix.pch";
 				INFOPLIST_FILE = "TesseractSample/TesseractSample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TesseractSample/build_dependencies/dependencies/lib\"",
