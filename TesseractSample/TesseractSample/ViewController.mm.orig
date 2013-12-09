@@ -13,11 +13,8 @@
 #import "ReceiptModel.h"
 #import "ClusterDecisionTreeClassifier.h"
 #import "SpellChecker.h"
-<<<<<<< HEAD
 #import "CropperView.h"
-=======
 #import "CroppingImageCaptureViewController.h"
->>>>>>> 024fd90f9bbba1954b212b2315816b8979236784
 
 @interface ViewController()
 
@@ -52,12 +49,20 @@
     NSLog(@"inital image orienation: %d", image.imageOrientation);
     [picker dismissModalViewControllerAnimated: NO];
     
+<<<<<<< HEAD
+//    
+//    CropperView *cropper = [[CropperView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 50) andImage:image];
+//    [self.view addSubview:cropper];
+//    return;
+=======
     
-    CropperView *cropper = [[CropperView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 50) andImage:image];
-    [self.view addSubview:cropper];
+////    CropperView *cropper = [[CropperView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 50) andImage:image];
+//    [self.view addSubview:cropper];
     return;
+>>>>>>> 5758ce6a756c6a02db5a061812e11eaae1cc7f18
     UIImage *newImage = [ImageProcessor resizeImage: image];
     cv::Mat theMat = [newImage CVMat];
+
     
    // image = nil;
     

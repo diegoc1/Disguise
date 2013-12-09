@@ -24,8 +24,12 @@ typedef void (^CompletionBlock)(UIImage *);
 @property (nonatomic) BOOL allowDrag;
 @property (nonatomic) int xSectionInView;
 @property (nonatomic) int ySectionInView;
-@property (nonatomic, strong) CompletionBlock handler;
+<<<<<<< HEAD
+@property (nonatomic) SEL completionSelector;
 @property (strong, nonatomic) UIButton *cropButton;
+=======
+@property (nonatomic, strong) CompletionBlock handler;
+>>>>>>> 5758ce6a756c6a02db5a061812e11eaae1cc7f18
 @end
 
 #define CROP_BUT_WIDTH 80
@@ -35,8 +39,13 @@ typedef void (^CompletionBlock)(UIImage *);
 
 @implementation CropperView
 
+<<<<<<< HEAD
+- (id)initWithFrame:(CGRect)frame andImage:(UIImage *)image onFinishedSelector:(SEL)selector
+{
+=======
 - (id)initWithFrame:(CGRect)frame andImage:(UIImage *)image andCompletionHandler: (void
                                                                                    (^)(UIImage *)) handler {
+>>>>>>> 5758ce6a756c6a02db5a061812e11eaae1cc7f18
     self = [super initWithFrame:frame];
     if (self) {
         
@@ -53,7 +62,7 @@ typedef void (^CompletionBlock)(UIImage *);
         [self addSubview:self.imview];
         [self.imview setImage:self.img];
         
-        self.cropper = [[UIView alloc] initWithFrame:CGRectMake(self.imview.frame.origin.x + 10, self.imview.frame.origin.y + 10, self.imview.frame.size.width - 20, self.imview.frame.size.height - 80)];
+        self.cropper = [[UIView alloc] initWithFrame:CGRectMake(self.imview.frame.origin.x + 10, self.imview.frame.origin.y + 10, self.imview.frame.size.width - 20, self.imview.frame.size.height - 60)];
         [self addSubview:self.cropper];
         self.cropper.userInteractionEnabled = YES;
         

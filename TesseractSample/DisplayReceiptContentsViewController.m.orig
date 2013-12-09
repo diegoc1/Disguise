@@ -232,8 +232,13 @@
     mailComposeVC.mailComposeDelegate = self;
     [mailComposeVC setSubject:subject];
     [mailComposeVC setMessageBody:email_text isHTML:NO];
+<<<<<<< HEAD
   //  [mailComposeVC setToRecipients:recipients];
+    [mailComposeVC addAttachmentData:data mimeType:mimeType fileName:fileName];
+=======
+    [mailComposeVC setToRecipients: recipients];
     [mailComposeVC addAttachmentData: data mimeType: mimeType fileName: fileName];
+>>>>>>> 5758ce6a756c6a02db5a061812e11eaae1cc7f18
     
     if ([MFMailComposeViewController canSendMail])
         [self presentViewController: mailComposeVC animated:YES completion:NULL];

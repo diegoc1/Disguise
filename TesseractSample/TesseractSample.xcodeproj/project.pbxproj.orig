@@ -32,7 +32,7 @@
 		BE9E37ED183DB8C6004986D8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37EC183DB8C6004986D8 /* AVFoundation.framework */; };
 		BE9E37EF183DB8D7004986D8 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37EE183DB8D7004986D8 /* ImageIO.framework */; };
 		BE9E37F1183DB8E8004986D8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37F0183DB8E8004986D8 /* libz.dylib */; };
-		BEA3EBB4185442B7007B4D8F /* CroppingImageCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA3EBB3185442B7007B4D8F /* CroppingImageCaptureViewController.m */; };
+		BEA3EBB4185442B7007B4D8F /* CroppingImageCaptureViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEA3EBB3185442B7007B4D8F /* CroppingImageCaptureViewController.mm */; };
 		BEA3EBB618544398007B4D8F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA3EBB518544398007B4D8F /* SystemConfiguration.framework */; };
 		BEA3EBB8185444C9007B4D8F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA3EBB7185444C9007B4D8F /* CoreMedia.framework */; };
 		BEA3EBC0185449C9007B4D8F /* Default-586h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEA3EBBF185449C9007B4D8F /* Default-586h@2x.png */; };
@@ -45,7 +45,7 @@
 		BEA3EBD818547138007B4D8F /* LocationRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA3EBD718547138007B4D8F /* LocationRetriever.m */; };
 		BEA3EBDB18547334007B4D8F /* SingletonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA3EBDA18547334007B4D8F /* SingletonManager.m */; };
 		BEA3EBDE185479A2007B4D8F /* ReceiptLocationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA3EBDD185479A2007B4D8F /* ReceiptLocationAnnotation.m */; };
-		BEA3EBE118557358007B4D8F /* PinAnnotationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA3EBE018557358007B4D8F /* PinAnnotationButton.m */; };
+		BEA3EBE318558BB1007B4D8F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA3EBE218558BB1007B4D8F /* Social.framework */; };
 		BEBF3EB116DB3A1300B82C62 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEBF3EB016DB3A1300B82C62 /* QuartzCore.framework */; };
 		BEDE720218400E7B003CE131 /* ImageProcessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720118400E7A003CE131 /* ImageProcessor.mm */; };
 		BEDE720518400FA5003CE131 /* TesseractController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720418400FA5003CE131 /* TesseractController.mm */; };
@@ -64,15 +64,12 @@
 		E5A34809184AA11E00F7EAEE /* SaveReceiptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A34808184AA11E00F7EAEE /* SaveReceiptViewController.m */; };
 		E5A3480C184AD7B100F7EAEE /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A3480B184AD7B100F7EAEE /* HistoryViewController.m */; };
 		E5A3480F184AE73400F7EAEE /* DisplayReceiptContentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A3480E184AE73400F7EAEE /* DisplayReceiptContentsViewController.m */; };
-<<<<<<< HEAD
-		E5B0F17B184437A7004AA7E2 /* CropImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B0F17A184437A7004AA7E2 /* CropImageViewController.m */; };
 		E5ECAC49185458F000F0CBD4 /* EditTableViewCellUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5ECAC48185458F000F0CBD4 /* EditTableViewCellUIView.m */; };
 		E5ECAC4B18546AE000F0CBD4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5ECAC4A18546AE000F0CBD4 /* MessageUI.framework */; };
 		E5ECAC4D18546EA000F0CBD4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5ECAC4C18546EA000F0CBD4 /* AudioToolbox.framework */; };
 		E5ECAC50185477A300F0CBD4 /* CropperView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5ECAC4F185477A300F0CBD4 /* CropperView.m */; };
 		E5ECAC521854799900F0CBD4 /* receipt_img.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5ECAC511854799900F0CBD4 /* receipt_img.jpg */; };
-=======
->>>>>>> 024fd90f9bbba1954b212b2315816b8979236784
+		E5ECAC541855846400F0CBD4 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5ECAC531855846400F0CBD4 /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -156,7 +153,7 @@
 		BE9E37EE183DB8D7004986D8 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		BE9E37F0183DB8E8004986D8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BEA3EBB2185442B7007B4D8F /* CroppingImageCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CroppingImageCaptureViewController.h; sourceTree = "<group>"; };
-		BEA3EBB3185442B7007B4D8F /* CroppingImageCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CroppingImageCaptureViewController.m; sourceTree = "<group>"; };
+		BEA3EBB3185442B7007B4D8F /* CroppingImageCaptureViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CroppingImageCaptureViewController.mm; sourceTree = "<group>"; };
 		BEA3EBB518544398007B4D8F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BEA3EBB7185444C9007B4D8F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		BEA3EBBF185449C9007B4D8F /* Default-586h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-586h@2x.png"; sourceTree = "<group>"; };
@@ -175,8 +172,7 @@
 		BEA3EBDA18547334007B4D8F /* SingletonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonManager.m; sourceTree = "<group>"; };
 		BEA3EBDC185479A2007B4D8F /* ReceiptLocationAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptLocationAnnotation.h; sourceTree = "<group>"; };
 		BEA3EBDD185479A2007B4D8F /* ReceiptLocationAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptLocationAnnotation.m; sourceTree = "<group>"; };
-		BEA3EBDF18557358007B4D8F /* PinAnnotationButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinAnnotationButton.h; sourceTree = "<group>"; };
-		BEA3EBE018557358007B4D8F /* PinAnnotationButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinAnnotationButton.m; sourceTree = "<group>"; };
+		BEA3EBE218558BB1007B4D8F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		BEBF3EB016DB3A1300B82C62 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BEDE720018400E7A003CE131 /* ImageProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcessor.h; sourceTree = "<group>"; };
 		BEDE720118400E7A003CE131 /* ImageProcessor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageProcessor.mm; sourceTree = "<group>"; };
@@ -208,9 +204,6 @@
 		E5A3480B184AD7B100F7EAEE /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HistoryViewController.m; path = ../HistoryViewController.m; sourceTree = "<group>"; };
 		E5A3480D184AE73400F7EAEE /* DisplayReceiptContentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DisplayReceiptContentsViewController.h; path = ../DisplayReceiptContentsViewController.h; sourceTree = "<group>"; };
 		E5A3480E184AE73400F7EAEE /* DisplayReceiptContentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DisplayReceiptContentsViewController.m; path = ../DisplayReceiptContentsViewController.m; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		E5B0F179184437A7004AA7E2 /* CropImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CropImageViewController.h; sourceTree = "<group>"; };
-		E5B0F17A184437A7004AA7E2 /* CropImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CropImageViewController.m; sourceTree = "<group>"; };
 		E5ECAC47185458F000F0CBD4 /* EditTableViewCellUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTableViewCellUIView.h; sourceTree = "<group>"; };
 		E5ECAC48185458F000F0CBD4 /* EditTableViewCellUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTableViewCellUIView.m; sourceTree = "<group>"; };
 		E5ECAC4A18546AE000F0CBD4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -218,8 +211,7 @@
 		E5ECAC4E185477A300F0CBD4 /* CropperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CropperView.h; sourceTree = "<group>"; };
 		E5ECAC4F185477A300F0CBD4 /* CropperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CropperView.m; sourceTree = "<group>"; };
 		E5ECAC511854799900F0CBD4 /* receipt_img.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = receipt_img.jpg; sourceTree = "<group>"; };
-=======
->>>>>>> 024fd90f9bbba1954b212b2315816b8979236784
+		E5ECAC531855846400F0CBD4 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,14 +220,16 @@
 			buildActionMask = 2147483647;
 			files = (
 <<<<<<< HEAD
+				E5ECAC541855846400F0CBD4 /* FacebookSDK.framework in Frameworks */,
+=======
+				BEA3EBE318558BB1007B4D8F /* Social.framework in Frameworks */,
+>>>>>>> 5758ce6a756c6a02db5a061812e11eaae1cc7f18
 				E5ECAC4D18546EA000F0CBD4 /* AudioToolbox.framework in Frameworks */,
 				E5ECAC4B18546AE000F0CBD4 /* MessageUI.framework in Frameworks */,
-=======
 				BEA3EBD318546A6C007B4D8F /* CoreLocation.framework in Frameworks */,
 				BEA3EBCD18546748007B4D8F /* MapKit.framework in Frameworks */,
 				BEA3EBB8185444C9007B4D8F /* CoreMedia.framework in Frameworks */,
 				BEA3EBB618544398007B4D8F /* SystemConfiguration.framework in Frameworks */,
->>>>>>> 024fd90f9bbba1954b212b2315816b8979236784
 				E5A34806184A9E7800F7EAEE /* CoreData.framework in Frameworks */,
 				BE9E37F1183DB8E8004986D8 /* libz.dylib in Frameworks */,
 				BE9E37EF183DB8D7004986D8 /* ImageIO.framework in Frameworks */,
@@ -275,14 +269,16 @@
 			isa = PBXGroup;
 			children = (
 <<<<<<< HEAD
+				E5ECAC531855846400F0CBD4 /* FacebookSDK.framework */,
+=======
+				BEA3EBE218558BB1007B4D8F /* Social.framework */,
+>>>>>>> 5758ce6a756c6a02db5a061812e11eaae1cc7f18
 				E5ECAC4C18546EA000F0CBD4 /* AudioToolbox.framework */,
 				E5ECAC4A18546AE000F0CBD4 /* MessageUI.framework */,
-=======
 				BEA3EBD218546A6C007B4D8F /* CoreLocation.framework */,
 				BEA3EBCC18546748007B4D8F /* MapKit.framework */,
 				BEA3EBB7185444C9007B4D8F /* CoreMedia.framework */,
 				BEA3EBB518544398007B4D8F /* SystemConfiguration.framework */,
->>>>>>> 024fd90f9bbba1954b212b2315816b8979236784
 				E5A34805184A9E7800F7EAEE /* CoreData.framework */,
 				BE9E37F0183DB8E8004986D8 /* libz.dylib */,
 				BE9E37EE183DB8D7004986D8 /* ImageIO.framework */,
@@ -466,14 +462,12 @@
 				BEA3EBDA18547334007B4D8F /* SingletonManager.m */,
 				BEA3EBCF1854678B007B4D8F /* ReceiptMapViewController.h */,
 				BEA3EBD01854678B007B4D8F /* ReceiptMapViewController.m */,
-				BEA3EBDF18557358007B4D8F /* PinAnnotationButton.h */,
-				BEA3EBE018557358007B4D8F /* PinAnnotationButton.m */,
 				BEA3EBDC185479A2007B4D8F /* ReceiptLocationAnnotation.h */,
 				BEA3EBDD185479A2007B4D8F /* ReceiptLocationAnnotation.m */,
 				BEA3EBC31854557B007B4D8F /* ReceiptGenerator.h */,
 				BEA3EBC41854557B007B4D8F /* ReceiptGenerator.mm */,
 				BEA3EBB2185442B7007B4D8F /* CroppingImageCaptureViewController.h */,
-				BEA3EBB3185442B7007B4D8F /* CroppingImageCaptureViewController.m */,
+				BEA3EBB3185442B7007B4D8F /* CroppingImageCaptureViewController.mm */,
 				BEA3EBC6185459AA007B4D8F /* ProgressPopupView.h */,
 				BEA3EBC7185459AA007B4D8F /* ProgressPopupView.m */,
 			);
@@ -487,6 +481,10 @@
 				17E5A61F146017E9004B1CA6 /* AppDelegate.mm */,
 				E5A347EF1847ECCF00F7EAEE /* ItemPricePair.h */,
 				E5A347F01847ECCF00F7EAEE /* ItemPricePair.m */,
+				E5A3480D184AE73400F7EAEE /* DisplayReceiptContentsViewController.h */,
+				E5A3480E184AE73400F7EAEE /* DisplayReceiptContentsViewController.m */,
+				E5ECAC4E185477A300F0CBD4 /* CropperView.h */,
+				E5ECAC4F185477A300F0CBD4 /* CropperView.m */,
 			);
 			name = Both;
 			sourceTree = "<group>";
@@ -496,27 +494,16 @@
 			children = (
 				E5A347EC1847EC9B00F7EAEE /* ItemTableViewCell.h */,
 				E5A347ED1847EC9B00F7EAEE /* ItemTableViewCell.m */,
-				E5A3480D184AE73400F7EAEE /* DisplayReceiptContentsViewController.h */,
-				E5A3480E184AE73400F7EAEE /* DisplayReceiptContentsViewController.m */,
 				E5A3480A184AD7B100F7EAEE /* HistoryViewController.h */,
 				E5A3480B184AD7B100F7EAEE /* HistoryViewController.m */,
 				E5A34807184AA11E00F7EAEE /* SaveReceiptViewController.h */,
 				E5A34808184AA11E00F7EAEE /* SaveReceiptViewController.m */,
-				E5A347E91847EC7000F7EAEE /* SelectItemsViewController.h */,
-				E5A347EA1847EC7000F7EAEE /* SelectItemsViewController.m */,
 				E5A347F21847ECF100F7EAEE /* AddTipUIView.h */,
 				E5A347F31847ECF100F7EAEE /* AddTipUIView.m */,
-<<<<<<< HEAD
-				E5A347EF1847ECCF00F7EAEE /* ItemPricePair.h */,
-				E5A347F01847ECCF00F7EAEE /* ItemPricePair.m */,
-				E5B0F179184437A7004AA7E2 /* CropImageViewController.h */,
-				E5B0F17A184437A7004AA7E2 /* CropImageViewController.m */,
 				E5ECAC47185458F000F0CBD4 /* EditTableViewCellUIView.h */,
 				E5ECAC48185458F000F0CBD4 /* EditTableViewCellUIView.m */,
-				E5ECAC4E185477A300F0CBD4 /* CropperView.h */,
-				E5ECAC4F185477A300F0CBD4 /* CropperView.m */,
-=======
->>>>>>> 024fd90f9bbba1954b212b2315816b8979236784
+				E5A347E91847EC7000F7EAEE /* SelectItemsViewController.h */,
+				E5A347EA1847EC7000F7EAEE /* SelectItemsViewController.m */,
 			);
 			name = Diego;
 			sourceTree = "<group>";
@@ -597,7 +584,7 @@
 				BEDE720218400E7B003CE131 /* ImageProcessor.mm in Sources */,
 				E5A3480C184AD7B100F7EAEE /* HistoryViewController.m in Sources */,
 				BE62AA62184EA57A003A34EE /* ClusterDecisionTreeClassifier.mm in Sources */,
-				BEA3EBB4185442B7007B4D8F /* CroppingImageCaptureViewController.m in Sources */,
+				BEA3EBB4185442B7007B4D8F /* CroppingImageCaptureViewController.mm in Sources */,
 				BEA3EBC51854557B007B4D8F /* ReceiptGenerator.mm in Sources */,
 				BEDE720518400FA5003CE131 /* TesseractController.mm in Sources */,
 				E5A347F11847ECCF00F7EAEE /* ItemPricePair.m in Sources */,
@@ -611,16 +598,12 @@
 				BE62AA65184F0A7A003A34EE /* SpellChecker.m in Sources */,
 				17E5A620146017E9004B1CA6 /* AppDelegate.mm in Sources */,
 				17E5A623146017E9004B1CA6 /* ViewController.mm in Sources */,
-<<<<<<< HEAD
 				E5ECAC49185458F000F0CBD4 /* EditTableViewCellUIView.m in Sources */,
-=======
 				BEA3EBC8185459AA007B4D8F /* ProgressPopupView.m in Sources */,
->>>>>>> 024fd90f9bbba1954b212b2315816b8979236784
 				BE26C634183DC36000550F59 /* UIImage+OpenCV.mm in Sources */,
 				BEA3EBDE185479A2007B4D8F /* ReceiptLocationAnnotation.m in Sources */,
 				BEDE720E18402B9A003CE131 /* ContourWrapper.mm in Sources */,
 				E5A347FA1847F90400F7EAEE /* SVMClassifier.mm in Sources */,
-				BEA3EBE118557358007B4D8F /* PinAnnotationButton.m in Sources */,
 				BEA3EBD818547138007B4D8F /* LocationRetriever.m in Sources */,
 				E5A347EE1847EC9B00F7EAEE /* ItemTableViewCell.m in Sources */,
 				E5A34804184A9D4300F7EAEE /* ReceiptModel.xcdatamodeld in Sources */,
@@ -737,6 +720,7 @@
 					/Users/Will/Desktop/221proj/Disguise/TesseractSample/TesseractSample,
 					/Users/diegocanales/Documents/ReceiptProject/Disguise/TesseractSample/TesseractSample,
 					/Users/diegocanales/Documents/GitProblems/Disguise/TesseractSample,
+					/Users/diegocanales/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TesseractSample/TesseractSample-Prefix.pch";
@@ -767,6 +751,7 @@
 					/Users/Will/Desktop/221proj/Disguise/TesseractSample/TesseractSample,
 					/Users/diegocanales/Documents/ReceiptProject/Disguise/TesseractSample/TesseractSample,
 					/Users/diegocanales/Documents/GitProblems/Disguise/TesseractSample,
+					/Users/diegocanales/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TesseractSample/TesseractSample-Prefix.pch";

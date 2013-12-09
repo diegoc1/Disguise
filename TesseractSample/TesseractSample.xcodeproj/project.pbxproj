@@ -45,7 +45,7 @@
 		BEA3EBD818547138007B4D8F /* LocationRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA3EBD718547138007B4D8F /* LocationRetriever.m */; };
 		BEA3EBDB18547334007B4D8F /* SingletonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA3EBDA18547334007B4D8F /* SingletonManager.m */; };
 		BEA3EBDE185479A2007B4D8F /* ReceiptLocationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA3EBDD185479A2007B4D8F /* ReceiptLocationAnnotation.m */; };
-		BEA3EBE118557358007B4D8F /* PinAnnotationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA3EBE018557358007B4D8F /* PinAnnotationButton.m */; };
+		BEA3EBE318558BB1007B4D8F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA3EBE218558BB1007B4D8F /* Social.framework */; };
 		BEBF3EB116DB3A1300B82C62 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEBF3EB016DB3A1300B82C62 /* QuartzCore.framework */; };
 		BEDE720218400E7B003CE131 /* ImageProcessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720118400E7A003CE131 /* ImageProcessor.mm */; };
 		BEDE720518400FA5003CE131 /* TesseractController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDE720418400FA5003CE131 /* TesseractController.mm */; };
@@ -172,8 +172,7 @@
 		BEA3EBDA18547334007B4D8F /* SingletonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonManager.m; sourceTree = "<group>"; };
 		BEA3EBDC185479A2007B4D8F /* ReceiptLocationAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptLocationAnnotation.h; sourceTree = "<group>"; };
 		BEA3EBDD185479A2007B4D8F /* ReceiptLocationAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptLocationAnnotation.m; sourceTree = "<group>"; };
-		BEA3EBDF18557358007B4D8F /* PinAnnotationButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinAnnotationButton.h; sourceTree = "<group>"; };
-		BEA3EBE018557358007B4D8F /* PinAnnotationButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinAnnotationButton.m; sourceTree = "<group>"; };
+		BEA3EBE218558BB1007B4D8F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		BEBF3EB016DB3A1300B82C62 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BEDE720018400E7A003CE131 /* ImageProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcessor.h; sourceTree = "<group>"; };
 		BEDE720118400E7A003CE131 /* ImageProcessor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageProcessor.mm; sourceTree = "<group>"; };
@@ -220,7 +219,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5ECAC541855846400F0CBD4 /* FacebookSDK.framework in Frameworks */,
+				BEA3EBE318558BB1007B4D8F /* Social.framework in Frameworks */,
 				E5ECAC4D18546EA000F0CBD4 /* AudioToolbox.framework in Frameworks */,
 				E5ECAC4B18546AE000F0CBD4 /* MessageUI.framework in Frameworks */,
 				BEA3EBD318546A6C007B4D8F /* CoreLocation.framework in Frameworks */,
@@ -265,7 +264,7 @@
 		17E5A60E146017E9004B1CA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E5ECAC531855846400F0CBD4 /* FacebookSDK.framework */,
+				BEA3EBE218558BB1007B4D8F /* Social.framework */,
 				E5ECAC4C18546EA000F0CBD4 /* AudioToolbox.framework */,
 				E5ECAC4A18546AE000F0CBD4 /* MessageUI.framework */,
 				BEA3EBD218546A6C007B4D8F /* CoreLocation.framework */,
@@ -455,8 +454,6 @@
 				BEA3EBDA18547334007B4D8F /* SingletonManager.m */,
 				BEA3EBCF1854678B007B4D8F /* ReceiptMapViewController.h */,
 				BEA3EBD01854678B007B4D8F /* ReceiptMapViewController.m */,
-				BEA3EBDF18557358007B4D8F /* PinAnnotationButton.h */,
-				BEA3EBE018557358007B4D8F /* PinAnnotationButton.m */,
 				BEA3EBDC185479A2007B4D8F /* ReceiptLocationAnnotation.h */,
 				BEA3EBDD185479A2007B4D8F /* ReceiptLocationAnnotation.m */,
 				BEA3EBC31854557B007B4D8F /* ReceiptGenerator.h */,
@@ -476,6 +473,10 @@
 				17E5A61F146017E9004B1CA6 /* AppDelegate.mm */,
 				E5A347EF1847ECCF00F7EAEE /* ItemPricePair.h */,
 				E5A347F01847ECCF00F7EAEE /* ItemPricePair.m */,
+				E5A3480D184AE73400F7EAEE /* DisplayReceiptContentsViewController.h */,
+				E5A3480E184AE73400F7EAEE /* DisplayReceiptContentsViewController.m */,
+				E5ECAC4E185477A300F0CBD4 /* CropperView.h */,
+				E5ECAC4F185477A300F0CBD4 /* CropperView.m */,
 			);
 			name = Both;
 			sourceTree = "<group>";
@@ -485,20 +486,16 @@
 			children = (
 				E5A347EC1847EC9B00F7EAEE /* ItemTableViewCell.h */,
 				E5A347ED1847EC9B00F7EAEE /* ItemTableViewCell.m */,
-				E5A3480D184AE73400F7EAEE /* DisplayReceiptContentsViewController.h */,
-				E5A3480E184AE73400F7EAEE /* DisplayReceiptContentsViewController.m */,
 				E5A3480A184AD7B100F7EAEE /* HistoryViewController.h */,
 				E5A3480B184AD7B100F7EAEE /* HistoryViewController.m */,
 				E5A34807184AA11E00F7EAEE /* SaveReceiptViewController.h */,
 				E5A34808184AA11E00F7EAEE /* SaveReceiptViewController.m */,
-				E5A347E91847EC7000F7EAEE /* SelectItemsViewController.h */,
-				E5A347EA1847EC7000F7EAEE /* SelectItemsViewController.m */,
 				E5A347F21847ECF100F7EAEE /* AddTipUIView.h */,
 				E5A347F31847ECF100F7EAEE /* AddTipUIView.m */,
 				E5ECAC47185458F000F0CBD4 /* EditTableViewCellUIView.h */,
 				E5ECAC48185458F000F0CBD4 /* EditTableViewCellUIView.m */,
-				E5ECAC4E185477A300F0CBD4 /* CropperView.h */,
-				E5ECAC4F185477A300F0CBD4 /* CropperView.m */,
+				E5A347E91847EC7000F7EAEE /* SelectItemsViewController.h */,
+				E5A347EA1847EC7000F7EAEE /* SelectItemsViewController.m */,
 			);
 			name = Diego;
 			sourceTree = "<group>";
@@ -599,7 +596,6 @@
 				BEA3EBDE185479A2007B4D8F /* ReceiptLocationAnnotation.m in Sources */,
 				BEDE720E18402B9A003CE131 /* ContourWrapper.mm in Sources */,
 				E5A347FA1847F90400F7EAEE /* SVMClassifier.mm in Sources */,
-				BEA3EBE118557358007B4D8F /* PinAnnotationButton.m in Sources */,
 				BEA3EBD818547138007B4D8F /* LocationRetriever.m in Sources */,
 				E5A347EE1847EC9B00F7EAEE /* ItemTableViewCell.m in Sources */,
 				E5A34804184A9D4300F7EAEE /* ReceiptModel.xcdatamodeld in Sources */,

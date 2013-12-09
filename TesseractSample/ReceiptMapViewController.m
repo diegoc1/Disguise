@@ -4,7 +4,6 @@
 #import <CoreData/CoreData.h>
 #import "AppDelegate.h"
 #import "ReceiptLocationAnnotation.h"
-#import "PinAnnotationButton.h"
 #import "DisplayReceiptContentsViewController.h"
 
 
@@ -45,7 +44,7 @@
         MKCoordinateRegion coordRegion;
         coordRegion.center.latitude = location.coordinate.latitude;
         coordRegion.center.longitude = location.coordinate.longitude;
-        coordRegion.span = MKCoordinateSpanMake(1.0, 1.0);
+        coordRegion.span = MKCoordinateSpanMake(0.4, 0.4);
         coordRegion = [self.mapView regionThatFits: coordRegion];
         [self.mapView setRegion: coordRegion animated: TRUE];
         [self.locationManager stopUpdatingLocation];
@@ -122,37 +121,6 @@
     DisplayReceiptContentsViewController *displayVC = [[DisplayReceiptContentsViewController alloc] initWithContents: annotation.title loc: @"..." total: annotation.total image: annotation.image];
     [self.navigationController pushViewController: displayVC animated: TRUE];
 }
-
-
-//-(void) moreButtonClicked: (PinAnnotationButton *) sender {
-//    ReceiptLocationAnnotation *annotation = sender.annotation;
-//    
-//    DisplayReceiptContentsViewController *displayVC = [[DisplayReceiptContentsViewController alloc] initWithContents: annotation.title loc: @"..." total: annotation.total image: annotation.image];
-//    [self.navigationController pushViewController: displayVC animated: TRUE];
-//}
-
-
-//- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
-//    
-//    if ([annotation isKindOfClass: [ReceiptLocationAnnotation class]]) {
-//        MKAnnotationView *annotationView = (MKAnnotationView *) [self.mapView dequeueReusableAnnotationViewWithIdentifier: @"rec_location"];
-//        
-//        if (annotationView == nil) {
-//            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier: @"rec_location"];
-////            annotationView.enabled = YES;
-////            annotationView.canShowCallout = YES;
-////            
-////            annotationView.image = [UIImage imageNamed:@"Default-568h.png"];
-//            
-//        } else {
-//            annotationView.annotation = annotation; //upadte annotation
-//        }
-//        
-//        return annotationView;
-//    }
-//    
-//    return nil;
-//}
 
 
 @end

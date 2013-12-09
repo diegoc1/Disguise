@@ -57,6 +57,8 @@
         NSLog(@"Total is: %@", [info valueForKey:@"individual_total"]);
     }
     [self.tableView reloadData];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

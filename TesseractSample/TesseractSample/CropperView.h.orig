@@ -10,8 +10,13 @@
 
 @interface CropperView : UIView
 
+<<<<<<< HEAD
+- (id)initWithFrame:(CGRect)frame andImage:(UIImage *)image onFinishedSelector:(SEL)selector;
+
+- (UIImage *) getCroppedImage;
+=======
 - (id)initWithFrame:(CGRect)frame andImage:(UIImage *)image andCompletionHandler: (void
                                                                                    (^)(UIImage *)) handler;
-- (UIImage *) getCroppedImage;
+>>>>>>> 5758ce6a756c6a02db5a061812e11eaae1cc7f18
 
 @end
