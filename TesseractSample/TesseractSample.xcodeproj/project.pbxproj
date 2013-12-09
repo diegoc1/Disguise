@@ -54,6 +54,8 @@
 		E5ECAC49185458F000F0CBD4 /* EditTableViewCellUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5ECAC48185458F000F0CBD4 /* EditTableViewCellUIView.m */; };
 		E5ECAC4B18546AE000F0CBD4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5ECAC4A18546AE000F0CBD4 /* MessageUI.framework */; };
 		E5ECAC4D18546EA000F0CBD4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5ECAC4C18546EA000F0CBD4 /* AudioToolbox.framework */; };
+		E5ECAC50185477A300F0CBD4 /* CropperView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5ECAC4F185477A300F0CBD4 /* CropperView.m */; };
+		E5ECAC521854799900F0CBD4 /* receipt_img.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5ECAC511854799900F0CBD4 /* receipt_img.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -173,6 +175,9 @@
 		E5ECAC48185458F000F0CBD4 /* EditTableViewCellUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTableViewCellUIView.m; sourceTree = "<group>"; };
 		E5ECAC4A18546AE000F0CBD4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		E5ECAC4C18546EA000F0CBD4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		E5ECAC4E185477A300F0CBD4 /* CropperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CropperView.h; sourceTree = "<group>"; };
+		E5ECAC4F185477A300F0CBD4 /* CropperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CropperView.m; sourceTree = "<group>"; };
+		E5ECAC511854799900F0CBD4 /* receipt_img.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = receipt_img.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,6 +379,7 @@
 				BE62AA69184F185A003A34EE /* UnigramModel.h */,
 				BE62AA6A184F185A003A34EE /* UnigramModel.m */,
 				BE62AA5D184EA4BB003A34EE /* ReceiptModel.h */,
+				E5ECAC511854799900F0CBD4 /* receipt_img.jpg */,
 				BE62AA5E184EA4BB003A34EE /* ReceiptModel.m */,
 				BE26C632183DC36000550F59 /* UIImage+OpenCV.h */,
 				BE26C633183DC36000550F59 /* UIImage+OpenCV.mm */,
@@ -406,6 +412,8 @@
 				E5B0F17A184437A7004AA7E2 /* CropImageViewController.m */,
 				E5ECAC47185458F000F0CBD4 /* EditTableViewCellUIView.h */,
 				E5ECAC48185458F000F0CBD4 /* EditTableViewCellUIView.m */,
+				E5ECAC4E185477A300F0CBD4 /* CropperView.h */,
+				E5ECAC4F185477A300F0CBD4 /* CropperView.m */,
 			);
 			name = "ios-code[NOT-FOR-GRADING]";
 			sourceTree = "<group>";
@@ -466,6 +474,7 @@
 				BE62AA73184F1C14003A34EE /* NewCorpus.txt in Resources */,
 				BE62AA6F184F196F003A34EE /* lexicon.txt in Resources */,
 				E50E66371845A604008B4757 /* receipt_text.txt in Resources */,
+				E5ECAC521854799900F0CBD4 /* receipt_img.jpg in Resources */,
 				17E5A69114601E0F004B1CA6 /* tessdata in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -503,6 +512,7 @@
 				BE62AA5F184EA4BB003A34EE /* ReceiptModel.m in Sources */,
 				BE62AA6B184F185A003A34EE /* UnigramModel.m in Sources */,
 				BE62AA68184F17DD003A34EE /* WordDictionary.m in Sources */,
+				E5ECAC50185477A300F0CBD4 /* CropperView.m in Sources */,
 				BEDE720B18401F56003CE131 /* KMeansLineClustering.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,6 +13,7 @@
 #import "ReceiptModel.h"
 #import "ClusterDecisionTreeClassifier.h"
 #import "SpellChecker.h"
+#import "CropperView.h"
 
 @interface ViewController()
 
@@ -180,10 +181,19 @@
 		didFinishPickingImage:(UIImage *)image
 				  editingInfo:(NSDictionary *)editingInfo
 {
-    
+    NSLog(@"inital image orienation: %d", image.imageOrientation);
     [picker dismissModalViewControllerAnimated: NO];
+    
+    
+    CropperView *cropper = [[CropperView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 50) andImage:image];
+    [self.view addSubview:cropper];
+    return;
     UIImage *newImage = [ImageProcessor resizeImage: image];
     cv::Mat theMat = [newImage CVMat];
+    
+   // image = nil;
+    
+
     
     //Process original image - prepare for clustering
     [ImageProcessor performInitialImageProcessing: theMat];
@@ -208,6 +218,8 @@
     
     UIImage *resultingImage = [UIImage imageWithCVMat: theMat];
     //iv.image = resultingImage;
+    
+    
     
     SelectItemsViewController *sv = [[SelectItemsViewController alloc] initWithReceiptModel: receipt andImage: resultingImage];
     [self.navigationController pushViewController: sv animated: FALSE];
