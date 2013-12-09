@@ -30,7 +30,7 @@
 #pragma mark - View lifecycle
 
 -(IBAction)takePhoto:(id)sender {
-    CroppingImageCaptureViewController *croppingVC = [[CroppingImageCaptureViewController alloc] init];
+  //  CroppingImageCaptureViewController *croppingVC = [[CroppingImageCaptureViewController alloc] init];
     //[self presentModalViewController: croppingVC animated:YES];
     
     

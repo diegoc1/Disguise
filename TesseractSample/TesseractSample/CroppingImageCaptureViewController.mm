@@ -164,11 +164,13 @@
     [self.view addSubview: newImageView];
     
     //Hide old image
-    [self.imagePreviewView removeFromSuperview];
+    self.imagePreviewView.hidden = TRUE;
+    self.captureImageButton.hidden = TRUE;
     
     //Notify user that processing is occurring
     ProgressPopupView *popupView = [[ProgressPopupView alloc] initWithFrame: CGRectMake(self.view.frame.size.width/2 - POPUP_WIDTH/2, 120, POPUP_WIDTH, POP_HEIGHT)];
     [self.view addSubview: popupView];
+    
     
     
     //Perform computer vision on background thread, and update UI on main thread when done
@@ -186,7 +188,8 @@
             [popupView removeFromSuperview];
             
             //Add old image view
-            [self.view addSubview: self.imagePreviewView];
+            self.imagePreviewView.hidden = FALSE;
+            self.captureImageButton.hidden = FALSE;
             
             //Remove new view
             [newImageView removeFromSuperview];

@@ -59,7 +59,7 @@
 }
 
 -(void) showDeleteButton {
-    CGRect b = [self.contentView bounds];
+  //  CGRect b = [self.contentView bounds];
 
     if (!self.deleteButtonShowing) {
 

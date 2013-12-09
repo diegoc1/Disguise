@@ -93,14 +93,14 @@
     self.locationLabel =[[UILabel alloc] initWithFrame:CGRectMake(self.titleLabel.frame.origin.x, self.titleTextField.frame.origin.y + self.titleTextField.frame.size.height + 10 , 100, 30)];
     self.locationLabel.text = @"Location: ";
     self.locationLabel.textColor = [UIColor blackColor];
-    [self.view addSubview:self.locationLabel];
+ //   [self.view addSubview:self.locationLabel];
     
     self.locationTextField = [[UITextField alloc] initWithFrame:CGRectMake(self.titleLabel.frame.origin.x + self.titleLabel.frame.size.width + 10, self.locationLabel.frame.origin.y - 5, TV_WIDTH, TV_HEIGHT)];
     [self.locationTextField setBackgroundColor:[UIColor grayColor]];
     self.locationTextField.layer.cornerRadius = 10;
-    [self.view addSubview:self.locationTextField];
+  //  [self.view addSubview:self.locationTextField];
     
-    self.totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 100 /2 , self.locationTextField.frame.origin.y + self.locationTextField.frame.size.height + 20, 100, 30)];
+    self.totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 100 /2 , self.titleTextField.frame.origin.y + self.titleTextField.frame.size.height + 20, 100, 30)];
     self.totalLabel.text = [NSString stringWithFormat:@"Total: $%.2f", self.total];
     self.totalLabel.layer.cornerRadius = 10;
     self.totalLabel.textColor = [UIColor blackColor];
@@ -129,7 +129,7 @@
     [self.saveSuccessView setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:self.saveSuccessView];
 
-    if (self.titleTextField.text.length != 0 && self.locationTextField.text.length != 0) {
+    if (self.titleTextField.text.length != 0) {
         
 
         UILabel *successLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 150 / 2, self.view.frame.size.height / 2 - 75 / 2, 150, 75)];

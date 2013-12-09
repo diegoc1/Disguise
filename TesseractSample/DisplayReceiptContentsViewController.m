@@ -100,7 +100,7 @@
     self.locationLabel =[[UILabel alloc] initWithFrame:CGRectMake(self.titleLabel.frame.origin.x, self.titleTextField.frame.origin.y + self.titleTextField.frame.size.height + 10 , 100, 30)];
     self.locationLabel.text = @"Location: ";
     self.locationLabel.textColor = [UIColor blackColor];
-    [self.view addSubview:self.locationLabel];
+   // [self.view addSubview:self.locationLabel];
     
     self.locationTextField = [[UILabel alloc] initWithFrame:CGRectMake(self.titleLabel.frame.origin.x + self.titleLabel.frame.size.width + 10, self.locationLabel.frame.origin.y - 5, TV_WIDTH, TV_HEIGHT)];
     //   [self.locationTextField setBackgroundColor:[UIColor grayColor]];
@@ -109,7 +109,7 @@
     self.locationTextField.layer.cornerRadius = 10;
     self.locationTextField.text = self.location;
     self.locationTextField.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:self.locationTextField];
+  //  [self.view addSubview:self.locationTextField];
     
     self.totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 100 /2 , self.locationTextField.frame.origin.y + self.locationTextField.frame.size.height + 20, 100, 30)];
     self.totalLabel.text = [NSString stringWithFormat:@"Total: $%.2f", self.total];
@@ -118,13 +118,14 @@
     [self.view addSubview:self.totalLabel];
     
     
-    self.viewReceiptButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.totalLabel.frame.origin.y + self.totalLabel.frame.size.height + 10, 200, 30)];
+    self.viewReceiptButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.titleTextField.frame.origin.y + self.titleTextField.frame.size.height + 35, 200, 30)];
     [self.viewReceiptButton setTitle:@"View Receipt Image" forState:UIControlStateNormal];
     [self.viewReceiptButton setBackgroundColor:[UIColor grayColor]];
     self.viewReceiptButton.layer.cornerRadius = 10;
     [self.viewReceiptButton addTarget:self action:@selector(viewReceiptButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.viewReceiptButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
     [self.viewReceiptButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
+    [self.viewReceiptButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.viewReceiptButton];
     
     self.sendReceiptButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.viewReceiptButton.frame.origin.y + self.viewReceiptButton.frame.size.height + 10, 200, 30)];
@@ -134,6 +135,7 @@
     [self.sendReceiptButton addTarget:self action:@selector(sendReceiptButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.sendReceiptButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
     [self.sendReceiptButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
+    [self.sendReceiptButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.sendReceiptButton];
     
     self.sendTextButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.sendReceiptButton.frame.origin.y + self.sendReceiptButton.frame.size.height + 10, 200, 30)];
@@ -143,6 +145,8 @@
     [self.sendTextButton addTarget:self action:@selector(sendTextButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.sendTextButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
     [self.sendTextButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
+    [self.sendTextButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpInside];
+
     [self.view addSubview:self.sendTextButton];
     
     self.postToFacebookButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.sendTextButton.frame.origin.y + self.sendTextButton.frame.size.height + 10, 200, 30)];
@@ -152,6 +156,8 @@
     [self.postToFacebookButton addTarget:self action:@selector(sendFacebookButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.postToFacebookButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
     [self.postToFacebookButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
+    [self.postToFacebookButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpInside];
+
     [self.view addSubview:self.postToFacebookButton];
     
     self.postToTwitterButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.postToFacebookButton.frame.origin.y + self.postToFacebookButton.frame.size.height + 10, 200, 30)];
@@ -161,6 +167,8 @@
     [self.postToTwitterButton addTarget:self action:@selector(sendTwitterButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.postToTwitterButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
     [self.postToTwitterButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
+    [self.postToTwitterButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpInside];
+
     [self.view addSubview:self.postToTwitterButton];
     
     
@@ -177,7 +185,7 @@
         NSString *mimeType = @"application/png";
         NSString *fileName = @"receipt.png";
         [controller addAttachmentData:data typeIdentifier:mimeType filename:fileName];
-        [self presentModalViewController:controller animated:YES];
+        [self presentViewController:controller animated:YES completion:Nil];
         
     }
     return;
@@ -242,6 +250,10 @@
     } else {
         NSLog(@"NOT SENT");
     }
+    [self dismissViewControllerAnimated: TRUE completion:nil];
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
     [self dismissViewControllerAnimated: TRUE completion:nil];
 }
 

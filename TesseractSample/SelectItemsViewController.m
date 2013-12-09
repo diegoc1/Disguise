@@ -43,6 +43,8 @@
 @property (strong, nonatomic) UILabel *tipLabel;
 @property (nonatomic) BOOL atLeastOneDeleteButtonShowing;
 @property (strong, nonatomic) EditTableViewCellUIView *editView;
+@property (nonatomic) BOOL checkoutShowing;
+
 
 //@property (strong, nonatomic) UILabel *tipLabel;
 @end
@@ -109,7 +111,7 @@
             
         }
         
-        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 2) - LABEL_WIDTH / 2, 10, LABEL_WIDTH, LABEL_HEIGHT)];
+        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 2) - LABEL_WIDTH / 2, 17, LABEL_WIDTH, LABEL_HEIGHT)];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.titleLabel.text = receiptModel.title;
         self.titleLabel.textColor = [UIColor blackColor];
@@ -131,9 +133,17 @@
     CGFloat width = mainScreenBounds.size.width;
     CGFloat height = mainScreenBounds.size.height;
     self.allowChanges = TRUE;
-    
-    
-    
+
+    self.backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 24, 70, 30)];
+    [self.backButton addTarget:self action:@selector(backButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.backButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
+    [self.backButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
+    [self.backButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpInside];
+    [self.backButton setBackgroundColor:[UIColor grayColor]];
+    self.backButton.layer.cornerRadius = 10;
+    [self.backButton setTitle:@"Back" forState:UIControlStateNormal];
+    [self.view addSubview:self.backButton];
+
 
     
     self.addTipButton = [[UIButton alloc] initWithFrame:CGRectMake(ITEMS_X_OFFSET, height - (2* ADD_TIP_BUTTON_HEIGHT +2*SPACE_BETWEEN_TOTAL_AND_ITEMS) - 10, ADD_TIP_BUTTON_WIDTH, ADD_TIP_BUTTON_HEIGHT)];
@@ -334,7 +344,7 @@
 
 //When the user presses back, remove necessary buttons
 -(void)removeButtonsAfterFade {
-    [self.backButton removeFromSuperview];
+   // [self.backButton removeFromSuperview];
     [self.saveReceiptButton removeFromSuperview];
 }
 
@@ -362,7 +372,7 @@
     [self.saveReceiptButton setAlpha:0.0];
     [self.tipLabel setAlpha:1.0];
     [self.titleLabel setAlpha:1.0];
-    [self.backButton setAlpha:0.0];
+//    [self.backButton setAlpha:0.0];
     [UIView commitAnimations];
     [self removeButtonsAfterFade];
     
@@ -371,44 +381,49 @@
 
 //When back button is pressed, do necessary animations and add necessary views back
 -(void)backButtonPressed {
-    [self.totalPriceView setFrame:self.originalFrameForTotalPriceView];
-    [self.totalPriceView setAlpha:0.0];
-    [UIView beginAnimations:@"shrink_table" context:nil];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDuration:.4];
-    //  [UIView setAnimationDidStopSelector:@selector(addViewsBack)];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [self.selectedItemsTableView setFrame:self.originalFrameForSelectedTableView];
-    
-    [UIView commitAnimations];
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.5];
-    [self.totalPriceView setAlpha:1.0];
-    [UIView commitAnimations];
-    [self addViewsBack];
-    
-    self.allowChanges = TRUE;
+    if (self.checkoutShowing) {
+        self.checkoutShowing = FALSE;
+        [self.totalPriceView setFrame:self.originalFrameForTotalPriceView];
+        [self.totalPriceView setAlpha:0.0];
+        [UIView beginAnimations:@"shrink_table" context:nil];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDuration:.4];
+        //  [UIView setAnimationDidStopSelector:@selector(addViewsBack)];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [self.selectedItemsTableView setFrame:self.originalFrameForSelectedTableView];
+
+        [UIView commitAnimations];
+
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.5];
+        [self.totalPriceView setAlpha:1.0];
+        [UIView commitAnimations];
+        [self addViewsBack];
+
+        self.allowChanges = TRUE;
+    } else {
+        [self.navigationController popToRootViewControllerAnimated:TRUE];
+    }
     
     
 }
 
 -(void) makeTotalFadeIn {
     [self.saveReceiptButton setAlpha:0.0];
-    [self.backButton setAlpha:0.0];
+   // [self.backButton setAlpha:0.0];
     [self.totalPriceView setAlpha:0.0];
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
     [self.totalPriceView setAlpha:1.0];
     [self.saveReceiptButton setAlpha:1.0];
-    [self.backButton setAlpha:1.0];
+   // [self.backButton setAlpha:1.0];
     [UIView commitAnimations];
 }
 
 //Initalizes animations to display only selected items
 -(void) checkoutButtonPressed {
-    
+    self.checkoutShowing = TRUE;
     self.saveReceiptButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - (75), self.totalPriceView.frame.origin.y + self.totalPriceView.frame.size.height - 30, 150, 30)];
     [self.saveReceiptButton setBackgroundColor:[UIColor grayColor]];
     [self.saveReceiptButton addTarget:self action:@selector(saveReceiptButtonPressed) forControlEvents:UIControlEventTouchUpInside];
@@ -422,14 +437,6 @@
     [self.availableItemsTableView removeFromSuperview];
     self.originalFrameForSelectedTableView = self.selectedItemsTableView.frame;
     self.originalFrameForTotalPriceView = self.totalPriceView.frame;
-    self.backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 30, 70, 30)];
-    [self.backButton addTarget:self action:@selector(backButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.backButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
-    [self.backButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
-    [self.backButton setBackgroundColor:[UIColor grayColor]];
-    self.backButton.layer.cornerRadius = 10;
-    [self.backButton setTitle:@"Back" forState:UIControlStateNormal];
-    [self.view addSubview:self.backButton];
     
     [self.totalPriceView setFrame:CGRectMake(self.view.frame.size.width / 2 - self.totalPriceView.frame.size.width / 2, self.saveReceiptButton.frame.origin.y - self.saveReceiptButton.frame.size.height - 15, self.totalPriceView.frame.size.width, self.totalPriceView.frame.size.height)];
     
