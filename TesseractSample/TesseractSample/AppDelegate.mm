@@ -42,8 +42,8 @@
     tabBarController.viewControllers = controllers;
 
     ((SingletonManager *)[SingletonManager sharedSingletonManager]).isTrackingLocation = TRUE;
-    
     self.window.rootViewController = tabBarController;
+    
     [self.window makeKeyAndVisible];
     return YES;
 }

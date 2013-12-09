@@ -21,57 +21,88 @@
 @property (nonatomic) BOOL allowDrag;
 @property (nonatomic) int xSectionInView;
 @property (nonatomic) int ySectionInView;
+@property (nonatomic) SEL completionSelector;
+@property (strong, nonatomic) UIButton *cropButton;
 @end
+
+#define CROP_BUT_WIDTH 80
+#define CROP_BUT_HEIGHT 40
+
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @implementation CropperView
 
-- (id)initWithFrame:(CGRect)frame andImage:(UIImage *)image
+- (id)initWithFrame:(CGRect)frame andImage:(UIImage *)image onFinishedSelector:(SEL)selector
 {
     self = [super initWithFrame:frame];
     if (self) {
         //CGRect mainScreenRectangle = [[UIScreen mainScreen] bounds];
         CGFloat height = self.frame.size.height;
         CGFloat width = self.frame.size.width;
+      //  self.completionSelector = selector;
         if (image) self.img = image;
-        else self.img = [UIImage imageNamed:@"receipt_img.jpg"];
-      //  self.img = [UIImage imageNamed:@"receipt_img.jpg"];
-        
-        NSLog(@"image: %@", self.img);
         self.img = [UIImage imageWithCGImage:[self.img CGImage] scale:1.0  orientation: 0];
-        NSLog(@"orientation of img %d", self.img.imageOrientation);
-      //  NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
-     //   self.img = [UIImage imageWithData:imageData];
-     //   CGImageRef imageRef = [self.img CGImage];
         
-        //self.img = [UIImage imageWithCGImage:imageRef scale:1.0 orientation:UIImageOrientationRight];
-        
-        self.imview = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, width - 40, height - 40)];
+        self.imview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, height - 40)];
         [self addSubview:self.imview];
         [self.imview setImage:self.img];
-      //  self.img =[UIImage imageWithCGImage:[self.img CGImage] scale:self.img.scale orientation:0];
         
-        self.cropper = [[UIView alloc] initWithFrame:CGRectMake(self.imview.frame.origin.x + 10, self.imview.frame.origin.y + 10, self.imview.frame.size.width - 20, self.imview.frame.size.height - 20)];
+        self.cropper = [[UIView alloc] initWithFrame:CGRectMake(self.imview.frame.origin.x + 10, self.imview.frame.origin.y + 10, self.imview.frame.size.width - 20, self.imview.frame.size.height - 60)];
         [self addSubview:self.cropper];
         self.cropper.userInteractionEnabled = YES;
         
         UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(move:)];
         [panRecognizer setMinimumNumberOfTouches:1];
         [panRecognizer setMaximumNumberOfTouches:1];
+        UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(pinch:)];
+       
         [self.cropper addGestureRecognizer:panRecognizer];
+        [self.cropper addGestureRecognizer:pinchRecognizer];
         self.allowDrag = TRUE;
         
-        UIButton *cropButton = [[UIButton alloc] initWithFrame:CGRectMake(70, 50, 70, 20)];
-        [cropButton setTitle:@"CROP" forState:UIControlStateNormal];
-        [cropButton setBackgroundColor:[UIColor redColor]];
-        [cropButton addTarget:self action:@selector(cropButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:cropButton];
+        self.cropButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width / 2 - CROP_BUT_WIDTH / 2, self.frame.size.height - 40 - CROP_BUT_HEIGHT - 15 , CROP_BUT_WIDTH, CROP_BUT_HEIGHT)];
+        [self.cropButton setTitle:@"Crop" forState:UIControlStateNormal];
+        [self.cropButton setBackgroundColor:[UIColor grayColor]];
+        [self.cropButton addTarget:self action:@selector(cropButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [self.cropButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
+        [self.cropButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
+        [self.cropButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpInside];
+        self.cropButton.layer.cornerRadius = 10;
+        [self addSubview:self.cropButton];
         
-        self.cropper.layer.borderColor = [UIColor orangeColor].CGColor;
+        self.cropper.layer.borderColor = [UIColor blackColor].CGColor;
         self.cropper.layer.borderWidth = 5.0f;
 
     }
     return self;
 }
+
+-(void)buttonDown: (UIButton *) sender {
+    [sender setBackgroundColor:UIColorFromRGB(0x333333)];
+}
+
+-(void)buttonUp: (UIButton *) sender {
+    [sender setBackgroundColor:[UIColor grayColor]];
+}
+
+-(void) pinch:(UIPinchGestureRecognizer *)recognizer {
+    double scale = recognizer.scale;
+    if (recognizer.scale > 1) {
+        scale = 1 + ((recognizer.scale - 1) / 50);
+    } else {
+        scale = 1 - ((1 - recognizer.scale) / 50);
+    }
+
+    double oldWidth = self.cropper.frame.size.width;
+    double oldHeight = self.cropper.frame.size.height;
+    double newWidth = oldWidth * scale;
+    double newHeight = oldHeight * scale;
+    if (self.cropper.frame.origin.x + newWidth < self.imview.frame.origin.x + self.imview.frame.size.width && self.cropper.frame.origin.y + newHeight < self.imview.frame.origin.y + self.imview.frame.size.height && newWidth > 5 && newHeight > 5) {
+    
+    [self.cropper setFrame:CGRectMake(self.cropper.frame.origin.x, self.cropper.frame.origin.y, newWidth, newHeight)];
+    }
+}
+
 
 -(void) cropButtonPressed {
   //  self.img =[UIImage imageWithCGImage:[self.img CGImage] scale:self.img.scale orientation:self.img.imageOrientation];
@@ -108,6 +139,8 @@
  //   self.img.imageOrientation = 3;
     NSLog(@"orientation is now :%d", self.img.imageOrientation);
     [self.imview setImage:self.img];
+    //[self removeFromSuperview];
+  //  [self performSelector:self.completionSelector withObject:nil afterDelay:0];
     // self.imview.transform = CGAffineTransformMakeRotation(M_PI/2);
   //  [self.imview setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height)];
     
@@ -134,6 +167,7 @@
         return 3;
     }
 }
+
 
 -(void)move:(UIPanGestureRecognizer *)recognizer {
     CGFloat distance;
@@ -182,6 +216,10 @@
     
     
     
+}
+
+- (UIImage *) getCroppedImage {
+    return self.img;
 }
 
 

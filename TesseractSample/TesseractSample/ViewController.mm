@@ -49,12 +49,13 @@
     NSLog(@"inital image orienation: %d", image.imageOrientation);
     [picker dismissModalViewControllerAnimated: NO];
     
-    
-    CropperView *cropper = [[CropperView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 50) andImage:image];
-    [self.view addSubview:cropper];
-    return;
+//    
+//    CropperView *cropper = [[CropperView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 50) andImage:image];
+//    [self.view addSubview:cropper];
+//    return;
     UIImage *newImage = [ImageProcessor resizeImage: image];
     cv::Mat theMat = [newImage CVMat];
+
     
    // image = nil;
     

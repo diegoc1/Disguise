@@ -32,7 +32,7 @@
 		BE9E37ED183DB8C6004986D8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37EC183DB8C6004986D8 /* AVFoundation.framework */; };
 		BE9E37EF183DB8D7004986D8 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37EE183DB8D7004986D8 /* ImageIO.framework */; };
 		BE9E37F1183DB8E8004986D8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9E37F0183DB8E8004986D8 /* libz.dylib */; };
-		BEA3EBB4185442B7007B4D8F /* CroppingImageCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA3EBB3185442B7007B4D8F /* CroppingImageCaptureViewController.m */; };
+		BEA3EBB4185442B7007B4D8F /* CroppingImageCaptureViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEA3EBB3185442B7007B4D8F /* CroppingImageCaptureViewController.mm */; };
 		BEA3EBB618544398007B4D8F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA3EBB518544398007B4D8F /* SystemConfiguration.framework */; };
 		BEA3EBB8185444C9007B4D8F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA3EBB7185444C9007B4D8F /* CoreMedia.framework */; };
 		BEA3EBC0185449C9007B4D8F /* Default-586h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEA3EBBF185449C9007B4D8F /* Default-586h@2x.png */; };
@@ -69,6 +69,7 @@
 		E5ECAC4D18546EA000F0CBD4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5ECAC4C18546EA000F0CBD4 /* AudioToolbox.framework */; };
 		E5ECAC50185477A300F0CBD4 /* CropperView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5ECAC4F185477A300F0CBD4 /* CropperView.m */; };
 		E5ECAC521854799900F0CBD4 /* receipt_img.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5ECAC511854799900F0CBD4 /* receipt_img.jpg */; };
+		E5ECAC541855846400F0CBD4 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5ECAC531855846400F0CBD4 /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -152,7 +153,7 @@
 		BE9E37EE183DB8D7004986D8 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		BE9E37F0183DB8E8004986D8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BEA3EBB2185442B7007B4D8F /* CroppingImageCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CroppingImageCaptureViewController.h; sourceTree = "<group>"; };
-		BEA3EBB3185442B7007B4D8F /* CroppingImageCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CroppingImageCaptureViewController.m; sourceTree = "<group>"; };
+		BEA3EBB3185442B7007B4D8F /* CroppingImageCaptureViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CroppingImageCaptureViewController.mm; sourceTree = "<group>"; };
 		BEA3EBB518544398007B4D8F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BEA3EBB7185444C9007B4D8F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		BEA3EBBF185449C9007B4D8F /* Default-586h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-586h@2x.png"; sourceTree = "<group>"; };
@@ -211,6 +212,7 @@
 		E5ECAC4E185477A300F0CBD4 /* CropperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CropperView.h; sourceTree = "<group>"; };
 		E5ECAC4F185477A300F0CBD4 /* CropperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CropperView.m; sourceTree = "<group>"; };
 		E5ECAC511854799900F0CBD4 /* receipt_img.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = receipt_img.jpg; sourceTree = "<group>"; };
+		E5ECAC531855846400F0CBD4 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5ECAC541855846400F0CBD4 /* FacebookSDK.framework in Frameworks */,
 				E5ECAC4D18546EA000F0CBD4 /* AudioToolbox.framework in Frameworks */,
 				E5ECAC4B18546AE000F0CBD4 /* MessageUI.framework in Frameworks */,
 				BEA3EBD318546A6C007B4D8F /* CoreLocation.framework in Frameworks */,
@@ -262,6 +265,7 @@
 		17E5A60E146017E9004B1CA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5ECAC531855846400F0CBD4 /* FacebookSDK.framework */,
 				E5ECAC4C18546EA000F0CBD4 /* AudioToolbox.framework */,
 				E5ECAC4A18546AE000F0CBD4 /* MessageUI.framework */,
 				BEA3EBD218546A6C007B4D8F /* CoreLocation.framework */,
@@ -458,7 +462,7 @@
 				BEA3EBC31854557B007B4D8F /* ReceiptGenerator.h */,
 				BEA3EBC41854557B007B4D8F /* ReceiptGenerator.mm */,
 				BEA3EBB2185442B7007B4D8F /* CroppingImageCaptureViewController.h */,
-				BEA3EBB3185442B7007B4D8F /* CroppingImageCaptureViewController.m */,
+				BEA3EBB3185442B7007B4D8F /* CroppingImageCaptureViewController.mm */,
 				BEA3EBC6185459AA007B4D8F /* ProgressPopupView.h */,
 				BEA3EBC7185459AA007B4D8F /* ProgressPopupView.m */,
 			);
@@ -575,7 +579,7 @@
 				BEDE720218400E7B003CE131 /* ImageProcessor.mm in Sources */,
 				E5A3480C184AD7B100F7EAEE /* HistoryViewController.m in Sources */,
 				BE62AA62184EA57A003A34EE /* ClusterDecisionTreeClassifier.mm in Sources */,
-				BEA3EBB4185442B7007B4D8F /* CroppingImageCaptureViewController.m in Sources */,
+				BEA3EBB4185442B7007B4D8F /* CroppingImageCaptureViewController.mm in Sources */,
 				BEA3EBC51854557B007B4D8F /* ReceiptGenerator.mm in Sources */,
 				BEDE720518400FA5003CE131 /* TesseractController.mm in Sources */,
 				E5A347F11847ECCF00F7EAEE /* ItemPricePair.m in Sources */,
@@ -712,6 +716,7 @@
 					/Users/Will/Desktop/221proj/Disguise/TesseractSample/TesseractSample,
 					/Users/diegocanales/Documents/ReceiptProject/Disguise/TesseractSample/TesseractSample,
 					/Users/diegocanales/Documents/GitProblems/Disguise/TesseractSample,
+					/Users/diegocanales/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TesseractSample/TesseractSample-Prefix.pch";
@@ -742,6 +747,7 @@
 					/Users/Will/Desktop/221proj/Disguise/TesseractSample/TesseractSample,
 					/Users/diegocanales/Documents/ReceiptProject/Disguise/TesseractSample/TesseractSample,
 					/Users/diegocanales/Documents/GitProblems/Disguise/TesseractSample,
+					/Users/diegocanales/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TesseractSample/TesseractSample-Prefix.pch";

@@ -85,7 +85,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Asking for cell");
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -105,15 +104,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
      NSManagedObject *info = [self.items objectAtIndex:indexPath.row];
-    NSLog(@"Title %@", [info valueForKey:@"title"]);
-    NSLog(@"Receipt %@", [info valueForKey:@"receipt_image"]);
     UIImage *image = [UIImage imageWithData:[info valueForKey:@"receipt_image"]];
     NSString *title =[info valueForKey:@"title"];
     double total =[[info valueForKey:@"individual_total"] doubleValue];
-    
-    NSLog(@"title %@", title);
-    NSLog(@"tot : %f", total);
-    NSLog(@"image: %@", image);
     
     DisplayReceiptContentsViewController *displayVC = [[DisplayReceiptContentsViewController alloc] initWithContents:title loc: @"" total:total image:image];
     

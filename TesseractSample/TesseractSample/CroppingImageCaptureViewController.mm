@@ -5,6 +5,8 @@
 #import "ReceiptGenerator.h"
 #import "SelectItemsViewController.h"
 #import "ProgressPopupView.h"
+#import "CropperView.h"
+#import "ImageProcessor.h"
 
 #define BUTTON_SIZE 80
 #define POPUP_WIDTH 200
@@ -14,7 +16,9 @@
 
 @property (nonatomic, strong) UIView *imagePreviewView;
 @property (nonatomic, strong) UIButton *captureImageButton;
-
+@property (nonatomic, strong) ReceiptModel *receipt;
+@property (nonatomic, strong) UIView *popupView;
+@property (nonatomic, strong) CropperView *cropperView;
 @end
 
 @implementation CroppingImageCaptureViewController
@@ -119,7 +123,7 @@
          if (!imageSampleBuffer) return;
          NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation: imageSampleBuffer];
          UIImage *image = [[UIImage alloc] initWithData: imageData];
-         [self didCaptureImage: image];
+         [self didCaptureImage: [ImageProcessor resizeImage: image]];
          
      }];
     
@@ -128,23 +132,29 @@
 -(void) didCaptureImage: (UIImage *) image {
     
     //Notify user that processing is occurring
-    ProgressPopupView *popupView = [[ProgressPopupView alloc] initWithFrame: CGRectMake(self.view.frame.size.width/2 - POPUP_WIDTH/2, 120, POPUP_WIDTH, POP_HEIGHT)];
-    [self.view addSubview: popupView];
+     self.popupView = [[ProgressPopupView alloc] initWithFrame: CGRectMake(self.view.frame.size.width/2 - POPUP_WIDTH/2, 120, POPUP_WIDTH, POP_HEIGHT)];
+    [self.view addSubview: self.popupView];
+    
+    self.cropperView = [[CropperView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) andImage:image onFinishedSelector:(SEL)@selector(finishedCropping)];
+    [self.view addSubview:self.cropperView];
+    return;
     
     //Perform computer vision on background thread, and update UI on main thread when done
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        ReceiptModel *receipt = [ReceiptGenerator getReceiptForImage: image];
+        self.receipt = [ReceiptGenerator getReceiptForImage: image];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            SelectItemsViewController *sv = [[SelectItemsViewController alloc] initWithReceiptModel: receipt andImage: image];
+            SelectItemsViewController *sv = [[SelectItemsViewController alloc] initWithReceiptModel: self.receipt andImage: [self.cropperView getCroppedImage]];
             [self.navigationController pushViewController: sv animated: FALSE];
             [session startRunning];
             
             //Remove popup when done
-            [popupView removeFromSuperview];
-
+            [self.popupView removeFromSuperview];
+ 
+            
+            
         });
     });
     

@@ -108,7 +108,7 @@
             [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice: itemString withPrice: itemValue]];
             
         }
-        [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"WORKING" withPrice:10.40]];
+     //   [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"WORKING" withPrice:10.40]];
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 2) - LABEL_WIDTH / 2, 10, LABEL_WIDTH, LABEL_HEIGHT)];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.titleLabel.text = receiptModel.title;

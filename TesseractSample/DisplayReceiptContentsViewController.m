@@ -29,6 +29,9 @@
 @property (strong, nonatomic) UIImageView *imView;
 @property (strong, nonatomic) UIView *darkenerView;
 @property (strong, nonatomic) UIButton *exitButton;
+@property (strong, nonatomic) UIButton *sendTextButton;
+@property (strong, nonatomic) UIButton *postToFacebookButton;
+@property (strong, nonatomic) UIButton *postToTwitterButton;
 
 @end
 #define TV_HEIGHT 40
@@ -134,13 +137,60 @@
     [self.sendReceiptButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
     [self.view addSubview:self.sendReceiptButton];
     
+    self.sendTextButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.sendReceiptButton.frame.origin.y + self.sendReceiptButton.frame.size.height + 10, 200, 30)];
+    [self.sendTextButton setTitle:@"Text Receipt" forState:UIControlStateNormal];
+    [self.sendTextButton setBackgroundColor:[UIColor grayColor]];
+    self.sendTextButton.layer.cornerRadius = 10;
+    [self.sendTextButton addTarget:self action:@selector(sendTextButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.sendTextButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
+    [self.sendTextButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
+    [self.view addSubview:self.sendTextButton];
+    
+    self.postToFacebookButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.sendTextButton.frame.origin.y + self.sendTextButton.frame.size.height + 10, 200, 30)];
+    [self.postToFacebookButton setTitle:@"Post to Facebook" forState:UIControlStateNormal];
+    [self.postToFacebookButton setBackgroundColor:[UIColor grayColor]];
+    self.postToFacebookButton.layer.cornerRadius = 10;
+    [self.postToFacebookButton addTarget:self action:@selector(postToFacebookButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.postToFacebookButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
+    [self.postToFacebookButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
+    [self.view addSubview:self.postToFacebookButton];
+    
+    self.postToTwitterButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.postToFacebookButton.frame.origin.y + self.postToFacebookButton.frame.size.height + 10, 200, 30)];
+    [self.postToTwitterButton setTitle:@"Post to Twitter" forState:UIControlStateNormal];
+    [self.postToTwitterButton setBackgroundColor:[UIColor grayColor]];
+    self.postToTwitterButton.layer.cornerRadius = 10;
+    [self.postToTwitterButton addTarget:self action:@selector(postToTwitterButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.postToTwitterButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
+    [self.postToTwitterButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
+    [self.view addSubview:self.postToTwitterButton];
+    
+    
+}
+
+- (void) sendTextButtonPressed {
+    MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+    if([MFMessageComposeViewController canSendText])
+    {
+        controller.body = [NSString stringWithFormat:@"%@", self.title];
+        controller.recipients = [NSArray arrayWithObjects:nil];
+        controller.messageComposeDelegate = self;
+        NSData *data = UIImagePNGRepresentation(self.image);
+        NSString *mimeType = @"application/png";
+        NSString *fileName = @"receipt.png";
+        [controller addAttachmentData:data typeIdentifier:mimeType filename:fileName];
+        [self presentModalViewController:controller animated:YES];
+        
+    }
+    return;
+
 }
 
 - (void) sendReceiptButtonPressed {
+    
     [self.sendReceiptButton setBackgroundColor:[UIColor grayColor]];
     NSString *subject = [NSString stringWithFormat:@"Receipt: %@", self.title ];
     NSString *email_text = [NSString stringWithFormat:@"Here is the receipt from %@", self.location ];
-    NSArray *recipients = [NSArray arrayWithObject:@"diegoc1@stanford.edu"];
+ //   NSArray *recipients = [NSArray arrayWithObject:@"diegoc1@stanford.edu"];
     
     NSData *data = UIImagePNGRepresentation(self.image);
     MFMailComposeViewController *mailComposeVC = [[MFMailComposeViewController alloc] init];
@@ -149,7 +199,7 @@
     mailComposeVC.mailComposeDelegate = self;
     [mailComposeVC setSubject:subject];
     [mailComposeVC setMessageBody:email_text isHTML:NO];
-    [mailComposeVC setToRecipients:recipients];
+  //  [mailComposeVC setToRecipients:recipients];
     [mailComposeVC addAttachmentData:data mimeType:mimeType fileName:fileName];
     
     [self presentViewController:mailComposeVC animated:YES completion:NULL];
@@ -164,6 +214,7 @@
     }
     [self dismissModalViewControllerAnimated:YES];
 }
+
 
 -(void) viewReceiptButtonPressed {
     NSLog(@"viewing receipt!");

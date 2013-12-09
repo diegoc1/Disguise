@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MFMailComposeViewController.h>
+#import <MessageUI/MFMessageComposeViewController.h>
 
 
-@interface DisplayReceiptContentsViewController : UIViewController <MFMailComposeViewControllerDelegate>
+@interface DisplayReceiptContentsViewController : UIViewController <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 
 -(id) initWithContents: (NSString *) title loc:(NSString *)location total:(double)total image:(UIImage *)image;
 

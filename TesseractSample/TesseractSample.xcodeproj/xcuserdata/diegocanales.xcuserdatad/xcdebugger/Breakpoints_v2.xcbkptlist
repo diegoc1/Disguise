@@ -72,11 +72,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TesseractSample/CropperView.m"
-            timestampString = "408254976.546783"
+            timestampString = "408265109.18147"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "-cropButtonPressed"
             landmarkType = "5">
          </BreakpointContent>
