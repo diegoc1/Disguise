@@ -52,7 +52,8 @@
     self.items = fetchedObjects;
     for (NSManagedObject *info in fetchedObjects) {
         NSLog(@"Title: %@", [info valueForKey:@"title"]);
-        NSLog(@"Location: %@", [info valueForKey:@"location"]);
+        NSLog(@"Latitude: %@", [info valueForKey:@"latitude"]);
+        NSLog(@"Longitude: %@", [info valueForKey:@"longitude"]);
         NSLog(@"Total is: %@", [info valueForKey:@"individual_total"]);
     }
     [self.tableView reloadData];
@@ -108,15 +109,13 @@
     NSLog(@"Receipt %@", [info valueForKey:@"receipt_image"]);
     UIImage *image = [UIImage imageWithData:[info valueForKey:@"receipt_image"]];
     NSString *title =[info valueForKey:@"title"];
-    NSString *location =[info valueForKey:@"location"];
     double total =[[info valueForKey:@"individual_total"] doubleValue];
     
     NSLog(@"title %@", title);
-    NSLog(@"loc: %@", location);
     NSLog(@"tot : %f", total);
     NSLog(@"image: %@", image);
     
-    DisplayReceiptContentsViewController *displayVC = [[DisplayReceiptContentsViewController alloc] initWithContents:title loc:location total:total image:image];
+    DisplayReceiptContentsViewController *displayVC = [[DisplayReceiptContentsViewController alloc] initWithContents:title loc: @"" total:total image:image];
     
 //    DisplayReceiptContentsViewController *displayVC = [[DisplayReceiptContentsViewController alloc] initWithContents: loc:[info valueForKey:@"location"] total:[[info valueForKey:@"individual_total"] doubleValue] image:image];
     [self.navigationController pushViewController:displayVC animated:FALSE];

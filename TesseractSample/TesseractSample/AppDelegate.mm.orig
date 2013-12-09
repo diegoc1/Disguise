@@ -87,14 +87,16 @@
      */
 }
 
+<<<<<<< HEAD
 ////////////////////////////////////////////////////////////////////////////////////////
 //// MUCH OF THIS CODE WAS DERIVED FROM RAY WENDERLICH'S CORE DATA TUTORIAL AT http://www.raywenderlich.com/934/core-data-tutorial-for-ios-getting-started /////
 ////////////////////////////////////////////////////////////////////////////////////////
 
 
-
+=======
 
 /* Core Data work below is Diego's */
+>>>>>>> 024fd90f9bbba1954b212b2315816b8979236784
 
 - (NSManagedObjectContext *) managedObjectContext {
     if (managedObjectContext != nil) {

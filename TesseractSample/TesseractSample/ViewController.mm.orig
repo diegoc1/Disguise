@@ -4,14 +4,27 @@
 #import "UIImage+OpenCV.h"
 #import "TesseractController.h"
 #import "ImageProcessor.h"
-<<<<<<< HEAD
-#import "LineClassifier.h"
-#import "KMeansLineClustering.h"
-#import "CropImageViewController.h"
-=======
 #import "ClusterMatrixManager.h"
 #import "ClusterWrapper.h"
->>>>>>> 013f8c916abab82b6cea474f3956ce352f71422d
+#import "LineClassifier.h"
+#import "KMeansLineClustering.h"
+#import "SelectItemsViewController.h"
+#import "SVMClassifier.h"
+#import "ReceiptModel.h"
+#import "ClusterDecisionTreeClassifier.h"
+#import "SpellChecker.h"
+<<<<<<< HEAD
+#import "CropperView.h"
+=======
+#import "CroppingImageCaptureViewController.h"
+>>>>>>> 024fd90f9bbba1954b212b2315816b8979236784
+
+@interface ViewController()
+
+@property (strong, nonatomic) UIImage *receiptImage;
+
+//@property (strong, nonatomic) UILabel *tipLabel;
+@end
 
 @implementation ViewController
 
@@ -19,74 +32,16 @@
 
 #pragma mark - View lifecycle
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    NSArray *d1 = @[[NSNumber numberWithDouble:96], [NSNumber numberWithDouble:4], [NSNumber numberWithDouble:7]];
-    NSArray *d2 = @[[NSNumber numberWithDouble:95], [NSNumber numberWithDouble:5.2], [NSNumber numberWithDouble:5.3]];
-    NSArray *d3 = @[[NSNumber numberWithDouble:97], [NSNumber numberWithDouble:5.1], [NSNumber numberWithDouble:5.2]];
-    
-    
-    
-    NSArray *d4 = @[[NSNumber numberWithDouble:80], [NSNumber numberWithDouble:3.4], [NSNumber numberWithDouble:7.1]];
-    NSArray *d5 = @[[NSNumber numberWithDouble:84], [NSNumber numberWithDouble:5.6], [NSNumber numberWithDouble:5.7]];
-    NSArray *d6 = @[[NSNumber numberWithDouble:82], [NSNumber numberWithDouble:4.2], [NSNumber numberWithDouble:7.7]];
-    
-    
-    
-    
-    NSArray *d7 = @[[NSNumber numberWithDouble:80], [NSNumber numberWithDouble:0.4], [NSNumber numberWithDouble:.1]];
-    NSArray *d8 = @[[NSNumber numberWithDouble:84], [NSNumber numberWithDouble:.1], [NSNumber numberWithDouble:0.6]];
-    NSArray *d9 = @[[NSNumber numberWithDouble:82], [NSNumber numberWithDouble:0.3], [NSNumber numberWithDouble:0.7]];
-    
-    
-    
-    NSMutableArray *data = [[NSMutableArray alloc] init];
-    [data addObject:d1];
-    [data addObject:d2];
-    [data addObject:d3];
-    [data addObject:d4];
-    [data addObject:d5];
-    [data addObject:d6];
-    [data addObject:d7];
-    [data addObject:d8];
-    [data addObject:d9];
-    
-    KMeansLineClustering *clustering = [[KMeansLineClustering alloc] initWithPoints:data desiredNumberOfCentroids:3];
-    NSString *t1 =  @"Salmon $1.30";
-    NSMutableArray *arr = [[NSMutableArray alloc] init];
-    [arr addObject:t1];
-    LineClassifier *classifier = [[LineClassifier alloc] initWithTrainingStrings:arr];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
 -(IBAction)takePhoto:(id)sender {
+    CroppingImageCaptureViewController *croppingVC = [[CroppingImageCaptureViewController alloc] init];
+    //[self presentModalViewController: croppingVC animated:YES];
     
-    imagePickerController = [[UIImagePickerController alloc] init];
-    imagePickerController.delegate = self;
-    imagePickerController.sourceType =  UIImagePickerControllerSourceTypeCamera;
     
-	[self presentModalViewController:imagePickerController animated:YES];
+//    imagePickerController = [[UIImagePickerController alloc] init];
+//    imagePickerController.delegate = self;
+//    imagePickerController.sourceType =  UIImagePickerControllerSourceTypeCamera;
+//    
+//	[self presentModalViewController:imagePickerController animated:YES];
 }
 
 #pragma mark UIImagePickerControllerDelegate
@@ -94,42 +49,48 @@
 		didFinishPickingImage:(UIImage *)image
 				  editingInfo:(NSDictionary *)editingInfo
 {
-    NSLog(@"PHOTO HAS BEEN CHOSEN");
-    
+    NSLog(@"inital image orienation: %d", image.imageOrientation);
     [picker dismissModalViewControllerAnimated: NO];
     
+    
+    CropperView *cropper = [[CropperView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 50) andImage:image];
+    [self.view addSubview:cropper];
+    return;
     UIImage *newImage = [ImageProcessor resizeImage: image];
     cv::Mat theMat = [newImage CVMat];
     
+   // image = nil;
+    
+
+    
+    //Process original image - prepare for clustering
     [ImageProcessor performInitialImageProcessing: theMat];
     
     TesseractController *tc = [[TesseractController alloc] init];
+    //Create clusters and superate matrices for each
     NSMutableArray *clusterMatrices = [ClusterMatrixManager extractClusterMats: theMat];
+    
+    //For each cluster matrix, use Tesseract OCR to create recognized text
     for (ClusterWrapper *cluster in clusterMatrices) {
-        [tc processOcrAt: [UIImage imageWithCVMat: cluster.clusterMat]];
+        cluster.recognizedText = [tc processOcrAt: [UIImage imageWithCVMat: cluster.clusterMat]];
+        NSLog(@"%@", cluster.recognizedText);
     }
     
+    SpellChecker *spellChecker = [[SpellChecker alloc] init];
+    ReceiptModel *receipt = [ClusterDecisionTreeClassifier processReceiptFromClusters: clusterMatrices withSpellChecker: spellChecker];
+    NSLog(@"TITLE %@", receipt.title);
+    NSLog(@"TOTAL AMOUNT: %f", receipt.totalAmount);
+    NSLog(@"TAX AMOUNT: %f", receipt.taxAmount);
+    NSLog(@"ITEMS: %@", receipt.itemsPurchased);
+    
+    
     UIImage *resultingImage = [UIImage imageWithCVMat: theMat];
-    //    ImageWrapper *greyScale=Image::createImage(newImage, newImage.size.width, newImage.size.height);
-//    ImageWrapper *edges=greyScale.image->autoLocalThreshold();
-//    UIImage *postProcessingImage = edges.image->toUIImage();
+    //iv.image = resultingImage;
     
-   // [tc processOcrAt: resultingImage];
     
-    iv.image = resultingImage;
     
-	// Dismiss the image selection, hide the picker and
-    
-	//show the image view with the picked image
-//    
-//	[picker dismissModalViewControllerAnimated:NO];
-//    [self startTesseract];
-//    NSLog(@"Recognizing...");
-//	UIImage *newImage = [self resizeImage:image];
-//	iv.image = newImage;
-//	NSString *text = [self ocrImage:newImage];
-//    NSLog(@"OUTPUT: %@", text);
-//	label.text = text;
+    SelectItemsViewController *sv = [[SelectItemsViewController alloc] initWithReceiptModel: receipt andImage: resultingImage];
+    [self.navigationController pushViewController: sv animated: FALSE];
 }
 
 
