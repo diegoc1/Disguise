@@ -108,7 +108,7 @@
             [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice: itemString withPrice: itemValue]];
             
         }
-        [self.items addObject:[[ItemPricePair alloc] initWithTitleAndPrice:@"WORKING" withPrice:10.40]];
+        
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 2) - LABEL_WIDTH / 2, 10, LABEL_WIDTH, LABEL_HEIGHT)];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.titleLabel.text = receiptModel.title;
@@ -277,6 +277,9 @@
         CGPoint location = [gesture locationInView:self.availableItemsTableView];
         NSIndexPath *indexPathForSwipedCell = [self.availableItemsTableView indexPathForRowAtPoint:location];
         ItemTableViewCell *swipedCell  = (ItemTableViewCell *)[self.availableItemsTableView cellForRowAtIndexPath:indexPathForSwipedCell];
+    
+        if (!swipedCell.title || !swipedCell.price) return;
+    
         [swipedCell showDeleteButton];
         NSLog(@"LEFT swiped cell: %@", swipedCell.title);
 }
@@ -285,6 +288,9 @@
     CGPoint location = [gesture locationInView:self.availableItemsTableView];
     NSIndexPath *indexPathForSwipedCell = [self.availableItemsTableView indexPathForRowAtPoint:location];
     ItemTableViewCell *swipedCell  = (ItemTableViewCell *)[self.availableItemsTableView cellForRowAtIndexPath:indexPathForSwipedCell];
+    
+    if (!swipedCell.title || !swipedCell.price) return;
+    
     if (swipedCell.deleteButtonShowing) {
         [swipedCell hideDeleteButton];
     } else {
@@ -312,6 +318,9 @@
         CGPoint location = [gesture locationInView:self.selectedItemsTableView];
         NSIndexPath *indexPathForSwipedCell = [self.selectedItemsTableView indexPathForRowAtPoint:location];
         ItemTableViewCell *swipedCell  = (ItemTableViewCell *)[self.selectedItemsTableView cellForRowAtIndexPath:indexPathForSwipedCell];
+    
+        if (!swipedCell.title || !swipedCell.price) return;
+    
         [swipedCell showDeleteButton];
         NSLog(@"LEFT swiped cell: %@", swipedCell.title);
 }
@@ -320,6 +329,9 @@
     CGPoint location = [gesture locationInView:self.selectedItemsTableView];
     NSIndexPath *indexPathForSwipedCell = [self.selectedItemsTableView indexPathForRowAtPoint:location];
     ItemTableViewCell *swipedCell  = (ItemTableViewCell *)[self.selectedItemsTableView cellForRowAtIndexPath:indexPathForSwipedCell];
+    
+    if (!swipedCell.title || !swipedCell.price) return;
+    
     if (swipedCell.deleteButtonShowing) {
         [swipedCell hideDeleteButton];
     } else {

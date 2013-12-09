@@ -7,6 +7,7 @@
 //
 
 #import "DisplayReceiptContentsViewController.h"
+#import <Social/Social.h>
 
 @interface DisplayReceiptContentsViewController ()
 @property (strong, nonatomic) UIButton *backButton;
@@ -136,6 +137,38 @@
     
 }
 
+
+/* Facebook/twitter code is Will Harvey - Everything else is Diego's */
+/*********/
+
+
+-(void) presentSocialViewControllerOfType: (NSString * const) sltype {
+    SLComposeViewController *fbPostVC = [SLComposeViewController composeViewControllerForServiceType: sltype];
+    
+    [fbPostVC setInitialText: self.title];
+    [fbPostVC addImage: self.image];
+    
+    [self presentViewController: fbPostVC animated: TRUE completion: nil];
+    
+    fbPostVC.completionHandler = ^(SLComposeViewControllerResult result){
+        [self dismissViewControllerAnimated: TRUE completion: nil]; };
+}
+
+
+-(void) sendFacebookButtonPressed {
+    [self presentSocialViewControllerOfType: SLServiceTypeFacebook];
+}
+
+
+-(void) sendTwitterButtonPressed {
+    [self presentSocialViewControllerOfType: SLServiceTypeTwitter];
+}
+
+
+/* End of Will code */
+/*********/
+
+
 - (void) sendReceiptButtonPressed {
     [self.sendReceiptButton setBackgroundColor:[UIColor grayColor]];
     NSString *subject = [NSString stringWithFormat:@"Receipt: %@", self.title ];
@@ -149,10 +182,12 @@
     mailComposeVC.mailComposeDelegate = self;
     [mailComposeVC setSubject:subject];
     [mailComposeVC setMessageBody:email_text isHTML:NO];
-    [mailComposeVC setToRecipients:recipients];
-    [mailComposeVC addAttachmentData:data mimeType:mimeType fileName:fileName];
+    [mailComposeVC setToRecipients: recipients];
+    [mailComposeVC addAttachmentData: data mimeType: mimeType fileName: fileName];
     
-    [self presentViewController:mailComposeVC animated:YES completion:NULL];
+    if ([MFMailComposeViewController canSendMail])
+        [self presentViewController: mailComposeVC animated:YES completion:NULL];
+    else NSLog(@"cant send email");
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error;
@@ -162,7 +197,7 @@
     } else {
         NSLog(@"NOT SENT");
     }
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated: TRUE completion:nil];
 }
 
 -(void) viewReceiptButtonPressed {

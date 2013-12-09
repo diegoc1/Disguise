@@ -5,6 +5,8 @@
 #import "ReceiptGenerator.h"
 #import "SelectItemsViewController.h"
 #import "ProgressPopupView.h"
+#import "ImageProcessor.h"
+#import "CropperView.h"
 
 #define BUTTON_SIZE 80
 #define POPUP_WIDTH 200
@@ -31,6 +33,11 @@
         self.imagePreviewView.backgroundColor = [UIColor darkGrayColor];
         [self.view addSubview: self.imagePreviewView];
         
+        UIButton *focusButton = [[UIButton alloc] initWithFrame: self.imagePreviewView.frame];
+        focusButton.backgroundColor = [UIColor clearColor];
+        [self.view addSubview: focusButton];
+        [focusButton addTarget: self action: @selector(tapFocus) forControlEvents:UIControlEventTouchUpInside];
+        
         
         self.captureImageButton = [[UIButton alloc] initWithFrame: CGRectMake(screenWidth/2 - BUTTON_SIZE/2, 400, BUTTON_SIZE, BUTTON_SIZE)];
         self.captureImageButton.backgroundColor = [UIColor whiteColor];
@@ -54,6 +61,20 @@
     return self;
 }
 
+-(void) tapFocus {
+    NSLog(@"try to focus");
+    [cameraDevice lockForConfiguration: nil];
+    [cameraDevice setFocusMode: AVCaptureFocusModeAutoFocus];
+    [cameraDevice unlockForConfiguration];
+    
+    [NSTimer scheduledTimerWithTimeInterval: 0.4 target: self selector: @selector(lockAfterDelay) userInfo: nil repeats: FALSE];
+}
+
+-(void) lockAfterDelay {
+    [cameraDevice lockForConfiguration: nil];
+    [cameraDevice setFocusMode: AVCaptureFocusModeLocked];
+    [cameraDevice unlockForConfiguration];
+}
 
 -(BOOL) initializeCamera {
     NSError *error = nil;
@@ -87,7 +108,7 @@
     [previewLayer setVideoGravity:AVLayerVideoGravityResizeAspect];
     [previewLayer setFrame:[self.imagePreviewView bounds]];
     [[self.imagePreviewView layer] setBackgroundColor:[[UIColor blackColor] CGColor]];
-    [[self.imagePreviewView layer] addSublayer:previewLayer];
+    [[self.imagePreviewView layer] addSublayer: previewLayer];
     
     [session startRunning];
     
@@ -103,7 +124,7 @@
     {
         for (AVCaptureInputPort *port in [connection inputPorts])
         {
-            if ([[port mediaType] isEqual:AVMediaTypeVideo] )
+            if ([[port mediaType] isEqual: AVMediaTypeVideo] )
             {
                 videoConnection = connection;
                 break;
@@ -119,17 +140,36 @@
          if (!imageSampleBuffer) return;
          NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation: imageSampleBuffer];
          UIImage *image = [[UIImage alloc] initWithData: imageData];
-         [self didCaptureImage: image];
+         [self presentCroppingView: [ImageProcessor resizeImage: image]];
          
      }];
     
 }
 
+-(void) presentCroppingView: (UIImage *) image {
+    CropperView *cropperView = [[CropperView alloc] initWithFrame: self.imagePreviewView.frame andImage: image andCompletionHandler: ^(UIImage * croppedImage) {
+        [self didCaptureImage: croppedImage];
+    }];
+    [self.view addSubview: cropperView];
+}
+
 -(void) didCaptureImage: (UIImage *) image {
+    
+    float newW = image.size.width;
+    float newH = image.size.height;
+    
+    //Display new image
+    UIImageView *newImageView = [[UIImageView alloc] initWithFrame: CGRectMake(self.imagePreviewView.frame.size.width/2 - newW/2, self.imagePreviewView.frame.size.height/2 - newH/2, newW, newH)];
+    newImageView.image = image;
+    [self.view addSubview: newImageView];
+    
+    //Hide old image
+    [self.imagePreviewView removeFromSuperview];
     
     //Notify user that processing is occurring
     ProgressPopupView *popupView = [[ProgressPopupView alloc] initWithFrame: CGRectMake(self.view.frame.size.width/2 - POPUP_WIDTH/2, 120, POPUP_WIDTH, POP_HEIGHT)];
     [self.view addSubview: popupView];
+    
     
     //Perform computer vision on background thread, and update UI on main thread when done
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -144,6 +184,12 @@
             
             //Remove popup when done
             [popupView removeFromSuperview];
+            
+            //Add old image view
+            [self.view addSubview: self.imagePreviewView];
+            
+            //Remove new view
+            [newImageView removeFromSuperview];
 
         });
     });

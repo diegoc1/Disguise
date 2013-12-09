@@ -10,6 +10,7 @@
 
 @interface CropperView : UIView
 
-- (id)initWithFrame:(CGRect)frame andImage:(UIImage *)image;
+- (id)initWithFrame:(CGRect)frame andImage:(UIImage *)image andCompletionHandler: (void
+                                                                                   (^)(UIImage *)) handler;
 
 @end

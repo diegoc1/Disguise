@@ -8,6 +8,9 @@
 
 #import "CropperView.h"
 
+typedef void (^CompletionBlock)(UIImage *);
+
+
 @interface CropperView()
 @property (nonatomic) CGPoint startLoc;
 @property (strong, nonatomic) UIView *cropper;
@@ -21,14 +24,18 @@
 @property (nonatomic) BOOL allowDrag;
 @property (nonatomic) int xSectionInView;
 @property (nonatomic) int ySectionInView;
+@property (nonatomic, strong) CompletionBlock handler;
 @end
 
 @implementation CropperView
 
-- (id)initWithFrame:(CGRect)frame andImage:(UIImage *)image
-{
+- (id)initWithFrame:(CGRect)frame andImage:(UIImage *)image andCompletionHandler: (void
+                                                                                   (^)(UIImage *)) handler {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        self.handler = handler;
+        
         //CGRect mainScreenRectangle = [[UIScreen mainScreen] bounds];
         CGFloat height = self.frame.size.height;
         CGFloat width = self.frame.size.width;
@@ -111,6 +118,9 @@
     // self.imview.transform = CGAffineTransformMakeRotation(M_PI/2);
   //  [self.imview setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height)];
     
+    
+    self.handler(self.img);
+    [self removeFromSuperview];
 }
 
 - (int) getXSectionOfView: (CGPoint) point {
