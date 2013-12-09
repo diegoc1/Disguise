@@ -149,7 +149,7 @@
     [self.postToFacebookButton setTitle:@"Post to Facebook" forState:UIControlStateNormal];
     [self.postToFacebookButton setBackgroundColor:[UIColor grayColor]];
     self.postToFacebookButton.layer.cornerRadius = 10;
-    [self.postToFacebookButton addTarget:self action:@selector(postToFacebookButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.postToFacebookButton addTarget:self action:@selector(sendFacebookButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.postToFacebookButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
     [self.postToFacebookButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
     [self.view addSubview:self.postToFacebookButton];
@@ -158,7 +158,7 @@
     [self.postToTwitterButton setTitle:@"Post to Twitter" forState:UIControlStateNormal];
     [self.postToTwitterButton setBackgroundColor:[UIColor grayColor]];
     self.postToTwitterButton.layer.cornerRadius = 10;
-    [self.postToTwitterButton addTarget:self action:@selector(postToTwitterButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.postToTwitterButton addTarget:self action:@selector(sendTwitterButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.postToTwitterButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
     [self.postToTwitterButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
     [self.view addSubview:self.postToTwitterButton];
