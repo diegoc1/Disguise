@@ -6,6 +6,15 @@
 //
 //
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////                                                                                                                   ////
+////  This code was adapted from: http://docs.opencv.org/doc/tutorials/ml/introduction_to_svm/introduction_to_svm.html ////
+////                                                                                                                   ////
+////                                                                                                                   ////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 #import "SVMClassifier.h"
 #include <OpenCV/opencv2/core/core.hpp>
 #include <OpenCV/opencv2/highgui/highgui.hpp>

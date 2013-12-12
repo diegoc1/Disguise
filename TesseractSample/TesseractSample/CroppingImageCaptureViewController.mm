@@ -84,11 +84,11 @@
     
     /* Configure camera for close distance focusing and image capture */
     [cameraDevice lockForConfiguration: nil];
-    if ([cameraDevice isAutoFocusRangeRestrictionSupported]) {
-        [cameraDevice setAutoFocusRangeRestriction: AVCaptureAutoFocusRangeRestrictionNear];
-    }
-    else {
-    }
+//    if ([cameraDevice isAutoFocusRangeRestrictionSupported]) {
+//        [cameraDevice setAutoFocusRangeRestriction: AVCaptureAutoFocusRangeRestrictionNear];
+//    }
+//    else {
+//    }
     [cameraDevice setFocusPointOfInterest: CGPointMake(0.5, 0.5)]; //Always focus on center
     [cameraDevice setFocusMode: AVCaptureFocusModeAutoFocus];
     [cameraDevice unlockForConfiguration];
