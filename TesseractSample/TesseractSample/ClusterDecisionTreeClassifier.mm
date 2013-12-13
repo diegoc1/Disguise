@@ -127,7 +127,7 @@
         ReceiptClusterType currentClassifiedType = ReceiptClusterTypeJunk;
         
         //Search for title
-        if (lastClassifiedType == ReceiptClusterTypeFirst || (lastClassifiedType == ReceiptClusterTypeJunk && !titleFound)) {
+        if (lastClassifiedType == ReceiptClusterTypeFirst || (lastClassifiedType == ReceiptClusterTypeJunk && !titleFound && cluster.minYVal < 200)) {
             if ([cluster.recognizedText length] >= 4) {
                 currentClassifiedType = ReceiptClusterTypeTitle;
                 titleFound = TRUE;
@@ -154,7 +154,7 @@
                     taxFound = TRUE;
                 }
                 
-                else {
+                else if (cluster.minYVal > 100) {
                     currentClassifiedType = ReceiptClusterTypeItem;
                 }
             }

@@ -134,7 +134,7 @@
     CGFloat height = mainScreenBounds.size.height;
     self.allowChanges = TRUE;
 
-    self.backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 24, 70, 30)];
+    self.backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 36, 70, 30)];
     [self.backButton addTarget:self action:@selector(backButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.backButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
     [self.backButton addTarget:self action:@selector(buttonUp:) forControlEvents:UIControlEventTouchUpOutside];
@@ -189,7 +189,7 @@
     
     self.selectedItems = [[NSMutableArray alloc] init];
     
-    self.availableItemsLabel = [[UILabel alloc] initWithFrame:CGRectMake((width / 2) - (LABEL_WIDTH / 2), self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + 35, LABEL_WIDTH, LABEL_HEIGHT)];
+    self.availableItemsLabel = [[UILabel alloc] initWithFrame:CGRectMake((width / 2) - (LABEL_WIDTH / 2), 45, LABEL_WIDTH, LABEL_HEIGHT)];
     [self.availableItemsLabel setText:@"Available Items"];
     [self.availableItemsLabel setTextColor:[UIColor grayColor]];
     [self.availableItemsLabel setTextAlignment:NSTextAlignmentCenter];

@@ -104,9 +104,11 @@
 }
 
 -(void) runKMeans {
-    [self normalizePoints];
+    self.points = [self normalizePoints:self.points];
+    
    // [self randomlyAssignCentroids:self.num_centroids withLength:self.point_vec_length];
     [self assignCentroidsEvenlyAcrossScreen:self.num_centroids withLength:self.point_vec_length];
+ //   self.centroids = [self normalizePoints:self.centroids];
     for (int i = 0; i < 12; i++) {
         [self assignPointsToCentroids];
         [self recalculateCentroids];
@@ -220,6 +222,41 @@
         }
     }
 }
+
+- (NSMutableArray *) normalizePoints:(NSArray *) inputPoints {
+    
+    //Reset the array of points to an array of NSMutableArrays instead of NSArrays.  That way I can manipulate the arrays later in this function
+    NSMutableArray *new_points = [[NSMutableArray alloc] init];
+    for (int i = 0; i < [inputPoints count]; i++) {
+        NSMutableArray *new_p = [[NSMutableArray alloc] initWithArray:inputPoints[i]];
+        new_points[i] = new_p;
+    }
+    
+    int vecLength = [new_points[0] count];
+    for (int i = 0; i < vecLength; i++) {
+        NSMutableArray *featureVec = [[NSMutableArray alloc] init];
+        for (int j = 0; j < [new_points count]; j++) {
+            [featureVec addObject:new_points[j][i]];
+        }
+        double meanOfPoints = [self meanOfPoints:featureVec];
+        double standardDev = [self standardDeviationOfPoints:featureVec withMean:meanOfPoints];
+        for (int j = 0; j < [new_points count]; j++) {
+            
+            NSNumber *or = new_points[j][i];
+            
+            NSNumber *new;
+            if (self.exaggerate && i == self.exaggeratedFeatureIndex) {
+                new = [NSNumber numberWithDouble:(self.exaggerationAmount * [or doubleValue] - meanOfPoints) / standardDev];
+            } else {
+                new = [NSNumber numberWithDouble:([or doubleValue] - meanOfPoints) / standardDev];
+            }
+            new_points[j][i] = new;
+        }
+    }
+    return new_points;
+}
+
+
 
 - (NSMutableArray *) getArrayOfClusters {
     NSMutableArray *array_of_clusters = [[NSMutableArray alloc] init];

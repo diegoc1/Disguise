@@ -155,13 +155,13 @@
 
 -(void) didCaptureImage: (UIImage *) image {
     
-    float newW = image.size.width;
-    float newH = image.size.height;
+ //   float newW = image.size.width;
+ //   float newH = image.size.height;
     
     //Display new image
-    UIImageView *newImageView = [[UIImageView alloc] initWithFrame: CGRectMake(self.imagePreviewView.frame.size.width/2 - newW/2, self.imagePreviewView.frame.size.height/2 - newH/2, newW, newH)];
-    newImageView.image = image;
-    [self.view addSubview: newImageView];
+  //  UIImageView *newImageView = [[UIImageView alloc] initWithFrame: CGRectMake(self.imagePreviewView.frame.size.width/2 - newW/2, self.imagePreviewView.frame.size.height/2 - newH/2, newW, newH)];
+  //  newImageView.image = image;
+  //  [self.view addSubview: newImageView];
     
     //Hide old image
     self.imagePreviewView.hidden = TRUE;
@@ -192,7 +192,7 @@
             self.captureImageButton.hidden = FALSE;
             
             //Remove new view
-            [newImageView removeFromSuperview];
+     //       [newImageView removeFromSuperview];
 
         });
     });
