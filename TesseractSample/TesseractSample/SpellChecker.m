@@ -10,6 +10,16 @@
 #import "UnigramModel.h"
 #import "SpellChecker.h"
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////                                                                                                             ////
+////  This algorithm was adapted from the algorithm described at http://norvig.com/spell-correct.html            ////
+////                                                                                                             ////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 @implementation SpellChecker
 
 -(id)init {
@@ -260,7 +270,11 @@
         NSString *firstWord = [string substringToIndex: i];
         int distanceToTotal = [self getDistanceFromWord: firstWord toWord: @"total"];
         int distanceToTax = [self getDistanceFromWord: firstWord toWord: @"tax"];
+        int distanceToSubtotal = [self getDistanceFromWord: firstWord toWord: @"subtotal"];
         
+        if (distanceToSubtotal < 3) {
+            return [NSString stringWithFormat: @"Subtotal%@", [string substringFromIndex:i]];
+        }
         if (distanceToTotal < 3) {
             return [NSString stringWithFormat: @"Total%@", [string substringFromIndex:i]];
         }

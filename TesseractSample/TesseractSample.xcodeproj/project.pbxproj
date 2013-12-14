@@ -283,8 +283,8 @@
 		17E5A615146017E9004B1CA6 /* TesseractSample */ = {
 			isa = PBXGroup;
 			children = (
-				BE62AA71184F1B45003A34EE /* ios-code [GRADED PORTION] */,
-				BE62AA70184F1B30003A34EE /* 221code */,
+				BE62AA71184F1B45003A34EE /* ios-code [NOT FOR GRADING] */,
+				BE62AA70184F1B30003A34EE /* 221code [CODE TO BE GRADED] */,
 				E553FE37183DC9E800ECF736 /* OpenCV.framework */,
 				17E5A63014601A1C004B1CA6 /* dependencies */,
 				BEA3EBBF185449C9007B4D8F /* Default-586h@2x.png */,
@@ -391,7 +391,7 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
-		BE62AA70184F1B30003A34EE /* 221code */ = {
+		BE62AA70184F1B30003A34EE /* 221code [CODE TO BE GRADED] */ = {
 			isa = PBXGroup;
 			children = (
 				E5A347F81847F90400F7EAEE /* SVMClassifier.h */,
@@ -430,17 +430,17 @@
 				BE62AA6D184F196F003A34EE /* lexicon.txt */,
 				E50E66361845A604008B4757 /* receipt_text.txt */,
 			);
-			name = 221code;
+			name = "221code [CODE TO BE GRADED]";
 			sourceTree = "<group>";
 		};
-		BE62AA71184F1B45003A34EE /* ios-code [GRADED PORTION] */ = {
+		BE62AA71184F1B45003A34EE /* ios-code [NOT FOR GRADING] */ = {
 			isa = PBXGroup;
 			children = (
 				BEA3EBD418546E77007B4D8F /* Both */,
 				BEA3EBD518546E97007B4D8F /* Diego */,
 				BEA3EBCE18546765007B4D8F /* Will */,
 			);
-			name = "ios-code [GRADED PORTION]";
+			name = "ios-code [NOT FOR GRADING]";
 			sourceTree = "<group>";
 		};
 		BEA3EBCE18546765007B4D8F /* Will */ = {

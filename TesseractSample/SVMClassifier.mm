@@ -30,6 +30,8 @@
 
 using namespace cv;
 
+
+//Reads in points, converts any objective c arrays into openCV matrices.  Then makes a call to SVM.train to train the SVM
 - (id) initWithPoints:(NSArray *)points actualClassifications:(NSArray *)classifications featureLength:(int)length {
     self = [super init];
     if (self) {
@@ -68,6 +70,7 @@ using namespace cv;
     return self;
 }
 
+//Public function that takes in a feature vector and returns a predicted label for that feature vector
 - (float) classifyFeaturesForLine:(NSArray *)features {
     float *cf = new float[[features count]];
     for (int i = 0; i < [features count]; i++) {

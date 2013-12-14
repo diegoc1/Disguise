@@ -10,6 +10,7 @@
 
 @implementation UnigramModel
 
+//Reads in the NewCorpus and creates a dictionary that keeps track of the unigram counts for each word in the corpus
 -(id)init {
     self = [super init];
     if (self) {

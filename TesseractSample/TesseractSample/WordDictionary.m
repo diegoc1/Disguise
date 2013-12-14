@@ -10,6 +10,7 @@
 
 @implementation WordDictionary
 
+//Reads in from lexicon.txt and creates an NSDictionary of words from that lexicon
 -(id)init {
     self = [super init];
     if (self) {
@@ -20,6 +21,8 @@
     }
     return self;
 }
+
+//Public function that returns TRUE if the word is dictionary.  Otherwise returns FALSE
 -(BOOL)wordExists:(NSString *)word {
     return [self.dict containsObject: [word lowercaseString]];
 }
